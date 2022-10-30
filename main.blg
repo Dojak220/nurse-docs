@@ -1,24 +1,35 @@
-This is BibTeX, Version 0.99d (MiKTeX 2.9.7350 64-bit)
-Capacity: max_strings=4000, hash_size=5000, hash_prime=4253
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
+Reallocating 'name_of_file' (item size: 1) to 19 items.
 The style file: bibliografia/ppgee.bst
+Reallocating 'name_of_file' (item size: 1) to 22 items.
 A level-1 auxiliary file: pre-textuais/capa.aux
+Reallocating 'name_of_file' (item size: 1) to 23 items.
 A level-1 auxiliary file: pre-textuais/rosto.aux
-A level-1 auxiliary file: pre-textuais/catalograficos.aux
-A level-1 auxiliary file: pre-textuais/preambulo.aux
+Reallocating 'name_of_file' (item size: 1) to 25 items.
 A level-1 auxiliary file: pre-textuais/resumos.aux
-A level-1 auxiliary file: textuais/introducao.aux
-A level-1 auxiliary file: textuais/teoria.aux
-A level-1 auxiliary file: textuais/trabalhos_relacionados.aux
-A level-1 auxiliary file: textuais/problema.aux
-A level-1 auxiliary file: textuais/implementacao.aux
-A level-1 auxiliary file: textuais/experimentos_e_resultados.aux
-A level-1 auxiliary file: textuais/conclusao.aux
+Reallocating 'name_of_file' (item size: 1) to 29 items.
+A level-1 auxiliary file: textuais/cap1_introducao.aux
+Reallocating 'name_of_file' (item size: 1) to 25 items.
+A level-1 auxiliary file: textuais/cap2_teoria.aux
+Reallocating 'name_of_file' (item size: 1) to 41 items.
+A level-1 auxiliary file: textuais/cap3_trabalhos_relacionados.aux
+Reallocating 'name_of_file' (item size: 1) to 27 items.
+A level-1 auxiliary file: textuais/cap4_problema.aux
+Reallocating 'name_of_file' (item size: 1) to 32 items.
+A level-1 auxiliary file: textuais/cap5_implementacao.aux
+Reallocating 'name_of_file' (item size: 1) to 44 items.
+A level-1 auxiliary file: textuais/cap6_experimentos_e_resultados.aux
+Reallocating 'name_of_file' (item size: 1) to 28 items.
+A level-1 auxiliary file: textuais/cap7_conclusao.aux
+Reallocating 'name_of_file' (item size: 1) to 26 items.
+Reallocating 'name_of_file' (item size: 1) to 22 items.
 A level-1 auxiliary file: textuais/apendice.aux
 Database file #1: bibliografia/bibliografia.bib
 You've used 2 entries,
             2923 wiz_defined-function locations,
-            632 strings with 4930 characters,
+            630 strings with 4908 characters,
 and the built_in function-call counts, 19267 in all, are:
 = -- 3246
 > -- 213

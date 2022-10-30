@@ -1,9 +1,13 @@
-\babel@toc {brazil}{}
-\contentsline {chapter}{Sumário}{i}{section*.4}%
-\contentsline {chapter}{Lista de Figuras}{iii}{section*.6}%
-\contentsline {chapter}{Lista de Tabelas}{v}{section*.8}%
+\babel@toc {brazil}{}\relax 
+\contentsline {chapter}{Sumário}{i}{section*.3}%
+\contentsline {chapter}{Lista de Figuras}{iii}{section*.5}%
+\contentsline {chapter}{Lista de Tabelas}{v}{section*.7}%
 \contentsline {chapter}{\numberline {1}Introdução}{1}{chapter.1}%
 \contentsline {chapter}{\numberline {2}Fundamentação Teórica}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}\textit {Flutter}}{3}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Tipos de \textit {Widgets}}{3}{subsection.2.1.1}%
+\contentsline {subsubsection}{Stateless Widgets}{3}{section*.9}%
+\contentsline {subsection}{\numberline {2.1.2}Stateful Widgets}{3}{subsection.2.1.2}%
 \contentsline {chapter}{\numberline {3}Trabalhos relacionados}{5}{chapter.3}%
 \contentsline {chapter}{\numberline {4}Problema}{7}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Aliquam erat neque}{7}{section.4.1}%
