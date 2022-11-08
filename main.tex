@@ -104,6 +104,8 @@
 % Esta separação é opcional: se você preferir, pode por as definições
 % diretamente neste arquivo
 \input{lib/comandos.tex}
+\input{lib/listings_dart.tex}
+
 
 %
 % As margens
@@ -251,6 +253,12 @@
 \phantomsection
 \addcontentsline{toc}{chapter}{Lista de Tabelas}
 \listoftables
+
+% Lista de tabelas (gerada automaticamente)
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Lista de Códigos}
+\lstlistoflistings
 
 % Páginas do texto principal (com cabeçalho)
 \mainmatter

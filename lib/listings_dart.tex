@@ -1,0 +1,58 @@
+% Created by Leonardo Rignanese (rignaneseleo)
+% https://github.com/rignaneseleo/Latex-listings-Dart
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Define colors to use
+% You can change the colors (use http://latexcolor.com/)
+\definecolor{white}{rgb}{1,1,1}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codeblue}{rgb}{0.14,0.41,0.64}
+\definecolor{codeligthblue}{rgb}{0.51,0.76,0.9}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+% \definecolor{backcolour}{rgb}{0, 0, 0}
+\definecolor{backcolour}{rgb}{0.95, 0.95, 0.96}
+% \definecolor{backcolour}{rgb}{0.12, 0.12, 0.12}
+% \definecolor{backcolour}{rgb}{0.22, 0.22, 0.22}
+\definecolor{unitednationsblue}{rgb}{0.36, 0.57, 0.9}
+
+\renewcommand{\lstlistingname}{Código}% Listing -> Código
+\renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}% List of Listings -> List of Códigos
+
+% Define the codebox
+\lstset{
+backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    % frame=shadowbox
+}   
+
+% Define the code emph rules
+\lstset{
+    % Types
+    emph={var, String, int, List, BotaoPrincipal, StatelessWidget, Key, Widget, BuildContext, TextButton, Text, CampoTexto, CampoTextoState, _CampoTextoState, State, TextField},% Insert here the types you are using
+    emphstyle=\color{codegreen},
+    % Functions
+    emph={[2]build, print, setState, createState},% Insert here the methods you are using
+    emphstyle={[2]\color{magenta}},
+    % Keywords
+    emph={[3]class, extends, final, const, super, this},% Insert here the methods you are using
+    emphstyle={[3]\color{codeblue}},
+    emph={[4]texto, key, override, onPressed, child, onChanged, value, context},% Insert here the methods you are using
+    emphstyle={[4]\color{codeligthblue}}%
+}
