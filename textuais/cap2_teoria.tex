@@ -40,11 +40,11 @@ No \textit{Dart}, a estratégia de compilação \textit{JIT} é utilizada no per
 % ref: https://dart.dev/overview#platform 05/11/2022
 % ref: https://dart.dev/ 01/11/2022
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
   \includegraphics[width=1\textwidth, keepaspectratio=true]{figuras/cap2/2_1_2_dart-platforms.png}
   \centering
-  \caption[Plataformas de compilação do Dart]{Plataformas de compilação do Dart}
-  % \fonte{Site oficial da linguagem Dart}
+  \caption[Plataformas de compilação do Dart]{Plataformas de compilação do Dart \protect\cite{dart-platforms}}
+  % \font{Site oficial da linguagem Dart}
   \label{fig:dart_plataforms}
 \end{figure}
 % \FloatBarrier
@@ -79,11 +79,24 @@ A fazer.
 % ref: https://flutter.dev/docs/resources/architectural-overview 01/11/2022
 
 \subsection{\textit{Widgets}}
-O \textit{framework} recebe inspiração do React e, dessa forma, utiliza-se de Widgets para compor os elementos visuais das aplicações, assim como os estados dos mesmos. % ref: https://docs.flutter.dev/development/ui/widgets-intro 01/11/2022
-Estes Widgets devem ser responsáveis por gerir, com boa performance, a renderização dos elementos na tela, suas animações e também controlar as interações do usuário com a aplicação.
+O \textit{framework} recebe inspiração do React e, dessa forma, utiliza-se de \textit{widgets} (\ref{fig:nurse-widget-tree}) para compor os elementos visuais das aplicações, assim como os estados dos mesmos. % ref: https://docs.flutter.dev/development/ui/widgets-intro 01/11/2022
+Estes \textit{widgets} devem ser responsáveis por gerir, com boa performance, a renderização dos elementos na tela, suas animações e também controlar as interações do usuário com a aplicação.
 % ref.: Wenhao Wu: React Native vs Flutter, cross-platform mobile application frameworks: 2.2.3 Widget: Widgets do not only control and affect how the views behave, but also handle and respond to the user’s action. Thus, it is crucial that Widgets need to perform fast, including rendering and animating. 01/11/2022
 
-Além disso, os \textit{Widgets} devem ser customizáveis e extensíveis, de forma que possam ser flexíveis em relação às suas propriedades e reuso. O Flutter possibilita isso ao trazer a responsabilidade de criação e renderização dos \textit{Widgets} da plataforma à qual está rodando para própria aplicação. Posteriormente, na seção \ref{Subsec:Diferencas_tecnologias}, será apresentada uma breve explicação da diferença entre o tratamento de \textit{Widgets} feito pelo Flutter e por outras tecnologias, como o \textit{React Native}, \textit{WebViews} e aplicações escritas em Android ou iOS.
+\begin{figure}[ht!]
+    	
+  \centering
+          \subfloat[Representação da árvore de \textit{widget}s]{\includegraphics[width=0.45\columnwidth]{figuras/cap2/2_2_2_nurse-widget-tree.png}}
+            \qquad
+            \subfloat[Árvore apresentada pelo \textit{Flutter DevTools}]{\includegraphics[width=0.45\columnwidth]{figuras/cap2/2_2_2_nurse-widget-tree-flutter-tool.png}}
+    \caption[Estrutura simplificada de \textit{widgets} da aplicação \textit{Nurse}]{Estrutura simplificada de \textit{widgets} da aplicação \textit{Nurse}}
+  % \fonte{Inserir autor aqui}
+  
+  \label{fig:nurse-widget-tree}
+\end{figure}
+% \FloatBarrier
+  
+Além disso, os \textit{Widgets} devem ser customizáveis e extensíveis, de forma que possam ser flexíveis em relação às suas propriedades e reuso. O Flutter possibilita isso ao trazer a responsabilidade de criação e renderização dos \textit{Widgets} da plataforma à qual está rodando para própria aplicação. Posteriormente, na seção \ref{cap2:Subsec:Diferencas_tecnologias}, será apresentada uma breve explicação da diferença entre o tratamento de \textit{Widgets} feito pelo Flutter e por outras tecnologias, como o \textit{React Native}, \textit{WebViews} e aplicações escritas em Android ou iOS.
  % ref: https://hackernoon.com/whats-revolutionary-about-flutter-946915b09514
 
 
