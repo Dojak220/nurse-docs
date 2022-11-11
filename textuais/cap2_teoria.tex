@@ -194,39 +194,77 @@ Essa classe interna também possui um atributo \textbf{texto} que é inicializad
 
 Além disso, o \textit{widget} do tipo \textit{TextField} recebe como segundo parâmetro um objeto do tipo \textit{InputDecoration} que define o rótulo do campo com o atributo \textbf{texto} da classe \textbf{CampoTexto} e uma dica do que o usuário pode fazer.
 
-\subsection{Principais características}
-A fazer.
+\subsubsection{InheritedWidget}
+
+\textit{InheritedWidget} é um tipo especial de \textit{widget} que permite o envio de informações eficientemente entre os nós da árvore de \textit{widgets} que compõe a aplicação. Isto é, a partir de qualquer \textit{widget} descendente de um \textit{InheritedWidget}, pode-se recuperar dados sobre esse componente pai sem que haja a necessidade de repassar a informação por cada um dos nós que compõem o caminho entre os dois, como é demonstrado da imagem \ref{fig:inherited-widget-diagram}.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figuras/cap2/2_2_2_inherited-widget-diagram.png}
+  \caption{Exemplo de uma árvore de widgets com InheritedWidget. \protect\cite{Faust2020} \protect\cite{boelens2018}}
+  \label{fig:inherited-widget-diagram}
+\end{figure}
+
+Neste exemplo, o estado é mantido pelo \textit{widget} nomeado como \textbf{Home} e é acessado pelos \textit{widgets} \textbf{Text} e \textbf{Button} por meio do método estático \textit{Home.of(BuildContext context)} que, por sua vez, busca no contexto dessa sub-árvore, o \textit{widget} mais próximo que seja do exato tipo \textit{Home} e que seja uma extensão concreta da classe InheritedWidget.
+% ref: https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html 10/11/2022
+% ref: https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html 10/11/2022
+% \subsection{Principais características}
+% A fazer.
+
 \subsection{Diferenças para outras tecnologias}
-\label{Subsec:Diferencas_tecnologias}
+\label{cap2:Subsec:Diferencas_tecnologias}
 A fazer.
-\subsection{\textit{MobX}}
-A fazer.
+ % ref: https://hackernoon.com/whats-revolutionary-about-flutter-946915b09514
+
+\subsection{Gerenciamento de estado}
+\label{cap2:Subsec:Gerenciamento_estado}
+O gerenciamento de estado no \textit{Flutter} não segue apenas uma arquitetura. Na verdade, o \textit{framework} oferece uma série de opções para que o desenvolvedor possa escolher a que melhor se adapta ao seu projeto \cite{Faust2020}. Algumas das principais opções são: \textit{InheritedWidget}, \textit{Provider}, \textit{MobX} \textit{BLoC} e \textit{Redux}. Cada uma dessas opções possui suas vantagens e desvantagens, sendo que algumas são mais adequadas para projetos pequenos e outras para projetos maiores. Anteriormente, descreveu-se o funcionamento do \textit{InheritedWidget} e, mais a frente, serão apresentadas as principais características sobre o \textit{Provider} e o \textit{MobX}.
+% ref: https://docs.flutter.dev/development/data-and-backend/state-mgmt/options 10/11/2022
+
+Antes, porém, é importante destacar que o \textit{Flutter}, diferente de outros \textit{framework}s de desenvolvimento de aplicações \textit{mobile}, como o \textit{Android SDK} e o \textit{iOS UIKit}, não segue uma perspectiva imperativa, onde é possível alterar o estado de um \textit{widget} diretamente. Em vez disso, o \textit{Flutter} segue uma perspectiva declarativa, onde a interface do usuário é alterado através de uma função que retorna um novo \textit{widget}. Isso significa que, ao alterar o estado de um \textit{widget}, o \textit{framework} irá reconstruir esse \textit{widget}, mesmo que isso aconteça a cada novo \textit{frame} da aplicação. O processo pode ser custoso, mas o \textit{Flutter} é rápido o suficiente para isso e existem vantagens associadas, principalmente o benefício de determinar como a interface deve ser construída dado um estado específico e mantê-la assim até que haja a necessidade de uma reconstrução dessa interface.
+% ref: https://docs.flutter.dev/development/data-and-backend/state-mgmt/declarative 10/11/2022
+
 \subsection{\textit{Provider}}
+\label{cap2:Subsec:Provider}
+
+\textit{Provider} é um \textit{wrapper}, isto é, um encapsulamento que envolve o \textit{InheritedWidget} com o objetivo de simplificar seu uso e, com isso, facilitar o gerenciamento de estados em aplicações \textit{Flutter}.
+% ref: https://pub.dev/packages/provider 10/11/2022
+
+Ao utilizar o \textit{Provider}, pode-se encapsular o estado em uma nova classe que herda de \textit{ChangeNotifier} ou se mistura a ela com o uso da palavra reservada \textit{with}, do Dart. Dessa forma, essa classe ganha a capacidade de notificar os \textit{widgets} que se subscrevem a ela quando o estado é alterado. Para isso, basta utilizar o método \textit{notifyListeners()} em métodos que alteram esse estado.
+% ref: https://docs.flutter.dev/development/data-and-backend/state-mgmt/simple
+% ref: https://www.youtube.com/watch?v=d_m5csmrf7I 10/11/2022
+
+Para fornecer o estado aos widgets que tem interesse nele, utiliza-se o \textit{ChangeNotifierProvider}. Esse \textit{widget} é colocado acima dos widgets que devem receber a instância do \textit{ChangeNotifier}. Por fim, para consumir o estado e responder às suas mudanças, utiliza-se um \textit{widget} chamado \textit{Consumer}, o qual é normalmente colocado ao redor do \textit{widget} que deve ser atualizado quando o estado é alterado. Também pode-se utilizar o método \textit{Provider.of(context)} para obter o estado ou alterá-lo.
+% ref: https://docs.flutter.dev/development/ data-and-backend/state-mgmt/simple
+% ref: https://www.youtube.com/watch?v=d_m5csmrf7I 10/11/2022
+
+\subsection{\textit{MobX}}
+\label{cap2:Subsec:MobX}
 A fazer.
 
-\section{Programação Orientada a Objetos}
-A fazer.
+% \section{Programação Orientada a Objetos}
+% A fazer.
 
 \section{Banco de Dados Relacional}
 A fazer.
 
-\section{Arquitetura de Sistemas}
-A fazer.
+% \section{Arquitetura de Sistemas}
+% A fazer.
 
-\section{Princípios SOLID}
+% \section{Princípios SOLID}
 
-\subsection{Single Responsibility Principle}
-A fazer.
+% \subsection{Single Responsibility Principle}
+% A fazer.
 
-\subsection{Open/Closed Principle}
-A fazer.
+% \subsection{Open/Closed Principle}
+% A fazer.
 
-\subsection{Liskov Substitution Principle}
-A fazer.
+% \subsection{Liskov Substitution Principle}
+% A fazer.
 
-\subsection{Interface Segregation Principle}
-A fazer.  
+% \subsection{Interface Segregation Principle}
+% A fazer.  
 
-\subsection{Dependency Inversion Principle}
-A fazer.
+% \subsection{Dependency Inversion Principle}
+% A fazer.
 
