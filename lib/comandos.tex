@@ -40,3 +40,25 @@
 %% Abrevia figuras e tabelas
 %\def\figurename{Fig.}
 %\def\tablename{Tab.}
+
+
+\titleformat
+{\chapter} % command
+[display] % shape hang, block, display, runin, leftmargin, rightmargin, drop, wrap and frame
+{\bfseries\Huge} % format
+{
+  \vspace{-8ex}  
+  \centering
+  \thechapter
+} % label
+{0.5ex} % sep
+{
+  % \rule{\textwidth}{1pt}
+  % \vspace{1ex}
+  \vspace{-0.5ex}
+  \centering
+} % before-code
+% [
+% \vspace{-0.5ex}%
+% \rule{\textwidth}{0.3pt}
+% ] % after-code

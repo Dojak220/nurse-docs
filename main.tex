@@ -64,7 +64,7 @@
 \usepackage{afterpage}
 % Para formatar URLs (endereços da Web)
 \usepackage{url}
-% Para reduzir os espaços entre os ítens (itemize, enumerate, etc.)
+% Para reduzir os espaços entre os itens (itemize, enumerate, etc.)
 % Este pacote não faz parte da distribuição padrão do LaTeX.
 \usepackage{lib/noitemsep}
 % Para as citações bibliográficas
@@ -92,11 +92,12 @@
 \usepackage[portuguese, ruled, linesnumbered]{algorithm2e}
 % Capítulos com títulos em um formato "decorado"
 \usepackage{lib/capitulos}
-% Hiperreferências dentro do texto e montagem dos links do índices dos
+% Hiper-referências dentro do texto e montagem dos links do índices dos
 % para os leitores de pdf (deve ser o último pacote a ser inserido).
 \usepackage[breaklinks]{hyperref}
 % Referência correta de ambientes flutuantes (como figuras, tabelas e algoritmos).
 \usepackage[all]{hypcap}
+\usepackage{titlesec}
 
 % NOVOS COMANDOS
 
@@ -180,7 +181,13 @@
 %\includeonly{catalograficos}
 %\includeonly{preambulo}
 %\includeonly{resumos}
-%\includeonly{introducao/introducao}
+%\includeonly{textuais/cap1_introducao.tex}
+% \includeonly{textuais/cap2_teoria}
+% \includeonly{textuais/cap3_trabalhos_relacionados.tex}
+% \includeonly{textuais/cap4_problema.tex}
+% \includeonly{textuais/cap5_implementacao.tex}
+% \includeonly{textuais/cap6_experimentos_e_resultados.tex}
+% \includeonly{textuais/cap7_conclusao.tex}
 %\includeonly{estilo/estilo}
 %\includeonly{matematica/matematica}
 %\includeonly{figuras/figuras}
@@ -232,7 +239,7 @@
 
 % Lista de conteúdo (sumário, gerado automaticamente)
 % Aqui, e em todos os itens antes da introdução, o comando \phantomsection é utilizado.
-% O seu uso é neecssário para auxiliar o pacote "hyperref" a fazer a referência correta
+% O seu uso é necessário para auxiliar o pacote "hyperref" a fazer a referência correta
 % dos links do sumário, das listas (de tabelas, figuras, algoritmos) com as páginas
 % respectivas.
 % Caso seja tirado, o "hyperref" irá apontar o link do sumário para o abstract, o link
