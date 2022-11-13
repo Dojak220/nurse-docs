@@ -240,13 +240,82 @@ Para fornecer o estado aos widgets que tem interesse nele, utiliza-se o \textit{
 
 \subsection{\textit{MobX}}
 \label{cap2:Subsec:MobX}
-A fazer.
+% [A revisar]
+\textit{MobX} é uma biblioteca para gerenciamento de estado baseado em reatividade \cite{mobx-package}. A reatividade, nesse contexto, é um conceito que permite que o estado de um \textit{widget} mude automaticamente quando uma ação é realizada em outro local, como por exemplo, um outro \textit{widget}. Para isso, utiliza-se a ideia de observabilidade a partir do \textit{widget} que depende do estado a ser observado e, assim que este é alterado, o \textit{widget} é notificado e reconstruído. Esse ciclo pode ser demonstrado na imagem \ref{fig:mobx-cycle}.
+
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figuras/cap2/2_2_6_mobx-cycle.png}
+  \caption{Ciclo básico do gerenciamento de estado com o MobX \protect\cite{mobx-package} \protect\cite{podila18mobx}}
+  \label{fig:mobx-cycle}
+\end{figure}
+
+
+A \textbf{ação} é responsável por gerar mudança no estado da aplicação. Ela pode ser disparada por uma interação do usuário com algum \textit{widget}, como um botão, assim como pode ser resposta a um efeito colateral causado por uma outra ação anterior a esta e que gerou uma mudança de estado anterior, a qual foi consumida por um observador.
+
+O \textbf{observador}, por sua vez, pode ser um \textit{widget}, que apresentará uma mudança visual ao usuário ou uma função responsável por lidar com a mutação desse estado, mas sem que haja, necessariamente, uma reconstrução da interface.
+
+E, por fim, o \textbf{estado} é o valor que será observado e que, quando alterado, notificará os observadores. Esse estado pode ser uma variável, um objeto ou uma lista de objetos, por exemplo.
+
+A notificação realizada pelo estado pode ocasionar efeitos colaterais em outros observadores, que por sua vez, podem disparar novas ações, gerando um ciclo de reatividade. A imagem \ref{fig:mobx-details} apresenta uma representação mais detalhada do ciclo com o \textit{MobX}.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figuras/cap2/2_2_6_mobx-details.png}
+  \caption{Ciclo detalhado do gerenciamento de estado com o MobX \protect\cite{mobx-package} \protect\cite{podila18mobx}}
+  \label{fig:mobx-details}
+\end{figure}
+
+% [A analisar] [A fazer] Exemplo genérico da implementação do MobX.
+
 
 % \section{Programação Orientada a Objetos}
 % A fazer.
 
-\section{Banco de Dados Relacional}
-A fazer.
+\section{Persistência de Dados}
+% [A revisar]
+A persistência de dados no contexto do Flutter é o processo de armazenamento em disco das informações relativas à aplicação ou ao seu usuário.
+A persistência de dados em um aplicativo móvel permite que o usuário possa acessar as informações mesmo quando não estiver conectado à internet ou mesmo quando o aplicativo estiver fechado. As principais formas de armazenamento de dados em uma aplicação Flutter são: salvamento em \textit{Shared Preferences}, leitura e escrita de arquivos e salvamento em banco de dados \textit{SQLite} \cite{persistence}.
+% ref: https://docs.flutter.dev/cookbook#persistence 12/11/2022
+
+A forma como as informações são salvas dependem da quantidade, complexidade e finalidade delas. Para pequenos conjunto de dados, o salvamento em chave-valor, utilizando o \textit{Shared Preferences}, é uma boa opção \cite{shared_preferences}. Já para arquivos de texto, como por exemplo, um arquivo \textit{JSON}, o salvamento em disco é uma boa opção, pois permite a leitura e escrita de dados de forma mais abrangente em relação ao tipo de arquivo salvo e sua utilidade posterior \cite{reading_writing_files}. Por fim, para grandes conjuntos de dados, como por exemplo, uma lista de contatos, o \textit{SQLite} é preferível, pois ele é uma biblioteca que implementa o mecanismo de um banco de dados relacional \cite{sqlite-org} que permite a criação de tabelas e a manipulação de dados de forma simples e rápida \cite{sqlite-flutter} \cite{sqlite_features}.
+
+No contexto da aplicação, a quantidade de dados pode ser consideravelmente grande e estão bastante relacionados entre si, como descrito na \ref{Sec:DiagramaClasses}. Por conta disso, a estratégia utilizada é a de salvar os dados em banco relacional, utilizando o \textit{SQLite}.
+
+\subsection{\textit{Banco de Dados SQLite}}
+Um banco de dados pode ser entendido como um conjunto organizado e integrado de dados ou informações que atendem a um conjunto de usuários \cite{heuser09banco} \cite{oracle}. Em geral, os bancos de dados tem o objetivo de armazenar dados de vários sistemas e/ou usuários diferentes e, por conta disso, utilizam-se de sistemas de gerenciamento de banco de dados (SGBD) modularizados \cite{heuser09banco} que, em alguns casos, exigem um servidor a parte para realizar os processos que recebem em uma arquitetura conhecida como cliente/servidor \cite{sqlitetutorial_net}.
+
+Para esse tipo de banco de dados, o foco está mais atrelado à escalabilidade e concorrência de dados, visto que inúmeros novos sistemas podem ser acoplados ao banco de dados pré-existente. No caso do \textit{SQLite}, o foco está mais voltado para a economia, eficiência e simplicidade, ao passo em que ele atenderá a um único sistema ou aplicação que, nesse caso, se trata do dispositivo móvel e dos poucos usuários (em geral, apenas um), que o utilizarão \cite{sqlite_use}.
+
+\subsection{Modelagem do banco de dados}
+\label{Sec:ModelagemBD}
+
+A modelagem dos dados que serão salvos em um banco fornece uma representação abstrata da estrutura das informações que estarão contidas ali. Essa modelagem normalmente segue dois níveis de abstração diferentes que são criados de acordo com a finalidade e com o momento de desenvolvimento do projeto. O \textbf{modelo conceitual} normalmente possui informações menos detalhadas, mas que passam uma ideia geral da estrutura que será criada no banco de dados e os tipos de informação que estarão presente. Posteriormente, cria-se um \textbf{modelo lógico}, o qual já depende do SGBD utilizado e possui mais detalhes sobre os tipos de informações que possui e a forma como elas serão gravadas. \cite{heuser09banco}.
+
+A seguir, na figura \ref{fig:diagrama_er}, é apresentada um exemplo de modelagem conceitual do banco de dados, utilizando-se uma parte simplificada da aplicação e, na figura \ref{fig:diagrama_logico}, a modelagem lógica para a mesma parte da aplicação.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figuras/cap2/2_3_2_diagrama-er.png}
+    \caption{Modelagem conceitual de parte do banco de dados}
+    \label{fig:diagrama_er}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figuras/cap2/2_3_2_diagrama-logico.png}
+    \caption{Modelagem lógico de parte do banco de dados}
+    \label{fig:diagrama_logico}
+\end{figure}
+
+Observa-se que a notação utilizada no relacionamento entre as entidades 'Campanha' e 'Aplicação', para ambas as modelagens, segue o padrão conhecido como notação Engenharia de Informações. Nesse tipo de notação, a relação é demonstrada por uma linha e a cardinalidade é representada pelos símbolos nas extremidades dessa linha, ligados à entidade. Ademais, a denominação do relacionamento é dado pelas frases verbais que estão presentes na relação  \cite{heuser09banco}. No caso do relacionamento 'Campanha' e 'Aplicação', ele é representado por 'realiza' e 'é realizada em'.
+
+% ref: [cap 1]
+% ref: [cap 5: intro] do livro do heuser
+
+
+%ref: Projeto de Banco de Dados - C. A. Heuser: Capítulo 1: Seção 1.1.1:  A solução para evitar a redundância não controlada de informações é o compartilhamento de dados. Nesta forma de processamento, cada informação é armazenada uma única vez, sendo acessada pelos vários sistemas que dela necessitam (Figura 1.2). \textit{Ao conjunto de arquivos integrados que atendem a um conjunto de sistemas dá-se o nome de banco de dados (BD)}.
 
 % \section{Arquitetura de Sistemas}
 % A fazer.
