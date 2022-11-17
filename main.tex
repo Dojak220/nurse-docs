@@ -78,7 +78,7 @@
 % PACOTES OPCIONAIS
 
 % Para poder incluir arquivos Postscript com cores (do Xfig, por exemplo)
-\usepackage{color}
+\usepackage{color, colortbl}
 % Para ter células em tabelas que ocupam mais de uma linha
 \usepackage{multirow}
 % Para poder ter tabelas longas em mais de uma página
@@ -88,7 +88,7 @@
 % Se você quiser personalizar os cabeçalhos das páginas
 %\usepackage{fancyheadings}
 % Para incluir algoritmos e listagens de códigos
-%\usepackage{listings}
+\usepackage{listings}
 % Para incluir pseudocódigos
 \usepackage[portuguese, ruled, linesnumbered]{algorithm2e}
 % Capítulos com títulos em um formato "decorado"
@@ -105,8 +105,8 @@
 % As definições dos novos comandos estão agrupadas no arquivo "comandos.tex"
 % Esta separação é opcional: se você preferir, pode por as definições
 % diretamente neste arquivo
-\input{lib/comandos.tex}
-\input{lib/listings_dart.tex}
+\input{lib/comandos}
+\input{lib/listings_dart}
 
 
 %
@@ -185,10 +185,9 @@
 %\includeonly{textuais/cap1_introducao.tex}
 % \includeonly{textuais/cap2_teoria}
 % \includeonly{textuais/cap3_trabalhos_relacionados.tex}
-% \includeonly{textuais/cap4_problema.tex}
-% \includeonly{textuais/cap5_implementacao.tex}
-% \includeonly{textuais/cap6_experimentos_e_resultados.tex}
-% \includeonly{textuais/cap7_conclusao.tex}
+% \includeonly{textuais/cap4_implementacao.tex}
+% \includeonly{textuais/cap5_experimentos_e_resultados.tex}
+% \includeonly{textuais/cap6_conclusao.tex}
 %\includeonly{estilo/estilo}
 %\includeonly{matematica/matematica}
 %\includeonly{figuras/figuras}

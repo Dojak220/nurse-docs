@@ -1,7 +1,6 @@
 % Created by Leonardo Rignanese (rignaneseleo)
 % https://github.com/rignaneseleo/Latex-listings-Dart
 
-\usepackage{listings}
 \usepackage{xcolor}
 
 % Define colors to use
@@ -12,6 +11,7 @@
 \definecolor{codeligthblue}{rgb}{0.51,0.76,0.9}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{amber(sae/ece)}{rgb}{1.0, 0.49, 0.0}
 % \definecolor{backcolour}{rgb}{0, 0, 0}
 \definecolor{backcolour}{rgb}{0.95, 0.95, 0.96}
 % \definecolor{backcolour}{rgb}{0.12, 0.12, 0.12}
@@ -44,15 +44,60 @@ backgroundcolor=\color{backcolour},
 
 % Define the code emph rules
 \lstset{
-    % Types
-    emph={var, String, int, List, BotaoPrincipal, StatelessWidget, Key, Widget, BuildContext, TextButton, Text, CampoTexto, CampoTextoState, _CampoTextoState, State, TextField},% Insert here the types you are using
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%% Types %%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    emph=
+    {   % Cada linha a partir da segunda é de um código existente
+        var, String, int, List, %
+        BotaoPrincipal, StatelessWidget, Key, Widget, BuildContext, TextButton, Text, %
+        CampoTexto, State, CampoTextoState, _CampoTextoState, TextField, InputDecoration, %
+        HomeController, ApplicationRepository, ObservableList, Application, Action, DatabaseApplicationRepository, Future, %
+        Home, Scaffold, VaccinationButton, %
+        Appliers, Provider, AppliersPageController, EntityList, Applier, %
+    },
     emphstyle=\color{codegreen},
-    % Functions
-    emph={[2]build, print, setState, createState},% Insert here the methods you are using
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%% Functions %%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    emph=
+    { % Cada linha é de um código existente
+        [2]build, print, setState, createState, %
+        of, empty, getApplications, clear, addAll, %
+        read, %
+    },
     emphstyle={[2]\color{magenta}},
-    % Keywords
-    emph={[3]class, extends, final, const, super, this},% Insert here the methods you are using
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%% Keywords %%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    emph={[3]class, extends, final, const, required, super, this, late, true},
     emphstyle={[3]\color{codeblue}},
-    emph={[4]texto, key, override, onPressed, child, onChanged, value, context},% Insert here the methods you are using
-    emphstyle={[4]\color{codeligthblue}}%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%% Keywords 2 %%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    emph={[4]return, async, await},
+    emphstyle={[4]\color{codepurple}},
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%% Strings %%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    emph=
+    {
+        [5]", Clicou, no, botao, principal, %
+        Digite, aqui, %
+        vaccinations, new, %
+        Aplicantes, %
+    },
+    emphstyle={[5]\color{amber(sae/ece)}},
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%% Variables %%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    emph=
+    {   % Cada linha é de um código existente
+        [6]texto, key, override, context, onPressed, child, %
+        onChanged, value, decoration, labelText, widget, hintText, %
+        applicationRepository, applications, growable, fetchApplications, result, reversed, %
+        floatingActionButton, newPage, onCallback, %
+        controller, title, %
+    },
+    emphstyle={[6]\color{codeligthblue}}%
 }
