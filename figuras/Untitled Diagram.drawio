@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-11-21T16:52:53.057Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36" etag="RuJlaff5jimdTp4Wndcq" version="20.5.3" type="github" pages="8">
+<mxfile host="app.diagrams.net" modified="2022-11-21T17:16:23.924Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36" etag="FpYbCSH0XMYr6OPWUtAf" version="20.5.3" type="github" pages="8">
   <diagram name="Widget Tree Diagram" id="10a91c8b-09ff-31b1-d368-03940ed4cc9e">
     <mxGraphModel dx="1038" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
@@ -747,17 +747,17 @@
         <mxCell id="GY0akN755h4E0YyKcaB0-107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=14;fontColor=#000000;" edge="1" parent="1" source="GY0akN755h4E0YyKcaB0-105" target="GY0akN755h4E0YyKcaB0-63">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="GY0akN755h4E0YyKcaB0-108" value="Não" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontColor=#FF8000;" vertex="1" connectable="0" parent="GY0akN755h4E0YyKcaB0-107">
+        <mxCell id="GY0akN755h4E0YyKcaB0-108" value="Não (7)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontColor=#FF8000;" vertex="1" connectable="0" parent="GY0akN755h4E0YyKcaB0-107">
           <mxGeometry x="0.0894" relative="1" as="geometry">
-            <mxPoint x="-76" as="offset" />
+            <mxPoint x="-54" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="GY0akN755h4E0YyKcaB0-109" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=14;fontColor=#000000;" edge="1" parent="1" source="GY0akN755h4E0YyKcaB0-105" target="GY0akN755h4E0YyKcaB0-60">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="GY0akN755h4E0YyKcaB0-111" value="Sim" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontColor=#FF8000;" vertex="1" connectable="0" parent="GY0akN755h4E0YyKcaB0-109">
+        <mxCell id="GY0akN755h4E0YyKcaB0-111" value="Sim (7)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontColor=#FF8000;" vertex="1" connectable="0" parent="GY0akN755h4E0YyKcaB0-109">
           <mxGeometry x="-0.8573" y="-2" relative="1" as="geometry">
-            <mxPoint x="1" as="offset" />
+            <mxPoint x="-56" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="GY0akN755h4E0YyKcaB0-105" value="É mais de 1 arquivo?" style="rhombus;whiteSpace=wrap;html=1;fontSize=14;fontColor=#000000;" vertex="1" parent="1">
