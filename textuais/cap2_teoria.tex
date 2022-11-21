@@ -10,12 +10,12 @@ Neste capítulo serão apresentados os conceitos básicos relacionados ao \texti
 Também serão discutidas as principais ideias relacionadas à Programação Orientada a Objeto (POO), aos bancos de dados relacionais e, por fim, alguns conceitos relacionados às boas práticas da programação no quesito de arquitetura de sistemas e os princípios SOLID.
 
 \section{Dart}
-\label{Sec:Dart}
+\label{cap2:Sec:Dart}
 
 Nessa seção, busca-se apresentar os conceitos básicos da linguagem Dart, utilizada para o desenvolvimento do \textit{framework} Flutter. O foco agora é mostrar as características que fizeram com que a linguagem Dart foi escolhida para ser a linguagem de programação do \textit{framework} Flutter.
 
 \subsection{Introdução}
-\label{SubSec: Introducao}
+\label{cap2:SubSec:Introducao}
 
 Dart é uma linguagem de programação criada pela Google em 2011, com o objetivo de ser utilizada, inicialmente, para o desenvolvimento de aplicações web, mas que tem como objetivo atual ser executada em qualquer plataforma.
 % ref: http://googlecode.blogspot.com/2011/10/dart-language-for-structured-web.html 04/11/2022
@@ -27,6 +27,7 @@ A linguagem é orientada a objetos, fortemente tipada e compilada. Ela possui um
 
 
 \subsection{Compilação}
+\label{cap2:SubSec:Compilacao}
 \textit{Dart} possui duas estratégias de compilação que são utilizadas em conjunto, mas em períodos diferentes do processo de desenvolvimento e de utilização da aplicação. Além disso, a linguagem utiliza-se de uma máquina virtual chamada \textit{Dart VM} para executar o código durante o desenvolvimento da aplicação ou traduz o código \textit{Dart} em \textit{JavaScript} para plataforma \textit{web}.
 % ref: https://dart.dev/overview#platform 05/11/2022
 
@@ -73,12 +74,14 @@ O \textit{Flutter}, criado pela \textit{Google}, é desenvolvido em código aber
 
 
 \subsection{Arquitetura do \textit{framework}}
+\label{cap2:SubSec:ArquiteturaFlutter}
 A fazer.
 % [A fazer] Falar sobre o hot reload e relacionar com o JIT do Dart VM (https://hackernoon.com/why-flutter-uses-dart-dd635a054ebf#:~:text=a%20game%20changer%E2%80%A6-,Stateful%20hot%C2%A0reload,-One%20of%20the e )
 % [A revisar] O \textit{framework} é composto por três camadas principais: \textit{widgets}, \textit{rendering} e \textit{gestures}. A camada de \textit{widgets} é responsável por definir os elementos visuais da aplicação, enquanto a camada de \textit{rendering} é responsável por desenhar os elementos na tela. A camada de \textit{gestures} é responsável por capturar os eventos de interação do usuário com a aplicação, como toques na tela, movimentos do mouse, etc.
 % ref: https://flutter.dev/docs/resources/architectural-overview 01/11/2022
 
 \subsection{\textit{Widgets}}
+\label{cap2:SubSec:Widgets}
 O \textit{framework} recebe inspiração do React e, dessa forma, utiliza-se de \textit{widgets} (\ref{fig:nurse-widget-tree}) para compor os elementos visuais das aplicações, assim como os estados dos mesmos. % ref: https://docs.flutter.dev/development/ui/widgets-intro 01/11/2022
 Estes \textit{widgets} devem ser responsáveis por gerir, com boa performance, a renderização dos elementos na tela, suas animações e também controlar as interações do usuário com a aplicação.
 % ref.: Wenhao Wu: React Native vs Flutter, cross-platform mobile application frameworks: 2.2.3 Widget: Widgets do not only control and affect how the views behave, but also handle and respond to the user’s action. Thus, it is crucial that Widgets need to perform fast, including rendering and animating. 01/11/2022
@@ -96,13 +99,14 @@ Estes \textit{widgets} devem ser responsáveis por gerir, com boa performance, a
 \end{figure}
 % \FloatBarrier
   
-Além disso, os \textit{Widgets} devem ser customizáveis e extensíveis, de forma que possam ser flexíveis em relação às suas propriedades e reuso. O Flutter possibilita isso ao trazer a responsabilidade de criação e renderização dos \textit{Widgets} da plataforma à qual está rodando para própria aplicação. Posteriormente, na seção \ref{cap2:Subsec:Diferencas_tecnologias}, será apresentada uma breve explicação da diferença entre o tratamento de \textit{Widgets} feito pelo Flutter e por outras tecnologias, como o \textit{React Native}, \textit{WebViews} e aplicações escritas em Android ou iOS.
+Além disso, os \textit{Widgets} devem ser customizáveis e extensíveis, de forma que possam ser flexíveis em relação às suas propriedades e reuso. O Flutter possibilita isso ao trazer a responsabilidade de criação e renderização dos \textit{Widgets} da plataforma à qual está rodando para própria aplicação. Posteriormente, na seção \ref{cap2:Subsec:DiferencasTecnologias}, será apresentada uma breve explicação da diferença entre o tratamento de \textit{Widgets} feito pelo Flutter e por outras tecnologias, como o \textit{React Native}, \textit{WebViews} e aplicações escritas em Android ou iOS.
  % ref: https://hackernoon.com/whats-revolutionary-about-flutter-946915b09514
 
 
 A seguir, serão apresentados os dois principais tipos de \textit{widgets} utilizados no desenvolvimento da aplicação, suas principais características e diferenças. São eles: \textit{Stateless Widgets} e \textit{Stateful Widgets}, que diferem entre si, essencialmente, pelo gerenciamento ou não de seu estado interno. % ref: https://docs.flutter.dev/development/ui/widgets-intro 01/11/2022
 
 \subsubsection{Stateless Widgets}
+\label{cap2:SubSubSec:StatelessWidgets}
 Os \textit{stateless widgets} são \textit{widgets} que não possuem mudança estado, ou seja, não possuem propriedades que podem ser alteradas ao longo do tempo, como por exemplo, quando há uma animação ou um campo de texto ao qual um usuário possa interagir e, assim, só dependem das configurações definidas pelo próprio objeto e o contexto em que ele está inserido. Esses \textit{widgets} podem ser utilizados para representar elementos estáticos da interface, como textos, imagens, botões etc. A seguir, é apresentado um exemplo de um \textit{stateless widget} que representa um botão.
 % https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html 01/11/2022
 % ref: https://www.youtube.com/watch?v=wE7khGHVkYY 06/11/2022
@@ -128,7 +132,7 @@ No código \ref{lst:stateless_widget} temos a \textbf{classe BotaoPrincipal} que
 
 % https://flutter.dev/docs/development/ui/widgets-intro#stateless-and-stateful-widgets
 \subsubsection{Stateful Widgets}
-
+\label{cap2:SubSubSec:StatefulWidgets}
 % [A revisar]
 Os \textit{stateful widgets} são \textit{widgets} que possuem mudança de estado, ou seja, possuem propriedades que podem ser alteradas ao longo do tempo, como por exemplo, quando há uma animação ou um campo de texto ao qual um usuário possa interagir e, assim, dependem não só das configurações definidas pelo próprio objeto e o contexto em que ele está inserido, mas também do estado interno do objeto. A seguir, é apresentado um exemplo de um \textit{stateful widget} que representa um campo de texto.
 % ref: https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html 07/11/2022
@@ -195,7 +199,7 @@ Essa classe interna também possui um atributo \textbf{texto} que é inicializad
 Além disso, o \textit{widget} do tipo \textit{TextField} recebe como segundo parâmetro um objeto do tipo \textit{InputDecoration} que define o rótulo do campo com o atributo \textbf{texto} da classe \textbf{CampoTexto} e uma dica do que o usuário pode fazer.
 
 \subsubsection{InheritedWidget}
-
+\label{cap2:SubSubSec:InheritedWidget}
 \textit{InheritedWidget} é um tipo especial de \textit{widget} que permite o envio de informações eficientemente entre os nós da árvore de \textit{widgets} que compõe a aplicação. Isto é, a partir de qualquer \textit{widget} descendente de um \textit{InheritedWidget}, pode-se recuperar dados sobre esse componente pai sem que haja a necessidade de repassar a informação por cada um dos nós que compõem o caminho entre os dois, como é demonstrado da imagem \ref{fig:inherited-widget-diagram}.
 
 \begin{figure}[!ht]
@@ -212,12 +216,12 @@ Neste exemplo, o estado é mantido pelo \textit{widget} nomeado como \textbf{Hom
 % A fazer.
 
 \subsection{Diferenças para outras tecnologias}
-\label{cap2:Subsec:Diferencas_tecnologias}
+\label{cap2:Subsec:DiferencasTecnologias}
 A fazer.
  % ref: https://hackernoon.com/whats-revolutionary-about-flutter-946915b09514
 
 \subsection{Gerenciamento de estado}
-\label{cap2:Subsec:Gerenciamento_estado}
+\label{cap2:Subsec:GerenciamentoEstado}
 O gerenciamento de estado no \textit{Flutter} não segue apenas uma arquitetura. Na verdade, o \textit{framework} oferece uma série de opções para que o desenvolvedor possa escolher a que melhor se adapta ao seu projeto \cite{Faust2020}. Algumas das principais opções são: \textit{InheritedWidget}, \textit{Provider}, \textit{MobX} \textit{BLoC} e \textit{Redux}. Cada uma dessas opções possui suas vantagens e desvantagens, sendo que algumas são mais adequadas para projetos pequenos e outras para projetos maiores. Anteriormente, descreveu-se o funcionamento do \textit{InheritedWidget} e, mais a frente, serão apresentadas as principais características sobre o \textit{Provider} e o \textit{MobX}.
 % ref: https://docs.flutter.dev/development/data-and-backend/state-mgmt/options 10/11/2022
 
@@ -274,6 +278,7 @@ A notificação realizada pelo estado pode ocasionar efeitos colaterais em outro
 % A fazer.
 
 \section{Persistência de Dados}
+\label{cap2:Sec:PersistenciaDados}
 % [A revisar]
 A persistência de dados no contexto do Flutter é o processo de armazenamento em disco das informações relativas à aplicação ou ao seu usuário.
 A persistência de dados em um aplicativo móvel permite que o usuário possa acessar as informações mesmo quando não estiver conectado à internet ou mesmo quando o aplicativo estiver fechado. As principais formas de armazenamento de dados em uma aplicação Flutter são: salvamento em \textit{Shared Preferences}, leitura e escrita de arquivos e salvamento em banco de dados \textit{SQLite} \cite{persistence}.
@@ -281,15 +286,16 @@ A persistência de dados em um aplicativo móvel permite que o usuário possa ac
 
 A forma como as informações são salvas dependem da quantidade, complexidade e finalidade delas. Para pequenos conjunto de dados, o salvamento em chave-valor, utilizando o \textit{Shared Preferences}, é uma boa opção \cite{shared_preferences}. Já para arquivos de texto, como por exemplo, um arquivo \textit{JSON}, o salvamento em disco é uma boa opção, pois permite a leitura e escrita de dados de forma mais abrangente em relação ao tipo de arquivo salvo e sua utilidade posterior \cite{reading_writing_files}. Por fim, para grandes conjuntos de dados, como por exemplo, uma lista de contatos, o \textit{SQLite} é preferível, pois ele é uma biblioteca que implementa o mecanismo de um banco de dados relacional \cite{sqlite-org} que permite a criação de tabelas e a manipulação de dados de forma simples e rápida \cite{sqlite-flutter} \cite{sqlite_features}.
 
-No contexto da aplicação, a quantidade de dados pode ser consideravelmente grande e estão bastante relacionados entre si, como descrito na \ref{Sec:DiagramaClasses}. Por conta disso, a estratégia utilizada é a de salvar os dados em banco relacional, utilizando o \textit{SQLite}.
+No contexto da aplicação, a quantidade de dados pode ser consideravelmente grande e estão bastante relacionados entre si, como descrito na \ref{cap4:SubSec:DiagramaClasses}. Por conta disso, a estratégia utilizada é a de salvar os dados em banco relacional, utilizando o \textit{SQLite}.
 
 \subsection{\textit{Banco de Dados SQLite}}
+\label{cap2:SubSec:BancoSQLite}
 Um banco de dados pode ser entendido como um conjunto organizado e integrado de dados ou informações que atendem a um conjunto de usuários \cite{heuser09banco} \cite{oracle}. Em geral, os bancos de dados tem o objetivo de armazenar dados de vários sistemas e/ou usuários diferentes e, por conta disso, utilizam-se de sistemas de gerenciamento de banco de dados (SGBD) modularizados \cite{heuser09banco} que, em alguns casos, exigem um servidor a parte para realizar os processos que recebem em uma arquitetura conhecida como cliente/servidor \cite{sqlitetutorial_net}.
 
 Para esse tipo de banco de dados, o foco está mais atrelado à escalabilidade e concorrência de dados, visto que inúmeros novos sistemas podem ser acoplados ao banco de dados pré-existente. No caso do \textit{SQLite}, o foco está mais voltado para a economia, eficiência e simplicidade, ao passo em que ele atenderá a um único sistema ou aplicação que, nesse caso, se trata do dispositivo móvel e dos poucos usuários (em geral, apenas um), que o utilizarão \cite{sqlite_use}.
 
 \subsection{Modelagem do banco de dados}
-\label{Sec:ModelagemBD}
+\label{cap2:SubSec:ModelagemBD}
 
 A modelagem dos dados que serão salvos em um banco fornece uma representação abstrata da estrutura das informações que estarão contidas ali. Essa modelagem normalmente segue dois níveis de abstração diferentes que são criados de acordo com a finalidade e com o momento de desenvolvimento do projeto. O \textbf{modelo conceitual} normalmente possui informações menos detalhadas, mas que passam uma ideia geral da estrutura que será criada no banco de dados e os tipos de informação que estarão presente. Posteriormente, cria-se um \textbf{modelo lógico}, o qual já depende do SGBD utilizado e possui mais detalhes sobre os tipos de informações que possui e a forma como elas serão gravadas. \cite{heuser09banco}.
 
