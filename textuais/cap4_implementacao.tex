@@ -4,7 +4,7 @@
 
 \mychapter{Nurse: uma aplicação para produtividade em vacinações}
 \label{Cap:Implementacao}
-Nessa seção, será apresentada a arquitetura escolhida para a aplicação, tanto no sentido das camadas hierárquicas de responsabilidade \cite{Faust2020}, quanto na divisão de pastas e subpastas dos arquivos que compõem o código. Além disso, as funcionalidades e casos de usos serão descritos e, por fim, as telas do aplicativo e os pacotes utilizados para o desenvolvimento das funcionalidades serão mostrados.
+Nessa seção, será apresentada a arquitetura escolhida para a aplicação, tanto no sentido das camadas hierárquicas de responsabilidade \cite{Faust2020}, quanto na divisão de pastas e subpastas dos arquivos que compõem o código em módulos. Além disso, as funcionalidades e casos de usos serão descritos e, por fim, as telas do aplicativo e os pacotes utilizados para o desenvolvimento das funcionalidades serão mostrados.
 
 O projeto foi desenvolvido utilizando a linguagem de programação \textit{Dart}, com o \textit{framework Flutter}. O seu repositório pode ser encontrado no \textit{GitHub}, em \url{https://github.com/Dojak220/nurse}. A documentação, que inclui a versão dessa monografia em formato \textit{pdf} e o seu respectivo projeto em \LaTeX também pode ser encontrada no \textit{Github}, em \url{https://github.com/Dojak220/nurse-docs}.
 % [A fazer] Criar um GitHub Pages \url{https://dojak220.github.io/nurse/}.
@@ -12,11 +12,190 @@ O projeto foi desenvolvido utilizando a linguagem de programação \textit{Dart}
 \section{Arquitetura do Sistema}
 \label{cap4:Sec:ArquiteturaSistema}
 
+A definição de uma arquitetura para o desenvolvimento de um projeto é essencial para que o mesmo seja desenvolvido de forma organizada e eficiente, mas também tornar a sua manutenção mais simples. Em outras palavras, o objetivo em definir uma arquitetura é diminuir os recursos humanos e, consequentemente, financeiros necessários durante todo o ciclo de vida de um projeto, desde a sua concepção até a sua manutenção, passando pelo desenvolvimento de suas funcionalidades \cite{martin2019arquitetura}. 
 
-
+Para se alcançar esse objetivo, pode-se utilizar de técnicas, como as supracitadas divisão em camadas de responsabilidade e a modularização, entre outras. Além disso, é importante construir um modelo do domínio-problema da aplicação para que as complexidades inerentes a ele sejam melhor controladas \cite{evans2017domain}. O domínio, ou seja, a área na qual a aplicação Nurse está inserida e qual problema quer-se resolver, engloba do todo o conjunto de ações necessárias para realizar uma vacinação, desde o cadastro das entidades envolvidas (paciente, aplicante, vacina etc...) até a posterior exportação dos dados coletados. O modelo criado para o banco de dados é usado para modelar as entidades envolvidas e a relação entre elas, já as classes desenvolvidas para criar os arquivos a serem exportados é um exemplo da implementação no código das ações necessárias dentro desse domínio-problema.
+% ref. Introdução do livro Domain-Driven Design de Eric Evans. Introdução por Martin Fowler.
 
 \subsection{Camadas de Responsabilidade}
 \label{cap4:SubSec:CamadasResponsabilidade}
+A divisão em camadas hierárquicas de responsabilidade tem como objetivo dividir o projeto em partes menores, cada uma com uma responsabilidade específica e de forma a torná-las o mais independente possível entre elas \cite{Faust2020} e, dessa forma, diminuir o acoplamento e aumentar a coesão das classes. Um exemplo desse tipo de arquitetura é o sistema MVC (Model-View-Controller), que divide o projeto em três camadas: a \textbf{camada de modelo}, que contém as classes que representam as entidades do domínio-problema e gerencia os dados associados a elas; a \textbf{camada de visualização}, que contém as classes que representam as telas da aplicação e gerenciam as suas mudanças textuais e gráficas; e a \textbf{camada de controle}, que contém as classes que intermedeiam as outras duas camadas ao interpretar as ações do usuário e enviar comandos às classes do modelo e/ou da visualização para realizar quaisquer mudanças necessárias \cite{burbeck1987mvc}.
+
+% [A fazer] Colocar as informações dessa parte na lista de itens, favorecendo uma explicação mais detalhada sobre cada uma das camadas. Talvez até subtópicos.
+Essa divisão pode ser realizada em \textit{n} camadas. No caso da aplicação Nurse, dividiu-se o projeto em cinco, como mostrado na figura \ref{fig:4_1_1_camadas_nurse}.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figuras/cap4/4_1_1_camadas_nurse.png}
+  \caption{Camadas da aplicação \textbf{Nurse} e suas dependências}
+  \label{fig:4_1_1_camadas_nurse}
+\end{figure}
+
+\subsubsection{Interface do Usuário}
+\label{cap4:SubSubSec:UI}
+Engloba todos os elementos (\textit{widgets}) visuais e de interação com o usuários, como campos de texto ou botões, cores, imagens, ícones, etc... Essa camada é responsável por receber os comandos do usuário e enviar comandos para as outras camadas, como a camada de controle, para que as ações necessárias sejam realizadas. Além disso, é responsável por gerenciar as mudanças de estado da interface, como a mudança de cor de um botão ao ser clicado, por exemplo. As telas apresentadas na seção seguinte (\ref{cap4:Sec:Telas}) mostram esses elementos com mais detalhes.
+
+\subsubsection{Camada de Regra de Negócio}
+\label{cap4:SubSubSec:RegraNegocio}
+% [A revisar]
+A camada de controle recebe as ações tomadas pelo usuário na camada de interface e toma decisões a partir delas. Essas decisões são tomadas com base nas regras de negócio da aplicação (daí o nome da camada). Essas regras são implementadas em classes que fazem parte dessa camada, aqui nomeadas como \textbf{Controladores}.
+
+Por exemplo, a classe \textit{AddPatientFormController} é responsável por gerenciar as ações relacionadas às páginas de inserção de um novo paciente ou de edição de outro já cadastrado. Durante o preenchimento dos dados nos campos de texto e de seleção em lista suspensa, essa classe salva os dados em um objeto que representa um paciente e, ao tentar salvar, verifica-se a validade dos dados inseridos pelo usuário e se esse cadastro já não havia sido realizado. Caso algum desses requisitos não seja atendido, um estado de erro é enviado à camada anterior para que esta apresente uma mensagem ao usuário, caso contrário, o objeto (um novo paciente, nesse exemplo) é enviado à camada responsável por salvá-lo no banco de dados e o usuário é redirecionado para a página de listagem de pacientes, onde poderá ver o novo item adicionado.
+
+Vale ressaltar que essa validação, assim como o salvamento dos dados, não é responsabilidade dos controladores, então essas ações são delegadas a outras classes e/ou camadas e apenas os resultados que interessam aos controladores são retornados. A seguir, no trecho de código \ref{lst:patient_form_controller} são apresentados alguns detalhes da classe \textit{AddPatientFormController}, ressaltando o uso do \textit{MobX} e os métodos que conectam as camadas adjacentes à da regra de negócio.
+
+% [A fazer] Colocar o código da classe PatientFormController
+\begin{lstlisting}[caption={Trechos da classe \textit{PatientFormController}}, label={lst:patient_form_controller}, escapeinside={(*}{*)}]
+  class AddPatientFormController = _AddPatientFormControllerBase
+      with _$AddPatientFormController;
+
+  abstract class _AddPatientFormControllerBase extends AddFormController
+      with Store {
+    ...
+
+    @observable
+    ObservableList<Locality> localities =
+      ObservableList.of(List<Locality>.empty(growable: true));
+
+    @observable
+    ObservableList<PriorityCategory> categories =
+      ObservableList.of(List<PriorityCategory>.empty(growable: true));
+
+    final Patient? initialPatientInfo;
+
+    @observable
+    PatientStore patientStore = PatientStore();
+
+    ...
+
+    @action
+    Future<List<Locality>> getLocalities() async {
+      final localities = await _localityRepository.getLocalities();
+
+      this.localities
+        ..clear()
+        ..addAll(await _localityRepository.getLocalities());
+
+      return localities;
+    }
+
+    @action
+    Future<List<PriorityCategory>> getPriorityCategories() async {
+      ...
+    }
+
+    @override
+    Future<bool> saveInfo() async {
+      if (submitForm(formKey)) {
+        final PatientStore p = patientStore;
+        
+        ...
+
+      } else {
+        return false;
+      }
+    }
+
+    @override
+    Future<bool> updateInfo() async {
+      if (initialPatientInfo == null) return false;
+
+      if (submitForm(formKey)) {
+        final PatientStore p = patientStore;
+        
+        ...
+
+      } else {
+        return false;
+      }
+    }
+
+    ...
+  }
+\end{lstlisting}
+
+Inicialmente, na declaração da classe, utilizou-se o padrão sugerido na própria documentação do pacote \textit{mobx} para geração automática de código por meio do pacote de desenvolvimento \textit{mobx\_codegen} \cite{mobx_core_concepts}. Essa geração torna mais simples a utilização dos recursos do \textit{MobX}, como os \textit{\textbf{Observables}} e \textit{\textbf{Actions}} e, por isso, foi utilizada. Adiciona-se à declaração da classe uma extensão à classe abstrata \textit{AddFormController}, responsável por definir métodos comuns a todas as classes de controle de formulários de inserção de dados como, por exemplo, os métodos \textit{saveInfo} e \textit{updateInfo}.
+
+Em seguida, podemos observar três propriedades observáveis, sendo duas delas listas e a última, um objeto do tipo \textbf{\textit{PatientStore}} que, por sua vez, também possui propriedades observáveis. É nessa última que estão as propriedades que guardam os valores sobre o paciente, enviados pelo usuário na interface.
+
+% [..................................................................]
+
+% Cria uma nova instância de Pacient com os dados do paciente armazenados
+% no store, então, o envia ao repositório para ser atualizado no banco de
+% dados. 
+
+% Cria uma nova instância de Pacient com os dados do paciente inicial e
+% os dados do paciente armazenados no store, então, o envia ao
+% repositório para ser atualizado no banco de dados.
+
+\subsubsection{Domínio da Aplicação}
+\label{cap4:SubSubSec:Dominio}
+Nessa camada estão as classes que representam as entidades do domínio-problema da aplicação. Observa-se que essa camada não depende de nenhuma outra e pode ser considerada aquela que vai dirigir as implementações das demais \cite{evans2017domain}. Essas classes são definidas com base no mesmo modelo descrito com mais detalhes na seção \ref{cap4:SubSec:DiagramaClasses}, mas no trecho de código \ref{lst:vaccine_model} a seguir, é possível ver como a classe \textit{Vaccine} (Vacina) é implementada.
+
+\begin{lstlisting}[caption={Trecho da implementação da classe \textbf{Vaccine}}, label={lst:vaccine_model}]
+  class Vaccine implements GenericModel {
+    @override
+    final int? id;
+    final String sipniCode;
+    final String name;
+    final String laboratory;
+
+    Vaccine({
+      this.id,
+      required String sipniCode,
+      required String name,
+      required String laboratory,
+    })  : sipniCode = sipniCode.trim(),
+          name = name.trim(),
+          laboratory = laboratory.trim() {
+      _validateVaccine();
+    }
+
+    void _validateVaccine() {
+      if (id != null) Validator.validate(ValidatorType.id, id!);
+      Validator.validateAll([
+        ValidationPair(ValidatorType.numericalString, sipniCode),
+        ValidationPair(ValidatorType.name, name),
+        ValidationPair(ValidatorType.name, laboratory),
+      ]);
+    }
+    ...
+  }
+\end{lstlisting}
+
+A partir dessa classe, podemos verificar aquilo que compõe essa camada. A classe em si representa o que seria a vacina aplicada pelo profissional da saúde dentro de um processo de vacinação a um paciente e, portanto, é uma entidade do domínio-problema. Interno a essa classe estão os atributos que representam as informações que a vacina possui, como o seu nome, seu código SIPNI e o laboratório que a produziu. Além disso, é possível ver que a classe implementa a interface \textit{GenericModel}, que é uma interface que define os atributos e métodos que devem ser implementados por todas as classes que representam entidades do domínio-problema. Essa interface é definida no arquivo \textit{generic\_model.dart} e pode ser vista no trecho de código \ref{lst:generic_model} a seguir.
+
+\begin{lstlisting}[caption={Trecho da implementação da interface \textbf{GenericModel}}, label={lst:generic_model}]
+  abstract class GenericModel {
+    final int? id;
+  
+    GenericModel(this.id);
+  
+    Map<String, dynamic> toMap();
+  }
+\end{lstlisting}
+
+A classe \textit{Vaccine} também implementa os métodos \textit{fromMap} e \textit{toMap}, que são responsáveis por converter um objeto dessa classe em um \textit{Map} e vice-versa. Esses métodos são utilizados pelos repositórios para salvar e recuperar os dados.
+
+Há, também, um processo de validação realizado pelo \textbf{\textit{Validator}}. Essa classe de suporte transita entre as camadas de domínio e de regra de negócio, pois ela é utilizada pelos \textit{models} para garantir que as informações que estão tentando ser cadastradas são válidas de acordo com as regras que definem o domínio-problema. Caso haja algum erro, essa informação é devolvida enviada para a camada de regra de negócio.
+
+% \begin{itemize}
+%   \item 
+% \end{itemize}
+% a camada da \textbf{interface do usuário}, que engloba todos os elementos (\textit{widgets}) de interação com o usuários, como campos de texto ou botões; a camada da \textbf{regra de negócio}, responsável por lidar com as interações realizadas pelo usuário por meio da interface, realizando as mudanças de estados necessários; a camada de \textbf{domínio da aplicação}, responsável por modelar os objetos que representam o domínio no qual a aplicação está inserida e que atuam como os valores de estado modificados pelas regras de negócio; a camada de \textbf{repositório}, que realiza a função de receber as informações advindas da  a \textbf{camada de dados}, responsável por armazenar as informações enviadas . A figura \ref{fig:4_1_1_camadas_nurse} apresenta um diagrama das camadas da aplicação Nurse e a relação entre elas.
+
+
+
+% [A revisar]
+O próprio \textit{framework} do \textit{Flutter} é dividido em múltiplas camadas, onde as camadas superiores, ou seja, aquelas que estão mais próximas do usuário (do desenvolvedor, no contexto do Flutter) dependem apenas das camadas diretamente abaixo delas \cite{flutter-architecture}, em um caminho de direção única \cite{bob2015architecture}.
+
+% [A revisar]
+Uma das vantagens em realizar essa divisão é tornar, por exemplo, as camadas de controle e de modelo imunes às mudanças realizadas na camada de visualização, tornando esta um \textit{plug-in} daquela \cite{bob2015architecture}. Dessa forma, a camada de visualização pode ser alterada sem que a camada de negócio seja afetada em absolutamente nada, o que não pode ser afirmado no caso daquele que cumpre o papel de \textit{plug-in}.
+% [A fazer]
+% retirar essa explicação dos sites:
+% https://priyalwalpita.medium.com/software-architecture-patterns-layered-architecture-a3b89b71a057
+% https://priyalwalpita.medium.com/software-architecture-patterns-which-one-to-choose-1e368b43fe70
+% e da seção 4.2.1 do artigo de Faust
 
 
 
@@ -35,7 +214,8 @@ Nessa seção, serão apresentados os pacotes e bibliotecas utilizados no desenv
     \multicolumn{1}{|>{\centering\arraybackslash}m{23mm}|}{\textbf{Pacote}} 
     & \multicolumn{1}{>{\centering\arraybackslash}m{23mm}|}{\textbf{Versão}} 
     & \multicolumn{1}{>{\centering\arraybackslash}m{60mm}|}{\textbf{Descrição}}\\ \hline
-    cupertino\_icons           & \^{} 0.17.0       & Repositório de ícones utilizados pelos \textit{widget}s do Cupertino \cite{cupertino-package}  \\ \hline
+    cupertino\_icons           & \^{} 1.0.2       & Repositório de ícones utilizados pelos \textit{widget}s do Cupertino \cite{cupertino-package}  \\ \hline
+    intl                       & \^{} 0.17.0       & Repositório utilizado para formatação de datas nessa aplicação \cite{intl-package}  \\ \hline
     sqflite\_sqlcipher         & \^{} 2.1.0        & Extensão ao \textit{sqflite} \cite{sqflite-package} que adiciona senha ao acesso o banco de dados \cite{sqlcipher-package} \\ \hline
     path                       & \^{} 1.8.0        & Biblioteca para manipulação de caminhos em multi-plataformas \cite{path-package}               \\ \hline
     provider                   & \^{} 6.0.3        & Encapsula o \textit{InheritedWidget}, tornando-o reutilizável e mais fácil de usar \cite{provider-package}\\ \hline
@@ -46,7 +226,7 @@ Nessa seção, serão apresentados os pacotes e bibliotecas utilizados no desenv
     syncfusion\_flutter\_xlsio & \^{} 20.2.50-beta & Pacote para criação de arquivos Excel (.xlsx) \cite{syncfusion_flutter_xlsio-package}          \\ \hline
     path\_provider             & \^{} 2.0.11       & \textit{Plugin} para encontrar locais no sistema em múltiplas plataformas \cite{path_provider-package}  \\ \hline
     open\_file                 & \^{} 3.2.1        & \textit{Plugin} para abertura de arquivos do sistema em múltiplas plataformas \cite{open_file-package} \\ \hline
-    share\_plus:               & \^{} 4.4.0        & \textit{Plugin} para compartilhamento de arquivos a partir da aplicação \cite{share_plus-package}       \\ \hline
+    share\_plus               & \^{} 4.4.0        & \textit{Plugin} para compartilhamento de arquivos a partir da aplicação \cite{share_plus-package}       \\ \hline
   \end{tabular}
   \caption{Pacotes utilizados no projeto}
   \label{tab:packages}
