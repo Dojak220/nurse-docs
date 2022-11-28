@@ -45,13 +45,13 @@ Por exemplo, a classe \textit{AddPatientFormController} é responsável por gere
 Vale ressaltar que essa validação, assim como o salvamento dos dados, não é responsabilidade dos controladores, então essas ações são delegadas a outras classes e/ou camadas e apenas os resultados que interessam aos controladores são retornados. A seguir, no trecho de código \ref{lst:patient_form_controller} são apresentados alguns detalhes da classe \textit{AddPatientFormController}, ressaltando o uso do \textit{MobX} e os métodos que conectam as camadas adjacentes à da regra de negócio.
 
 % [A fazer] Colocar o código da classe PatientFormController
-\begin{lstlisting}[caption={Trechos da classe \textit{PatientFormController}}, label={lst:patient_form_controller}, escapeinside={(*}{*)}]
+\begin{lstlisting}[caption={Trechos da classe \textit{PatientFormController}}, label={lst:patient_form_controller}]
   class AddPatientFormController = _AddPatientFormControllerBase
       with _$AddPatientFormController;
 
   abstract class _AddPatientFormControllerBase extends AddFormController
       with Store {
-    ...
+    // ...
 
     @observable
     ObservableList<Locality> localities =
@@ -60,13 +60,20 @@ Vale ressaltar que essa validação, assim como o salvamento dos dados, não é 
     @observable
     ObservableList<PriorityCategory> categories =
       ObservableList.of(List<PriorityCategory>.empty(growable: true));
-
-    final Patient? initialPatientInfo;
-
+      
     @observable
     PatientStore patientStore = PatientStore();
 
-    ...
+    final Patient? initialPatientInfo;
+
+    _AddPatientFormControllerBase(this.initialPatientInfo) {
+      if (initialPatientInfo != null) {
+        patientStore.setInfo(initialPatientInfo!);
+      }
+  
+      getLocalities();
+      getPriorityCategories();
+    }
 
     @action
     Future<List<Locality>> getLocalities() async {
@@ -81,7 +88,7 @@ Vale ressaltar que essa validação, assim como o salvamento dos dados, não é 
 
     @action
     Future<List<PriorityCategory>> getPriorityCategories() async {
-      ...
+      // ...
     }
 
     @override
@@ -89,7 +96,7 @@ Vale ressaltar que essa validação, assim como o salvamento dos dados, não é 
       if (submitForm(formKey)) {
         final PatientStore p = patientStore;
         
-        ...
+        // ...
 
       } else {
         return false;
@@ -103,34 +110,75 @@ Vale ressaltar que essa validação, assim como o salvamento dos dados, não é 
       if (submitForm(formKey)) {
         final PatientStore p = patientStore;
         
-        ...
+        // ...
 
       } else {
         return false;
       }
     }
 
-    ...
+    // ...
   }
 \end{lstlisting}
 
-Inicialmente, na declaração da classe, utilizou-se o padrão sugerido na própria documentação do pacote \textit{mobx} para geração automática de código por meio do pacote de desenvolvimento \textit{mobx\_codegen} \cite{mobx_core_concepts}. Essa geração torna mais simples a utilização dos recursos do \textit{MobX}, como os \textit{\textbf{Observables}} e \textit{\textbf{Actions}} e, por isso, foi utilizada. Adiciona-se à declaração da classe uma extensão à classe abstrata \textit{AddFormController}, responsável por definir métodos comuns a todas as classes de controle de formulários de inserção de dados como, por exemplo, os métodos \textit{saveInfo} e \textit{updateInfo}.
+Inicialmente, na declaração da classe, utilizou-se o padrão sugerido na própria documentação do \textit{mobx} no Flutter para geração automática de código por meio do pacote de desenvolvimento \textit{mobx\_codegen} \cite{mobx_core_concepts}. Essa geração torna mais simples a utilização dos recursos do \textit{MobX}, como os \textit{\textbf{Observables}} e \textit{\textbf{Actions}} e, por isso, foi utilizada. Adiciona-se à declaração, uma extensão à classe abstrata \textit{AddFormController}, responsável por definir métodos comuns a todas as classes de controle de formulários de inserção de dados como, por exemplo, os métodos \textit{saveInfo} e \textit{updateInfo}.
 
-Em seguida, podemos observar três propriedades observáveis, sendo duas delas listas e a última, um objeto do tipo \textbf{\textit{PatientStore}} que, por sua vez, também possui propriedades observáveis. É nessa última que estão as propriedades que guardam os valores sobre o paciente, enviados pelo usuário na interface.
+Em seguida, podemos observar três propriedades observáveis, sendo duas listas e um objeto do tipo \textbf{\textit{PatientStore}} que, por sua vez, também possui propriedades observáveis internamente. É nessa última que estão os valores sobre o paciente, enviados pelo usuário na interface, como mostra o trecho de código \ref{lst:patient_store}. Nesse exemplo são mostradas algumas propriedades e métodos responsável por atualizá-las.
 
-% [..................................................................]
+\begin{lstlisting}[caption={Trechos da classe \textit{PatientStore}}, label={lst:patient_store}]
+  class PatientStore = _PatientStoreBase with _$PatientStore;
 
-% Cria uma nova instância de Pacient com os dados do paciente armazenados
-% no store, então, o envia ao repositório para ser atualizado no banco de
-% dados. 
+  abstract class _PatientStoreBase with Store {
+    @observable
+    Locality? selectedLocality;
 
-% Cria uma nova instância de Pacient com os dados do paciente inicial e
-% os dados do paciente armazenados no store, então, o envia ao
-% repositório para ser atualizado no banco de dados.
+    @observable
+    String? cns;
+  
+    @observable
+    String? name;
+
+    ...outras propriedades
+
+    @action
+    void setLocality(Locality? value) => selectedLocality = value;
+  
+    @action
+    void setCns(String value) => cns = value;
+  
+    @action
+    void setName(String value) => name = value;
+  
+    // ...outros metodos
+  
+    @action
+    void setInfo(Patient patient) {
+      selectedLocality = patient.person.locality;
+      selectedBirthDate = patient.person.birthDate;
+      cns = patient.cns;
+      name = patient.person.name;
+
+      // ...
+    }
+  
+    @action
+    void clearAllInfo() {
+      selectedLocality = null;
+      selectedBirthDate = null;
+      cns = null;
+      name = null;
+
+      // ...
+    }
+  }
+  
+\end{lstlisting}
+
+De volta à listagem \ref{lst:patient_form_controller}, logo após as propriedades observáveis, temos os métodos \textbf{\textit{getLocalities}} e \textit{\textbf{getPriorityCategories}}, que agem como ações (marcadas com o \textit{@action}) e são responsáveis por buscar as informações necessárias para preencher as listas usadas para seleção de localidade e categoria de prioridade, respectivamente. Esses métodos são chamados no construtor da classe (simplificado nesse trecho de código), que recebe como parâmetro um objeto do tipo \textit{Patient}, que é utilizado para preencher os campos do formulário quando o usuário deseja editar um paciente já existente. Essa classe também possui os métodos \textit{saveInfo} e \textit{updateInfo} que são responsáveis por salvar e atualizar os dados do paciente no banco de dados, respectivamente.
 
 \subsubsection{Domínio da Aplicação}
 \label{cap4:SubSubSec:Dominio}
-Nessa camada estão as classes que representam as entidades do domínio-problema da aplicação. Observa-se que essa camada não depende de nenhuma outra e pode ser considerada aquela que vai dirigir as implementações das demais \cite{evans2017domain}. Essas classes são definidas com base no mesmo modelo descrito com mais detalhes na seção \ref{cap4:SubSec:DiagramaClasses}, mas no trecho de código \ref{lst:vaccine_model} a seguir, é possível ver como a classe \textit{Vaccine} (Vacina) é implementada.
+Nessa camada estão as classes que representam as entidades do domínio-problema da aplicação. Observa-se que essa camada não depende de nenhuma outra e pode ser considerada aquela que vai dirigir as implementações das demais \cite{evans2017domain}. Essas classes são definidas com base no mesmo modelo descrito, com mais detalhes, na seção \ref{cap4:SubSec:DiagramaClasses}. No trecho de código \ref{lst:vaccine_model} a seguir, é possível ver como a classe \textit{Vaccine}, que modela uma vacina presente no domínio do problema, é implementada.
 
 \begin{lstlisting}[caption={Trecho da implementação da classe \textbf{Vaccine}}, label={lst:vaccine_model}]
   class Vaccine implements GenericModel {
@@ -165,7 +213,7 @@ Nessa camada estão as classes que representam as entidades do domínio-problema
 
 A partir dessa classe, podemos verificar aquilo que compõe essa camada. A classe em si representa o que seria a vacina aplicada pelo profissional da saúde dentro de um processo de vacinação a um paciente e, portanto, é uma entidade do domínio-problema. Interno a essa classe estão os atributos que representam as informações que a vacina possui, como o seu nome, seu código SIPNI e o laboratório que a produziu. Além disso, é possível ver que a classe implementa a interface \textit{GenericModel}, que é uma interface que define os atributos e métodos que devem ser implementados por todas as classes que representam entidades do domínio-problema. Essa interface é definida no arquivo \textit{generic\_model.dart} e pode ser vista no trecho de código \ref{lst:generic_model} a seguir.
 
-\begin{lstlisting}[caption={Trecho da implementação da interface \textbf{GenericModel}}, label={lst:generic_model}]
+\begin{lstlisting}[caption={Interface \textbf{GenericModel}}, label={lst:generic_model}]
   abstract class GenericModel {
     final int? id;
   
@@ -179,18 +227,81 @@ A classe \textit{Vaccine} também implementa os métodos \textit{fromMap} e \tex
 
 Há, também, um processo de validação realizado pelo \textbf{\textit{Validator}}. Essa classe de suporte transita entre as camadas de domínio e de regra de negócio, pois ela é utilizada pelos \textit{models} para garantir que as informações que estão tentando ser cadastradas são válidas de acordo com as regras que definem o domínio-problema. Caso haja algum erro, essa informação é devolvida enviada para a camada de regra de negócio.
 
-% \begin{itemize}
-%   \item 
-% \end{itemize}
-% a camada da \textbf{interface do usuário}, que engloba todos os elementos (\textit{widgets}) de interação com o usuários, como campos de texto ou botões; a camada da \textbf{regra de negócio}, responsável por lidar com as interações realizadas pelo usuário por meio da interface, realizando as mudanças de estados necessários; a camada de \textbf{domínio da aplicação}, responsável por modelar os objetos que representam o domínio no qual a aplicação está inserida e que atuam como os valores de estado modificados pelas regras de negócio; a camada de \textbf{repositório}, que realiza a função de receber as informações advindas da  a \textbf{camada de dados}, responsável por armazenar as informações enviadas . A figura \ref{fig:4_1_1_camadas_nurse} apresenta um diagrama das camadas da aplicação Nurse e a relação entre elas.
-
-
+\subsubsection{Camada de Repositório}
+\label{cap4:SubSubSec:Repositorio}
 
 % [A revisar]
-O próprio \textit{framework} do \textit{Flutter} é dividido em múltiplas camadas, onde as camadas superiores, ou seja, aquelas que estão mais próximas do usuário (do desenvolvedor, no contexto do Flutter) dependem apenas das camadas diretamente abaixo delas \cite{flutter-architecture}, em um caminho de direção única \cite{bob2015architecture}.
+A camada de repositório separa a camada de dados da camada da regra de negócio \cite{Faust2020} \cite{andrea_repositories}. Ela é responsável por abstrair a forma como os dados são armazenados, permitindo que a aplicação seja portada para diferentes bancos de dados ou para API's sem que seja necessário alterar a regra de negócio. Essa camada é composta por classes abstratas (\ref{lst:campaign_repository}) que definem uma interface com os métodos a serem implementados pelas classes que utilizam-se dessa interface (\ref{lst:database_campaign_repository}). A seguir, no trecho de código \ref{lst:campaign_repository}, é apresentada a interface \textbf{CampaignRepository} e sua implementação para uso de banco de dados, \textbf{DatabaseCampaignRepository}, pode ser vista no trecho de código \ref{lst:database_campaign_repository}, na seção \ref{cap4:SubSubSec:Dados}.
+
+\begin{lstlisting}[caption={Interface \textbf{CampaignRepository}}, label={lst:campaign_repository}]
+  abstract class CampaignRepository {
+    Future<int> createCampaign(Campaign campaign);
+    Future<int> deleteCampaign(int id);
+    Future<Campaign> getCampaignById(int id);
+    Future<Campaign> getCampaignByTitle(String title);
+    Future<List<Campaign>> getCampaigns();
+    Future<int> updateCampaign(Campaign campaign);
+  }
+\end{lstlisting}
+
+Pode-se observar que a classe \textbf{CampaignRepository} define seis funções relacionadas à criação, atualização, busca e remoção de campanhas de vacinação. Contudo, ela não determina como essas funções devem ser implementadas, apenas que as sejam. Dentro da camada de regra de negócio, a dependência, as classes recebem como dependência um objeto do tipo \textbf{CampaignRepository} e, dessa forma, não precisam se preocupar com a forma como os dados serão armazenados, mas apenas garantir que a chamada às funções de armazenamento sigam a assinatura da interface definida. No trecho de código a seguir (\ref{lst:campaign_repository_usage}) é apresentado um exemplo de de uso.
+
+\begin{lstlisting}[caption={Exemplo de uso da interface \textbf{CampaignRepository}}, label={lst:campaign_repository_usage}]
+  class AddCampaignFormController extends AddFormController {
+    final CampaignRepository _repository;
+    
+    ...
+  
+    AddCampaignFormController(
+        [CampaignRepository? campaignRepository])
+        : _repository = campaignRepository ?? DatabaseCampaignRepository() {...}
+    }
+
+    ...
+  }
+\end{lstlisting}
+
+A classe de controle da adição de novas campanhas de vacinação recebe o repositório \textbf{CampaignRepository} como parâmetro no construtor. Dessa forma, ao criar-se uma instância desse controlador, é possível passar um repositório diferente, como um repositório que armazena os dados em um banco de dados relacional ou outro que utiliza um banco de dados não relacional. Como, nesse projeto, utiliza-se apenas uma forma de armazenamento, definiu-se como repositório padrão o \textbf{DatabaseCampaignRepository}, contudo, ainda é possível passar outros tipos de repositório como parâmetro sem a necessidade de mudar nenhuma linha de código dentro do controlador.
+
+\subsubsection{Camada de Dados}
+\label{cap4:SubSubSec:Dados}
+
+É nessa camada que serão realizadas as implementações dos repositórios definidos na camada de repositório. Nesse projeto, foi utilizado o banco de dados SQLite para armazenar os dados, como será melhor explicado nas seções \ref{cap4:Subsec:sqflite-sqlcipher-package} e \ref{cap4:Sec:PersistenciaDados}.
+
+No trecho de código abaixo (\ref{lst:database_campaign_repository}) é apresentada a implementação do repositório \textbf{DatabaseCampaignRepository}. Pode-se observar que a classe implementa a interface \textbf{CampaignRepository} e, portanto, deve implementar todos os métodos definidos nessa interface (apenas dois dos métodos foram apresentados aqui, pois os outros possuem uma estrutura análoga a estes). Além disso, a classe herda de \textbf{DatabaseInterface} que, por sua vez, define métodos de acesso ao banco de dados que serão utilizados por todas as classes concretas de repositórios que realizam esse tipo de armazenamento.
+
+Tanto a classe \textbf{DatabaseInterface} como a classe \textbf{DatabaseManager}, que é utilizada pela primeira, serão melhor descritas na seção \ref{cap4:Sec:UsoBancoDados}.
+% [A fazer]
+
+\begin{lstlisting}[caption={Implementação na classe \textbf{DatabaseCampaignRepository} da interface \textbf{CampaignRepository}}, label={lst:database_campaign_repository}]
+  class DatabaseCampaignRepository extends DatabaseInterface
+      implements CampaignRepository {
+    // ignore: constant_identifier_names
+    static const String TABLE = "Campaign";
+
+    DatabaseCampaignRepository([DatabaseManager? dbManager])
+        : super(TABLE, dbManager);
+
+    @override
+    Future<int> createCampaign(Campaign campaign) async {
+      final int result = await create(campaign.toMap());
+
+      return result;
+    }
+
+    @override
+    Future<int> deleteCampaign(int id) async {
+      final int count = await delete(id);
+
+      return count;
+    }
+
+    ... // Demais implementacoes
+  }
+\end{lstlisting}
 
 % [A revisar]
-Uma das vantagens em realizar essa divisão é tornar, por exemplo, as camadas de controle e de modelo imunes às mudanças realizadas na camada de visualização, tornando esta um \textit{plug-in} daquela \cite{bob2015architecture}. Dessa forma, a camada de visualização pode ser alterada sem que a camada de negócio seja afetada em absolutamente nada, o que não pode ser afirmado no caso daquele que cumpre o papel de \textit{plug-in}.
+% Uma das vantagens em realizar essa divisão é tornar, por exemplo, as camadas de controle e de modelo imunes às mudanças realizadas na camada de visualização, tornando esta um \textit{plug-in} daquela \cite{bob2015architecture}. Dessa forma, a camada de visualização pode ser alterada sem que a camada de negócio seja afetada em absolutamente nada, o que não pode ser afirmado no caso daquele que cumpre o papel de \textit{plug-in}.
 % [A fazer]
 % retirar essa explicação dos sites:
 % https://priyalwalpita.medium.com/software-architecture-patterns-layered-architecture-a3b89b71a057
