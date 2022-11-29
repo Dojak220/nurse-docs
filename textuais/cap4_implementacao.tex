@@ -313,6 +313,45 @@ Tanto a classe \textbf{DatabaseInterface} como a classe \textbf{DatabaseManager}
 \section{Telas}
 \label{cap4:Sec:Telas}
 
+% [A revisar] Programa de desenvolvimento das páginas.
+Nessa seção, serão apresentadas as principais telas desenvolvidas para o aplicativo \textbf{Nurse}. O design dessa páginas foram criados por Yasmim, utilizando o \textit{software} \textbf{XD Adobe}. A seguir, serão apresentadas as telas \textbf{Home}, \textbf{listagem de entidades}, \textbf{listagem de campanhas de vacinação}, \textbf{cadastro de nova campanhas de vacinação} e a tela de \textbf{exportação de dados}.
+
+\begin{figure}[ht!]
+  \centering
+          \subfloat[Tela \textbf{Home}]{\includegraphics[width=0.25\columnwidth]{figuras/cap4/4_2_home_screen_2.png}}
+            \qquad
+          \subfloat[Tela \textbf{listagem de entidades}]{\includegraphics[width=0.25\columnwidth]{figuras/cap4/4_2_entities_screen.png}}
+            \qquad
+          \subfloat[Tela \textbf{exportação de dados}]{\includegraphics[width=0.25\columnwidth]{figuras/cap4/4_2_export_screen_4.png}}
+    \caption[Principais telas da aplicação \textit{Nurse}]{Principais telas da aplicação \textit{Nurse}}
+  % \fonte{Inserir autor aqui}
+  
+  \label{fig:nurse-main-screen}
+\end{figure}
+
+Todas as páginas apresentadas possuem um cabeçalho em verde que apresenta o título da página, um ícone da aplicação e, em alguns casos, um botão para voltar à página anterior. Além disso, as principais páginas possuem um rodapé que serve como sistema de navegação entre elas. Essa barra de navegação possui quatro ícones e cada um leva a uma página diferente. O primeiro ícone leva à página \textbf{Home}, o segundo à página de \textbf{listagem de entidades}, o terceiro à página de \textbf{exportação de dados} e o último e principal, ao conjunto de páginas de \textbf{cadastro de vacinação}. Essa última será apresentada em detalhes na seção \ref{cap5:SubSec:FluxoCadastroVacinacao}.
+
+A página \textbf{Home} é a primeira página que o usuário visualiza quando abre o aplicativo. Nela, é possível ver o número de vacinas aplicadas no dia, na semana e no mês. Também é mostrado ao usuário a lista das últimas vacinas aplicadas e o paciente que as recebeu, além de outras informações sobre este.
+
+A página \textbf{listagem de entidades} é a página que mostra ao usuário a lista de entidades cadastradas no aplicativo. Nela, é possível ver o nome da entidade e o 
+ícone que a representa. Ao clicar em uma entidade, o usuário é levado à página de listagem daquela entidade.
+
+Por fim, a página \textbf{exportação de dados} é a página que permite ao usuário exportar os dados do aplicativo referentes à vacinação para um arquivo \textbf{.csv}. Nela, o usuário pode filtrar o período que quer exportar os dados.
+
+
+\begin{figure}[ht!]
+  \centering
+          \subfloat[Tela da lista de campanhas cadastradas]{\includegraphics[width=0.25\columnwidth]{figuras/cap4/4_2_campaign_list_screen.png}}
+            \qquad
+          \subfloat[Tela de cadastro de nova campanha]{\includegraphics[width=0.25\columnwidth]{figuras/cap4/4_2_campaign_form_2.png}}
+    \caption[Telas de listagem e cadastro de entidade]{Telas de listagem e cadastro de entidade}
+  % \fonte{Inserir autor aqui}
+  
+  \label{fig:entity_list_new_entity}
+\end{figure}
+
+As telas da figura \ref{fig:entity_list_new_entity} apresentam um exemplo das telas que listam as campanhas cadastradas e o formulário de uma nova campanha. Na tela de listagem, pode-se ver duas campanhas cadastradas, um botão para novos cadastros na parte inferior na tela e um botão de edição em formato de lápis no canto superior direito de cada cartão. Esse cartão, por sua vez, apresenta as principais informações sobre aquela entidade. Por fim, quando quer-se editar um item, a página do formulário é iniciada com as informações previamente cadastradas daquele item.
+
 \section{Pacotes e Bibliotecas}
 \label{cap4:Sec:PacotesBibliotecas}
 
