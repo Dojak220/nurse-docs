@@ -4,10 +4,63 @@
 
 \mychapter{Nurse: uma aplicação para produtividade em vacinações}
 \label{Cap:Implementacao}
-Nessa seção, será apresentada a arquitetura escolhida para a aplicação, tanto no sentido das camadas hierárquicas de responsabilidade \cite{Faust2020}, quanto na divisão de pastas e subpastas dos arquivos que compõem o código em módulos. Além disso, as funcionalidades e casos de usos serão descritos e, por fim, as telas do aplicativo e os pacotes utilizados para o desenvolvimento das funcionalidades serão mostrados.
+Nessa seção, as funcionalidades e casos de usos da aplicação serão descritos. Além disso, será apresentada a arquitetura escolhida para a aplicação, tanto no sentido das camadas hierárquicas de responsabilidade \cite{Faust2020}, quanto na divisão de pastas e subpastas dos arquivos que compõem o código em módulos e, por fim, as telas do aplicativo e os pacotes utilizados para o desenvolvimento das funcionalidades serão mostrados.
 
 O projeto foi desenvolvido utilizando a linguagem de programação \textit{Dart}, com o \textit{framework Flutter}. O seu repositório pode ser encontrado no \textit{GitHub}, em \url{https://github.com/Dojak220/nurse}. A documentação, que inclui a versão dessa monografia em formato \textit{pdf} e o seu respectivo projeto em \LaTeX também pode ser encontrada no \textit{Github}, em \url{https://github.com/Dojak220/nurse-docs}.
 % [A fazer] Criar um GitHub Pages \url{https://dojak220.github.io/nurse/}.
+
+\section{Requisitos do Sistema}
+\label{cap4:Sec:Requisitos}
+
+Os requisitos da aplicação foram definidos de acordo com a análise feita a partir do problema identificado e com os objetivos descritos nas seções \ref{cap1:Sec:Problema} e \ref{cap1:Sec:Objetivos}, respectivamente. Em suma, eles foram definidos com o intuito de suprir as necessidade de seus usuários com base naquilo que quer-se resolver. Esses requisitos, por sua vez, podem ser divididos em três tipos: funcionais, não funcionais e de domínio. Certos requisitos podem não estar claramente definidos como uma das três opções acima e, em alguns casos, um dado requisito pode se subdividir em mais requisitos menores e de tipos diferentes daquele que o originou \cite{sommerville2007engineering}. 
+
+\subsection{Requisitos Funcionais}
+\label{cap4:Subsec:RequisitosFuncionais}
+Os requisitos funcionais (RF) são aqueles que descrevem as funcionalidades que o sistema deve possuir para atender às necessidades do usuário \cite{sommerville2007engineering}. A seguir (tabela \ref{tab:rf}), são apresentados os requisitos funcionais do sistema e os detalhes para alguns deles podem ser encontrados no apêndice \ref{apendice:requisitos_funcionais_detalhados}.
+
+\begin{table}[ht!]
+  \centering
+  {\rowcolors{0}{white}{green!20}
+  \begin{tabularx}{\textwidth}{
+    | >{\centering\arraybackslash}m{0.10\textwidth} 
+    | >{\centering\arraybackslash}X 
+    | >{\raggedright\arraybackslash}X | }
+    \hline
+    \rowcolor{green!100}
+    \textbf{Código} & \textbf{Requisito} & \textbf{Descrição} \\ \hline \hline
+    RF01  &  Cadastrar entidades              & Permitir que o usuário cadastre novas entidades (sub-requisitos na tabela \ref{tab:rf01_detalhe}) \\ \hline
+    RF02  &  Visualizar entidades cadastradas & Permitir que o usuário visualize as entidades cadastradas e seus detalhes (sub-requisitos na tabela \ref{tab:rf02_detalhe}) \\ \hline
+    RF03  &  Editar entidades                 & Permitir que o usuário edite entidades já cadastradas seguindo fluxo análogo ao cadastro de nova entidade, porém, com campos pré-preenchidos \\ \hline
+    RF04  &  Gerar tabela de vacinações       & Permitir que o usuário gere uma tabela de vacinações para exportação (sub-requisitos na tabela \ref{tab:rf04_detalhe}) \\ \hline
+  \end{tabularx}}
+\caption{Requisitos funcionais da aplicação Nurse}
+\label{tab:rf}
+\end{table}
+
+\subsection{Requisitos Não Funcionais}
+\label{cap4:Subsec:RequisitosNaoFuncionais}
+
+Os requisitos não funcionais (RNF) são aqueles que descrevem as características do sistema que não são diretamente implementadas como uma funcionalidade específica na aplicação, mas que são importantes para o seu funcionamento, como o nível de confiabilidade da aplicação, performance e segurança. Além disso, são esses requisitos que apresentam as restrições inerentes à aplicação \cite{sommerville2007engineering}. A seguir (tabela \ref{tab:rnf}), são apresentados os requisitos não funcionais do sistema.
+
+\begin{table}[ht!]
+  \centering
+  {\rowcolors{0}{white}{green!20}
+  \begin{tabularx}{\textwidth}{
+    | >{\centering\arraybackslash}m{0.10\textwidth} 
+    | >{\centering\arraybackslash}X 
+    | >{\raggedright\arraybackslash}X | }
+    \hline
+    \rowcolor{green!100}
+    \textbf{Código} & \textbf{Requisito} & \textbf{Descrição} \\ \hline \hline
+    RNF01  &  Correta estrutura dos dados              & Garantir que os dados fornecidos pelo usuário sejam aceitos e salvos apenas se seguirem as especificações e regras relativas a eles (por exemplo, CPF que deve seguir um conjunto de regras para ser considerado válido)   \\ \hline
+    RNF02  &  Dados em planilha & Apenas os dados referentes às vacinações devem postos em uma planilha e esta deve seguir o formato apresentado na seção \ref{cap1:SubSec:cap1:ProcedimentoComumVacinacao}) \\ \hline
+    RNF03  &  Cadastros não podem ser apagados  & As informações que forem salvas sobre qualquer uma das entidades pelo usuário não devem ser apagadas. Elas podem apenas ser alteradas (funcionalidade RF03) \\ \hline
+  \end{tabularx}}
+\caption{Requisitos não funcionais da aplicação Nurse}
+\label{tab:rnf}
+\end{table}
+% [A fazer] Mostrar planilha de preenchimento da vacinação e os campos apresentados. Além disso, mostrar a planilha que deve ser exportada na plataforma.
+
 
 \section{Arquitetura do Sistema}
 \label{cap4:Sec:ArquiteturaSistema}

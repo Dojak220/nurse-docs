@@ -1,12 +1,106 @@
 %%
-%% Capítulo 5: Conclusões
+%% Apêndice 1: Requisitos funcionais detalhados
 %%
 
-\mychapter{Informações adicionais}
-\label{Cap:apendice}
+\mychapter{Requisitos funcionais detalhados}
+\label{apendice:requisitos_funcionais_detalhados}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tristique, orci mollis tincidunt dignissim, purus lectus molestie odio, vitae pharetra nisi sapien et justo. Fusce consequat et elit condimentum tincidunt. In eu venenatis tortor, quis lobortis tellus. Mauris tincidunt gravida ante. Pellentesque ante elit, lacinia interdum bibendum sed, cursus non orci. Ut et diam nec justo efficitur tincidunt. Fusce convallis facilisis varius. Integer tempor hendrerit maximus.
+\rowcolors{1}{white}{green!20}
+\begin{longtable}{
+  | >{\centering}m{0.10\textwidth} 
+  | >{\centering}m{0.30\textwidth} 
+  | m{0.60\textwidth} |}
+  
+    \hline
+    \rowcolor{green!100}
+    \textbf{Código} & \textbf{Requisito} & \textbf{Descrição} \\ \hline \hline
+    \textbf{RF01}  &  \textbf{Cadastrar entidades} & \textbf{Permitir que o usuário cadastre novas entidades}  \\ \hline \hline
+    RF01-01 & Cadastrar Vacinações              & Fornecer para preenchimento os campos obrigatórios aplicante, estabelecimento de aplicação, vacina, lote, informações do paciente (pré-cadastrado ou não), dose e data da aplicação da vacina e os campos opcionais campanha da vacinação que está sendo efetuada e data da próxima vacina \\ \hline
+    RF01-02 & Cadastrar Campanhas               & Fornecer para preenchimento os campos obrigatórios título e datas de início de fim e o campo opcional descrição da campanha  \\ \hline
+    RF01-03 & Cadastrar Estabelecimentos        & Fornecer para preenchimento os campos obrigatórios nome, CNES e endereço do estabelecimento de saúde \\ \hline
+    RF01-04 & Cadastrar Vacinas                 & Fornecer para preenchimento os campos obrigatórios nome, fabricante e código da vacina \\ \hline
+    RF01-05 & Cadastrar Lotes de Vacina         & Fornecer para preenchimento os campos obrigatórios código, nome e quantidade de doses da vacina no lote \\ \hline
+    RF01-06 & Cadastrar Pacientes               & Fornecer para preenchimento os campos obrigatórios CNS, CPF, nome, data de nascimento, localidade, categoria prioritária e condição maternal e os campos opcionais sexo e nomes do pai e da mãe do paciente \\ \hline
+    RF01-07 & Cadastrar Aplicantes              & Fornecer para preenchimento os campos obrigatórios CNS, CPF, nome, localidade e estabelecimento de saúde de atuação e os campos opcionais data de nascimento, sexo e nomes do pai e da mãe do paciente \\ \hline
+    RF01-08 & Cadastrar Localidades             & Fornecer para preenchimento os campos obrigatórios código do IBGE, nome, cidade e estado da localidade \\ \hline
+    RF01-09 & Cadastrar Grupos Prioritários     & Fornecer para preenchimento o campo obrigatório código e os campos opcionais nome e descrição do grupo prioritário \\ \hline
+    RF01-10 & Cadastrar Categorias Prioritárias & Fornecer para preenchimento os campos obrigatórios* código e grupo prioritário pertencente e os campos opcionais nome e descrição da categoria prioritária \\ \hline
+    RF01-11 & Botão de salvamento               & Fornecer para preenchimento os campos obrigatórios* botão para salvamento dos dados cadastrados em todos os formulários \\ \hline
 
-Donec pulvinar, libero semper pretium fringilla, arcu ligula iaculis urna, id faucibus ante massa a augue. Ut iaculis fermentum convallis. Vestibulum ac porttitor urna, sit amet dignissim dui. Curabitur sollicitudin tincidunt risus quis vulputate. In in leo ut mi mattis tempor sed non nunc. Sed et velit nibh. Duis mollis lectus risus, ut vestibulum purus semper eu. Donec rhoncus ex sed scelerisque dictum. Praesent sit amet neque accumsan, euismod sapien eget, tincidunt magna. Etiam nec diam ac elit feugiat aliquet. Pellentesque et neque metus. Nulla molestie libero sed ullamcorper mollis. In a risus quis felis eleifend dapibus at mollis odio. Curabitur nisl nibh, placerat ac quam nec, vulputate blandit mauris.
+  \hiderowcolors
+  \caption{Requisitos funcionais da aplicação Nurse: detalhes do requisito RF01}
+  \label{tab:rf01_detalhe}
+\end{longtable}
 
-Vestibulum neque lacus, fringilla a urna quis, egestas tincidunt orci. Phasellus rutrum elit at mauris feugiat, non egestas tortor dictum. Aliquam faucibus, velit eu aliquam fermentum, lacus sem pellentesque nibh, et tristique urna nibh eget purus. Morbi vitae felis posuere, rutrum turpis quis, rutrum lorem. Nam lacinia cursus neque sit amet fermentum. Mauris eu mauris diam. Quisque lacinia consequat quam, at convallis urna dignissim eget. Proin sit amet varius sem, vel facilisis purus. Sed non blandit sapien. Sed auctor venenatis nibh eu ornare. Quisque euismod urna ligula, quis vestibulum sapien lacinia vehicula. Aenean sit amet vehicula felis, a imperdiet tellus. Fusce eu sem urna. Integer placerat nibh in purus consectetur mattis. Aliquam erat neque, tincidunt ac porta sit amet, egestas non lacus.
+% \begin{table}[ht!]
+%   \centering
+%   {\rowcolors{0}{white}{green!20}
+%   \begin{tabularx}{\textwidth}{
+%     | >{\centering\arraybackslash}m{0.10\textwidth} 
+%     | >{\centering\arraybackslash}X 
+%     | >{\raggedright\arraybackslash}X | }
+%     \hline
+%     \rowcolor{green!100}
+%     \textbf{Código} & \textbf{Requisito} & \textbf{Descrição} \\ \hline \hline
+%     \textbf{RF01}  &  \textbf{Cadastrar entidades} & \textbf{Permitir que o usuário cadastre novas entidades}  \\ \hline \hline
+%     RF01-01 & Cadastrar Vacinações              & Fornecer para preenchimento os campos obrigatórios aplicante, estabelecimento de aplicação, vacina, lote, informações do paciente (pré-cadastrado ou não), dose e data da aplicação da vacina e os campos opcionais campanha da vacinação que está sendo efetuada e data da próxima vacina \\ \hline
+%     RF01-02 & Cadastrar Campanhas               & Fornecer para preenchimento os campos obrigatórios título e datas de início de fim e o campo opcional descrição da campanha  \\ \hline
+%     RF01-03 & Cadastrar Estabelecimentos        & Fornecer para preenchimento os campos obrigatórios nome, CNES e endereço do estabelecimento de saúde \\ \hline
+%     RF01-04 & Cadastrar Vacinas                 & Fornecer para preenchimento os campos obrigatórios nome, fabricante e código da vacina \\ \hline
+%     RF01-05 & Cadastrar Lotes de Vacina         & Fornecer para preenchimento os campos obrigatórios código, nome e quantidade de doses da vacina no lote \\ \hline
+%     RF01-06 & Cadastrar Pacientes               & Fornecer para preenchimento os campos obrigatórios CNS, CPF, nome, data de nascimento, localidade, categoria prioritária e condição maternal e os campos opcionais sexo e nomes do pai e da mãe do paciente \\ \hline
+%     RF01-07 & Cadastrar Aplicantes              & Fornecer para preenchimento os campos obrigatórios CNS, CPF, nome, localidade e estabelecimento de saúde de atuação e os campos opcionais data de nascimento, sexo e nomes do pai e da mãe do paciente \\ \hline
+%     RF01-08 & Cadastrar Localidades             & Fornecer para preenchimento os campos obrigatórios código do IBGE, nome, cidade e estado da localidade \\ \hline
+%     RF01-09 & Cadastrar Grupos Prioritários     & Fornecer para preenchimento o campo obrigatório código e os campos opcionais nome e descrição do grupo prioritário \\ \hline
+%     RF01-10 & Cadastrar Categorias Prioritárias & Fornecer para preenchimento os campos obrigatórios* código e grupo prioritário pertencente e os campos opcionais nome e descrição da categoria prioritária \\ \hline
+%     RF01-11 & Botão de salvamento               & Fornecer para preenchimento os campos obrigatórios* botão para salvamento dos dados cadastrados em todos os formulários \\ \hline
+%   \end{tabularx}}
+% \caption{Requisitos funcionais da aplicação Nurse: detalhes do requisito RF01}
+% \label{tab:rf01_detalhe}
+% \end{table}
+
+\begin{table}[ht!]
+  \centering
+  {\rowcolors{0}{white}{green!20}
+  \begin{tabularx}{\textwidth}{
+    | >{\centering\arraybackslash}m{0.10\textwidth} 
+    | >{\centering\arraybackslash}m{0.30\textwidth} 
+    | >{\raggedright\arraybackslash}X | }
+    \hline
+    \rowcolor{green!100}
+    \textbf{Código} & \textbf{Requisito} & \textbf{Descrição} \\ \hline \hline
+    \textbf{RF02}  &  \textbf{Visualizar entidades cadastradas} & \textbf{Permitir que o usuário visualize as entidades cadastradas e seus detalhes}  \\ \hline \hline
+    RF02-01 & Visualizar Vacinações               & Apresentar CNS, nome e grupo do paciente e vacina aplicada \\ \hline
+    RF02-02 & Visualizar Campanhas                & Apresentar título, datas de início de fim e status da campanha \\ \hline
+    RF02-03 & Visualizar Estabelecimentos         & Apresentar nome, CNES e endereço do estabelecimento de saúde \\ \hline
+    RF02-04 & Visualizar Vacinas                  & Apresentar nome, fabricante e código da vacina \\ \hline
+    RF02-05 & Visualizar Lotes de Vacina          & Apresentar código, nome e quantidade de doses da vacina no lote \\ \hline
+    RF02-06 & Visualizar Pacientes                & Apresentar CNS, nome, categoria prioritária e condição maternal do paciente \\ \hline
+    RF02-07 & Visualizar Aplicantes               & Apresentar CNS, nome e estabelecimento de saúde do profissional \\ \hline
+    RF02-08 & Visualizar Localidades              & Apresentar código do IBGE, nome e endereço da localidade \\ \hline
+    RF02-09 & Visualizar Grupos Prioritários      & Apresentar código, nome e descrição do grupo prioritário \\ \hline
+    RF02-10 & Visualizar Categorias Prioritárias  & Apresentar código, nome e descrição da categoria prioritária \\ \hline
+  \end{tabularx}}
+\caption{Requisitos funcionais da aplicação Nurse: detalhes do requisito RF02}
+\label{tab:rf02_detalhe}
+\end{table}
+
+\begin{table}[ht!]
+  \centering
+  {\rowcolors{0}{white}{green!20}
+  \begin{tabularx}{\textwidth}{
+    | >{\centering\arraybackslash}m{0.10\textwidth} 
+    | >{\centering\arraybackslash}m{0.30\textwidth} 
+    | >{\raggedright\arraybackslash}X | }
+    \hline
+    \rowcolor{green!100}
+    \textbf{Código} & \textbf{Requisito} & \textbf{Descrição} \\ \hline \hline
+    \textbf{RF04}  &  \textbf{Gerar tabela de vacinações} & \textbf{Permitir que o usuário gere uma
+    tabela de vacinações para
+    exportação}  \\ \hline \hline
+    RF04-01 & Escolher período de tempo               & Permitir que o usuário escolha o período desejado para coleta dos dados sobre vacinação a serem exportados \\ \hline
+    RF04-02 & Escolher o que fazer com o arquivo gerado                     & Permitir que o usuário escolha entre abrir o arquivo com a planilha gerada ou exportá-la utilizando para isso alguma aplicação externa compatível com a escolha, a depender do caso \\ \hline
+  \end{tabularx}}
+\caption{Requisitos funcionais da aplicação Nurse: detalhes do requisito RF04}
+\label{tab:rf04_detalhe}
+\end{table}

@@ -76,7 +76,8 @@
 %\renewcommand{\harvardand}{e}	% Substituir "&" por "e" nas referências
 
 % PACOTES OPCIONAIS
-
+\usepackage[table]{xcolor}
+\usepackage{longtable}
 % Para poder incluir arquivos Postscript com cores (do Xfig, por exemplo)
 \usepackage{color, colortbl}
 % Para ter células em tabelas que ocupam mais de uma linha
@@ -193,6 +194,9 @@
 %\includeonly{figuras/figuras}
 %\includeonly{conclusao/conclusao}
 %\includeonly{apendice/apendice}
+
+\setlength{\arrayrulewidth}{0.5mm}
+\renewcommand{\arraystretch}{2}
 
 % Inicia o texto
 \begin{document}
