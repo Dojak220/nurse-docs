@@ -534,7 +534,7 @@ Desse pacote, utilizou-se duas estratégias principais:
 
 \subsection{Biblioteca Excel (XlsIO)}
 \label{cap4:Subsec:syncfusion_flutter_xlsio}
-Utilizando-se do pacote \textit{syncfusion\_flutter\_xlsio}, foi possível gerar um arquivo \textit{.xlsx} a partir de uma lista de aplicações de vacina. Para isso, criou-se uma classe chamada \textbf{ExcelService} que possui dois métodos públicos: \textbf{\textit{shareExcelFile}} e \textbf{\textit{openExcelFile}}. Cada um desses métodos é chamado quando o usuário segue o fluxo apresentado na figura \ref{fig:fluxo_exportar_dados} e descrito em detalhes na seção \ref{cap5:SubSec:FluxoExportacao}.
+Utilizando-se do pacote \textit{syncfusion\_flutter\_xlsio}, foi possível gerar um arquivo \textit{.xlsx} a partir de uma lista de aplicações de vacina. Para isso, criou-se uma classe chamada \textbf{ExcelService} que possui dois métodos públicos: \textbf{\textit{shareExcelFile}} e \textbf{\textit{openExcelFile}}. Cada um desses métodos é chamado quando o usuário segue o fluxo apresentado na figura \ref{fig:export_flux_2} e descrito em detalhes na seção \ref{cap5:SubSec:FluxoExportacao}.
 
 O método \textbf{\textit{shareExcelFile}} cria um arquivo \textit{.xlsx} e permite que o usuário o compartilhe, enquanto o método \textbf{\textit{openExcelFile}} cria um arquivo \textit{.xlsx} e o abre no aplicativo de planilhas do usuário. A seguir, na figura \ref{fig:excel_service_diagram}, tem-se o fluxo de execução de ambos os métodos dentro da classe \textbf{ExcelService}.
 
@@ -603,7 +603,8 @@ Alguns desses atributos são obrigatórios, como o \textbf{cpf} e o \textbf{nome
 
 \subsection{Uso do Banco de Dados}
 \label{cap4:Sec:UsoBancoDados}
-
+O banco de dados é gerenciado pela classe \textbf{DatabaseManager}. Essa classe possui o método público \textbf{tryToInit}, que é chamado logo na inicialização do app \textbf{Nurse} e é responsável por abrir o banco de dados ou criá-lo quando este ainda não existe. Uma vez aberto, a classe \textbf{DatabaseManager} é responsável por gerenciar as requisições de inserção, atualização e/ou consulta realizadas pelo usuário. Isso é possível por meio da interface \textbf{DatabaseInterface} e do objeto \textbf{Database}, que define os métodos de acesso ao banco de dados e envia os comandos sql para o banco, respectivamente.
+% ref.: documentação das classes Database e das classes de Nurse DatabaseManager e DatabaseInterface
 
 
 
