@@ -49,13 +49,18 @@ backgroundcolor=\color{backcolour},
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%
     emph=
     {   % Cada linha a partir da segunda é de um código existente
-        var, String, int, List, %
+        var, String, int, List, dynamic %
         BotaoPrincipal, StatelessWidget, Key, Widget, BuildContext, TextButton, Text, %
         CampoTexto, State, CampoTextoState, _CampoTextoState, TextField, InputDecoration, %
+        GenericModel, Map, %
+        CampaignRepository, Campaign, %
+        AddCampaignFormController, AddFormController, %
+        DatabaseCampaignRepository, DatabaseInterface, DatabaseManager, %
         HomeController, ApplicationRepository, ObservableList, Application, Action, DatabaseApplicationRepository, Future, %
         Home, Scaffold, VaccinationButton, %
         Appliers, Provider, AppliersPageController, EntityList, Applier, %
-        Vaccine, GenericModel, Validator, ValidatorType, ValidationPair, %
+        Vaccine, Validator, ValidatorType, ValidationPair, %
+        DateTime, %
     },
     emphstyle=\color{codegreen},
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -64,15 +69,19 @@ backgroundcolor=\color{backcolour},
     emph=
     { % Cada linha é de um código existente
         [2]build, print, setState, createState, %
+        toMap, %
+        createCampaign, deleteCampaign, getCampaignById, getCampaignByTitle, getCampaigns, updateCampaign, %
+        create, delete, %
         of, empty, getApplications, clear, addAll, %
         read, %
         trim, _validateVaccine, validate, validateAll, %
+        main, setUp, group, test, expect, isA, %
     },
     emphstyle={[2]\color{magenta}},
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%% Keywords %%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    emph={[3]class, extends, final, const, required, super, this, late, true, null},
+    emph={[3]class, extends, final, const, required, super, this, late, true, null, abstract, implements, static, void},
     emphstyle={[3]\color{codeblue}},
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%% Keywords 2 %%%%%%%%
@@ -88,6 +97,7 @@ backgroundcolor=\color{backcolour},
         Digite, aqui, %
         vaccinations, new, %
         Aplicantes, %
+        Title, Description, criacao, de, nova, instancia, de, campanha, deve, criar, uma, valida, %
     },
     emphstyle={[5]\color{amber(sae/ece)}},
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,10 +107,14 @@ backgroundcolor=\color{backcolour},
     {   % Cada linha é de um código existente
         [6]texto, key, override, context, onPressed, child, %
         onChanged, value, decoration, labelText, widget, hintText, %
+        campaign, %
+        _repository, campaignRepository, %
+        TABLE, dbManager, count, %
         applicationRepository, applications, growable, fetchApplications, result, reversed, %
         floatingActionButton, newPage, onCallback, %
         controller, title, %
         id, sipniCode, name, laboratory, numericalString, %
+        validCampaign, description, startDate, endDate, %
     },
     emphstyle={[6]\color{codeligthblue}}%
 }
