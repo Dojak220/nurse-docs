@@ -4,7 +4,7 @@
 
 \mychapter{Nurse: uma aplicação para produtividade em vacinações}
 \label{Cap:Implementacao}
-Nessa seção, as funcionalidades e casos de usos da aplicação serão descritos. Além disso, será apresentada a arquitetura escolhida para a aplicação, tanto no sentido das camadas hierárquicas de responsabilidade \cite{Faust2020}, quanto na divisão de pastas e subpastas dos arquivos que compõem o código em módulos e, por fim, as telas do aplicativo e os pacotes utilizados para o desenvolvimento das funcionalidades serão mostrados.
+Nessa seção, os requisitos e casos de usos da aplicação serão descritos. Além disso, será apresentada a arquitetura escolhida para a aplicação, tanto no sentido das camadas hierárquicas de responsabilidade \cite{Faust2020}, quanto na divisão de pastas e subpastas dos arquivos que compõem o código em módulos e, por fim, as telas do aplicativo e os pacotes utilizados para o desenvolvimento das funcionalidades serão mostrados.
 
 O projeto foi desenvolvido utilizando a linguagem de programação \textit{Dart}, com o \textit{framework Flutter}. O seu repositório pode ser encontrado no \textit{GitHub}, em \url{https://github.com/Dojak220/nurse}. A documentação, que inclui a versão dessa monografia em formato \textit{pdf} e o seu respectivo projeto em \LaTeX também pode ser encontrada no \textit{Github}, em \url{https://github.com/Dojak220/nurse-docs}.
 % [A fazer] Criar um GitHub Pages \url{https://dojak220.github.io/nurse/}.
@@ -61,6 +61,33 @@ Os requisitos não funcionais (RNF) são aqueles que descrevem as característic
 \end{table}
 % [A fazer] Mostrar planilha de preenchimento da vacinação e os campos apresentados. Além disso, mostrar a planilha que deve ser exportada na plataforma.
 
+\subsection{Casos de Uso}
+\label{cap4:Subsec:CasosDeUso}
+
+Uma das formas de representar um sistema, seu escopo e limites é através da identificação dos seus casos de uso e dos atores que interagem com o sistema \cite{schneider2001applying}. Estes atores podem ser desde pessoas a outras aplicações e os casos de uso descrevem o que os atores querem que o sistema realize. A seguir, na Figura \ref{fig:casos_de_uso}, é apresentado o diagrama dos casos de uso da aplicação Nurse e, logo abaixo, a tabela \ref{tab:actors} com a descrição dos atores envolvidos.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=\textwidth]{figuras/cap4/4_1_3_use_cases.png}
+  \caption{Diagrama de casos de uso da aplicação Nurse}
+  \label{fig:casos_de_uso}
+\end{figure}
+
+\begin{table}[ht!]
+  \centering
+  {\rowcolors{0}{white}{green!20}
+  \begin{tabularx}{\textwidth}{
+    | >{\centering\arraybackslash}m{0.15\textwidth} 
+    | >{\centering\arraybackslash}X |}
+    \hline
+    \rowcolor{green!100}
+    \textbf{Ator} & \textbf{Descrição} \\ \hline \hline
+    Usuário & Usuário que utiliza a aplicação Nurse para gerenciar os dados das vacinações realizadas \\ \hline
+    Nurse & É a própria aplicação utilizada, mas que também realiza chamada para abertura e/ou compartilhamento de planilhas em outras aplicações \\ \hline
+  \end{tabularx}}
+\caption{Descrição dos atores envolvidos na aplicação Nurse}
+\label{tab:actors}
+\end{table}
 
 \section{Arquitetura do Sistema}
 \label{cap4:Sec:ArquiteturaSistema}
