@@ -100,7 +100,6 @@ Para se alcançar esse objetivo, pode-se utilizar de técnicas, como as supracit
 \label{cap4:SubSec:CamadasResponsabilidade}
 A divisão em camadas hierárquicas de responsabilidade tem como objetivo dividir o projeto em partes menores, cada uma com uma responsabilidade específica e de forma a torná-las o mais independente possível entre elas \cite{Faust2020} e, dessa forma, diminuir o acoplamento e aumentar a coesão das classes. Um exemplo desse tipo de arquitetura é o sistema MVC (Model-View-Controller), que divide o projeto em três camadas: a \textbf{camada de modelo}, que contém as classes que representam as entidades do domínio-problema e gerencia os dados associados a elas; a \textbf{camada de visualização}, que contém as classes que representam as telas da aplicação e gerenciam as suas mudanças textuais e gráficas; e a \textbf{camada de controle}, que contém as classes que intermedeiam as outras duas camadas ao interpretar as ações do usuário e enviar comandos às classes do modelo e/ou da visualização para realizar quaisquer mudanças necessárias \cite{burbeck1987mvc}.
 
-% [A fazer] Colocar as informações dessa parte na lista de itens, favorecendo uma explicação mais detalhada sobre cada uma das camadas. Talvez até subtópicos.
 Essa divisão pode ser realizada em \textit{n} camadas. No caso da aplicação Nurse, dividiu-se o projeto em cinco, como mostrado na figura \ref{fig:4_1_1_camadas_nurse}.
 
 \begin{figure}[!ht]
@@ -123,7 +122,6 @@ Por exemplo, a classe \textit{AddPatientFormController} é responsável por gere
 
 Vale ressaltar que essa validação, assim como o salvamento dos dados, não é responsabilidade dos controladores, então essas ações são delegadas a outras classes e/ou camadas e apenas os resultados que interessam aos controladores são retornados. A seguir, no trecho de código \ref{lst:patient_form_controller} são apresentados alguns detalhes da classe \textit{AddPatientFormController}, ressaltando o uso do \textit{MobX} e os métodos que conectam as camadas adjacentes à da regra de negócio.
 
-% [A fazer] Colocar o código da classe PatientFormController
 \begin{lstlisting}[caption={Trechos da classe \textit{PatientFormController}}, label={lst:patient_form_controller}]
   class AddPatientFormController = _AddPatientFormControllerBase
       with _$AddPatientFormController;
@@ -349,7 +347,6 @@ A classe de controle da adição de novas campanhas de vacinação recebe o repo
 No trecho de código abaixo (\ref{lst:database_campaign_repository}) é apresentada a implementação do repositório \textbf{DatabaseCampaignRepository}. Pode-se observar que a classe implementa a interface \textbf{CampaignRepository} e, portanto, deve implementar todos os métodos definidos nessa interface (apenas dois dos métodos foram apresentados aqui, pois os outros possuem uma estrutura análoga a estes). Além disso, a classe herda de \textbf{DatabaseInterface} que, por sua vez, define métodos de acesso ao banco de dados que serão utilizados por todas as classes concretas de repositórios que realizam esse tipo de armazenamento.
 
 Tanto a classe \textbf{DatabaseInterface} como a classe \textbf{DatabaseManager}, que é utilizada pela primeira, serão melhor descritas na seção \ref{cap4:Sec:UsoBancoDados}.
-% [A fazer]
 
 \begin{lstlisting}[caption={Implementação na classe \textbf{DatabaseCampaignRepository} da interface \textbf{CampaignRepository}}, label={lst:database_campaign_repository}]
   class DatabaseCampaignRepository extends DatabaseInterface
@@ -548,7 +545,6 @@ A ordem de execução dos métodos segue a ordem das setas numeradas. Cada um do
 \begin{itemize}
   \item \textbf{Etapa 1}: os métodos \textbf{\textit{shareExcelFile}} e \textbf{\textit{openExcelFile}} recebem como parâmetros a lista das aplicações cadastradas e o período de tempo que o usuário deseja exportar ou visualizar. Estas informações são, então, organizadas em um mapa de datas e aplicações e enviadas ao método \textbf{\textit{\_generateSheetData}}
   \item Etapas \textbf{2} e \textbf{3}: o método \textbf{\textit{\_generateSheetData}} recebe como parâmetro o mapa de datas e aplicações. A partir dos métodos \textbf{\textit{\_setTemplateForWorkSheet}} e \textbf{\textit{\_setDataInWorkSheet}}, um objeto do tipo \textbf{\textit{Workbook}} é, respectivamente estruturado e preenchido com os dados recebidos. Esse \textbf{\textit{Workbook}} é, então transformado em uma lista de bytes por meio de seu método interno \textbf{\textit{Workbook.saveAsStream()}}. Por fim, cada agrupamento de bytes é retornado em um novo mapa, onde a chave é a data das aplicações e o valor é um outro mapa de doses aplicadas e agrupamento de bytes.
-  % [A fazer] Explicar na introdução porque essas planilhas devem ser separadas por data e dose
   \item \textbf{Etapa 4}: o método \textbf{\textit{\_generateSheetData}} retorna o agrupamento de bytes para as funções \textbf{\textit{shareExcelFile}} ou \textbf{\textit{openExcelFile}}, a depender de qual fluxo está sendo executado, e cada um desses agrupamentos será processado individualmente, como se segue.
   \item \textbf{Etapa 5}: para o método \textbf{\textit{openExcelFile}}, será verificado a quantidades de agrupamentos retornados. Caso seja apenas um, o arquivo será criado a partir desse agrupamento e passará ao próximo passo. Caso contrário, o fluxo desse método será finalizado e os dados serão redirecionados ao método \textbf{\textit{shareExcelFile}}. Já para este último, o fluxo é direto e cada cada conjunto de bytes separados por datas de aplicação e doses aplicadas será salvo em um arquivo.
   \item \textbf{Etapa 6}: considerando que o fluxo dos métodos \textbf{\textit{shareExcelFile}} e \textbf{\textit{openExcelFile}} foi o mesmo, ou seja, a criação dos arquivos na função \textbf{\textit{\_createFile}}, o(s) arquivo(s) recebido(s) será(ão) enviados de volta para as funções principais.
