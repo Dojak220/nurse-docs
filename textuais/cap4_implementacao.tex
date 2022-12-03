@@ -95,7 +95,6 @@ Uma das formas de representar um sistema, seu escopo e limites é através da id
 A definição de uma arquitetura para o desenvolvimento de um projeto é essencial para que o mesmo seja desenvolvido de forma organizada e eficiente, mas também tornar a sua manutenção mais simples. Em outras palavras, o objetivo em definir uma arquitetura é diminuir os recursos humanos e, consequentemente, financeiros necessários durante todo o ciclo de vida de um projeto, desde a sua concepção até a sua manutenção, passando pelo desenvolvimento de suas funcionalidades \cite{martin2019arquitetura}. 
 
 Para se alcançar esse objetivo, pode-se utilizar de técnicas, como as supracitadas divisão em camadas de responsabilidade e a modularização, entre outras. Além disso, é importante construir um modelo do domínio-problema da aplicação para que as complexidades inerentes a ele sejam melhor controladas \cite{evans2017domain}. O domínio, ou seja, a área na qual a aplicação Nurse está inserida e qual problema quer-se resolver, engloba do todo o conjunto de ações necessárias para realizar uma vacinação, desde o cadastro das entidades envolvidas (paciente, aplicante, vacina etc...) até a posterior exportação dos dados coletados. O modelo criado para o banco de dados é usado para modelar as entidades envolvidas e a relação entre elas, já as classes desenvolvidas para criar os arquivos a serem exportados é um exemplo da implementação no código das ações necessárias dentro desse domínio-problema.
-% ref. Introdução do livro Domain-Driven Design de Eric Evans. Introdução por Martin Fowler.
 
 \subsection{Camadas de Responsabilidade}
 \label{cap4:SubSec:CamadasResponsabilidade}
@@ -564,7 +563,6 @@ A persistência de dados, como descrita na seção \ref{cap2:Sec:PersistenciaDad
 
 \subsection{Diagrama de Classes}
 \label{cap4:SubSec:DiagramaClasses}
-% ref. Cap 4 do livro Projeto de Banco de Dados Heuser
 Foram definidas 9 entidades (ou classes) para a aplicação \textbf{Nurse}, as quais foram agrupadas em 3 macro-grupos: \textbf{Paciente}, \textbf{Vacinação} e \textbf{Infraestrutura}. Cada uma dessas entidades possui um identificador único, chamada chave primária (do inglês, \textit{Primary Key} (PK)) e algumas delas possuem uma ou mais chaves estrangeiras (do inglês, \textit{Foreign Key} (FK)) \cite{heuser09banco}. Além disso, cada entidade possui um ou mais atributos, que são apresentados na figura \ref{fig:diagrama_classes} e descritos a seguir.
 
 \begin{figure}[!ht]
@@ -603,7 +601,6 @@ Alguns desses atributos são obrigatórios, como o \textbf{cpf} e o \textbf{nome
 \subsection{Uso do Banco de Dados}
 \label{cap4:Sec:UsoBancoDados}
 O banco de dados é gerenciado pela classe \textbf{DatabaseManager}. Essa classe possui o método público \textbf{tryToInit}, que é chamado logo na inicialização do app \textbf{Nurse} e é responsável por abrir o banco de dados ou criá-lo quando este ainda não existe. Uma vez aberto, a classe \textbf{DatabaseManager} é responsável por gerenciar as requisições de inserção, atualização e/ou consulta realizadas pelo usuário. Isso é possível por meio da interface \textbf{DatabaseInterface} e do objeto \textbf{Database}, que define os métodos de acesso ao banco de dados e envia os comandos sql para o banco, respectivamente.
-% ref.: documentação das classes Database e das classes de Nurse DatabaseManager e DatabaseInterface
 
 
 

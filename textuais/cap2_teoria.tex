@@ -17,29 +17,18 @@ Nessa seção, busca-se apresentar os conceitos básicos da linguagem Dart, util
 \subsection{Introdução}
 \label{cap2:SubSec:Introducao}
 
-Dart é uma linguagem de programação criada pela Google em 2011, com o objetivo de ser utilizada, inicialmente, para o desenvolvimento de aplicações web, mas que tem como objetivo atual ser executada em qualquer plataforma.
-% ref: http://googlecode.blogspot.com/2011/10/dart-language-for-structured-web.html 04/11/2022
-% ref: https://dart.dev/overview#platform:~:text=Learning%20Dart-,Dart,-is%20a%20client 04/11/2022
+Dart \cite{dart} é uma linguagem de programação criada pela Google em 2011, com o objetivo de ser utilizada, inicialmente, para o desenvolvimento de aplicações web, mas que tem como objetivo atual ser executada em qualquer plataforma \cite{bak2011dart} \cite{dart-platforms}.
 
-A linguagem é orientada a objetos, fortemente tipada e compilada. Ela possui uma sintaxe similar às linguagens C, mas com algumas diferenças, como a utilização de palavras-chave como \textit{var} e \textit{final} para declarar variáveis e \textit{null} para representar a ausência de valor. A linguagem também se assemelha a outras comumente utilizadas no desenvolvimento de aplicações móveis, web e desktop, como Java, Kotlin, Swift e Typescript, por exemplo.
-% ref: https://dart.dev/#:~:text=learn%2C%20with%20a-,familiar%20syntax,-Productive%20development 05/11/2022
-% ref: https://dart.dev/guides/language/language-tour#important-concepts 05/11/2022
+A linguagem é orientada a objetos, fortemente tipada e compilada. Ela possui uma sintaxe similar às linguagens C, mas com algumas diferenças, como a utilização de palavras-chave como \textit{var} e \textit{final} para declarar variáveis e \textit{null} para representar a ausência de valor. A linguagem também se assemelha a outras comumente utilizadas no desenvolvimento de aplicações móveis, web e desktop, como Java, Kotlin, Swift e Typescript, por exemplo \cite{dart} \cite{dart-language}.
 
 
 \subsection{Compilação}
 \label{cap2:SubSec:Compilacao}
-\textit{Dart} possui duas estratégias de compilação que são utilizadas em conjunto, mas em períodos diferentes do processo de desenvolvimento e de utilização da aplicação. Além disso, a linguagem utiliza-se de uma máquina virtual chamada \textit{Dart VM} para executar o código durante o desenvolvimento da aplicação ou traduz o código \textit{Dart} em \textit{JavaScript} para plataforma \textit{web}.
-% ref: https://dart.dev/overview#platform 05/11/2022
+\textit{Dart} possui duas estratégias de compilação que são utilizadas em conjunto, mas em períodos diferentes do processo de desenvolvimento e de utilização da aplicação. Além disso, a linguagem utiliza-se de uma máquina virtual chamada \textit{Dart VM} para executar o código durante o desenvolvimento da aplicação ou traduz o código \textit{Dart} em \textit{JavaScript} para plataforma \textit{web} \cite{dart-platforms}.
 
-Linguagens dinâmicas como JavaScript, às quais permitem ao desenvolvedor criar variáveis dinâmicas, ou seja, que podem mudam seus tipos em tempo de execução, utilizam a compilação \textit{Just-in-time (JIT)}. Esse tipo de compilação permite que o desenvolvimento se torne mais produtivo ao diminuir o tempo de espera entre uma mudança no código e a execução do mesmo para avaliar o resultado. Por outro lado, linguagens estáticas como C utilizam-se da estratégia de compilação \textit{Ahead-of-time (AOT)}. Dessa forma, todo o código deve ser compilado antes da execução do programa, o que torna o tempo de espera entre uma mudança no código e sua nova execução maior. Enquanto o \textit{JIT} tem vantagens sobre o \textit{AOT} em termos de produtividade, o \textit{AOT} tem vantagens em termos de performance, pois não há a necessidade de pausa na execução no código para análise ou compilação \textit{JIT}. Isso faz com que a aplicação seja inicializada e executada mais rapidamente. 
-%  ref: https://hackernoon.com/why-flutter-uses-dart-dd635a054ebf 05/11/2022
+Linguagens dinâmicas como JavaScript, às quais permitem ao desenvolvedor criar variáveis dinâmicas, ou seja, que podem mudam seus tipos em tempo de execução, utilizam a compilação \textit{Just-in-time (JIT)}. Esse tipo de compilação permite que o desenvolvimento se torne mais produtivo ao diminuir o tempo de espera entre uma mudança no código e a execução do mesmo para avaliar o resultado. Por outro lado, linguagens estáticas como C utilizam-se da estratégia de compilação \textit{Ahead-of-time (AOT)}. Dessa forma, todo o código deve ser compilado antes da execução do programa, o que torna o tempo de espera entre uma mudança no código e sua nova execução maior. Enquanto o \textit{JIT} tem vantagens sobre o \textit{AOT} em termos de produtividade, o \textit{AOT} tem vantagens em termos de performance, pois não há a necessidade de pausa na execução no código para análise ou compilação \textit{JIT}. Isso faz com que a aplicação seja inicializada e executada mais rapidamente \cite{leler2017flutterdart}.
 
-% Colocar uma imagem aqui
-
-
-No \textit{Dart}, a estratégia de compilação \textit{JIT} é utilizada no período de desenvolvimento da aplicação, enquanto a compilação \textit{AOT} é utilizada para a compilação final da aplicação. O código compilado é otimizado para a plataforma em que será executado. Por exemplo, o código compilado para dispositivos móveis é otimizado para a arquitetura \textit{ARM}, enquanto o código compilado para \textit{desktop} é otimizado para a arquitetura \texttt{x64}.
-% ref: https://dart.dev/overview#platform 05/11/2022
-% ref: https://dart.dev/ 01/11/2022
+No \textit{Dart}, a estratégia de compilação \textit{JIT} é utilizada no período de desenvolvimento da aplicação, enquanto a compilação \textit{AOT} é utilizada para a compilação final da aplicação. O código compilado é otimizado para a plataforma em que será executado. Por exemplo, o código compilado para dispositivos móveis é otimizado para a arquitetura \textit{ARM}, enquanto o código compilado para \textit{desktop} é otimizado para a arquitetura \texttt{x64} \cite{dart-platforms}.
 
 \begin{figure}[!ht]
   \includegraphics[width=1\textwidth, keepaspectratio=true]{figuras/cap2/2_1_2_dart-platforms.png}
@@ -48,29 +37,21 @@ No \textit{Dart}, a estratégia de compilação \textit{JIT} é utilizada no per
   % \font{Site oficial da linguagem Dart}
   \label{fig:dart_plataforms}
 \end{figure}
-% \FloatBarrier
 
 Outras características do \textit{Dart} levaram ao seu uso no \textit{Flutter}:
 
 \begin{itemize}
-  \item \textbf{ausência de troca de contexto} com a plataforma: como o código compilado é nativo e não possui análises ou novas compilações \textit{JIT}, não há a necessidade de troca de contexto entre a plataforma e a linguagem, o que torna a execução mais rápida;
-  % ref: https://hackernoon.com/why-flutter-uses-dart-dd635a054ebf 05/11/2022
+  \item \textbf{ausência de troca de contexto} com a plataforma: como o código compilado é nativo e não possui análises ou novas compilações \textit{JIT}, não há a necessidade de troca de contexto entre a plataforma e a linguagem, o que torna a execução mais rápida \cite{leler2017flutterdart};
   \item \textbf{\textit{single-threaded}}: a preemptividade, isto é, o procedimento de interromper uma tarefa para a execução de outra \textit{thread}, utilizadas em linguagens como \textit{Java} ou \textit{Kotlin} não existe, pois o \textit{Dart} é \textit{single-threaded}, ou seja, não há compartilhamento de memória, nem a necessidade de gerenciamento de estado entre as \textit{threads}, o que evita a possibilidade de erros como condições de corrida ou \textit{deadlock}s;
-  \item Uso de \textbf{\textit{isolates}}: todo o código em \textit{Dart} roda dentro de \textit{isolates}, o qual possui um uma única \textit{thread} e se comunica com outros \textit{isolates} por meio de mensagens. Mesmo ações assíncronas são gerenciadas com o uso de classes como \textit{Future} e \textit{Stream} ou com o uso de \textit{async/await}. Dessa forma, o \textit{Dart} é capaz de executar código assíncrono sem a necessidade de novas \textit{threads}. Em última instância, é possível criar um \textit{background isolate}, que será responsável por realizar algum tipo de tarefa em segundo plano, como por exemplo, a leitura ou escrita de um arquivo e devolver seu resultado ao \textit{main isolate} me forma de mensagem quando finalizado.
-  % ref: https://dart.dev/guides/language/language-tour#isolates 05/11/2022
-% ref: https://dart.dev/guides/language/concurrency#how-isolates-work 05/11/2022
-  \item Esquema de \textbf{garbage collection} (GC): a linguagem \textit{Dart} utiliza um avançado esquema de coleta de lixo geracional e que se divide em duas fases. Esse algoritmo favorece a rápida criação e destruição de objetos, o que é comum em aplicações feitas com Flutter, que possui muitos objetos sendo alocados e desalocados, como por exemplo, os \textit{Stateless Widgets}.
-  % ref: https://hackernoon.com/why-flutter-uses-dart-dd635a054ebf#:~:text=Allocation%20and%20garbage%20collection 05/11/2022
-  % ref: https://medium.com/flutter/flutter-dont-fear-the-garbage-collector-d69b3ff1ca30
+  \item Uso de \textbf{\textit{isolates}}: todo o código em \textit{Dart} roda dentro de \textit{isolates}, o qual possui um uma única \textit{thread} e se comunica com outros \textit{isolates} por meio de mensagens. Mesmo ações assíncronas são gerenciadas com o uso de classes como \textit{Future} e \textit{Stream} ou com o uso de \textit{async/await}. Dessa forma, o \textit{Dart} é capaz de executar código assíncrono sem a necessidade de novas \textit{threads}. Em última instância, é possível criar um \textit{background isolate}, que será responsável por realizar algum tipo de tarefa em segundo plano, como por exemplo, a leitura ou escrita de um arquivo e devolver seu resultado ao \textit{main isolate} me forma de mensagem quando finalizado \cite{dart-language} \cite{dart-concurrency}.
+  \item Esquema de \textbf{garbage collection} (GC): a linguagem \textit{Dart} utiliza um avançado esquema de coleta de lixo geracional e que se divide em duas fases. Esse algoritmo favorece a rápida criação e destruição de objetos, o que é comum em aplicações feitas com Flutter, que possui muitos objetos sendo alocados e desalocados, como por exemplo, os \textit{Stateless Widgets} \cite{leler2017flutterdart} \cite{matt2019garbagecollector}.
 \end{itemize}
-
 
 
 \section[\textit{Flutter}]{Flutter}
 Busca-se apresentar, nesta seção, uma visão em alto nível do que é o \textit{framework Flutter}, sua arquitetura, as principais características da tecnologia e suas diferenças para as demais tecnologias no mercado.
 
-O \textit{Flutter}, criado pela \textit{Google}, é desenvolvido em código aberto e visa possibilitar o desenvolvimento de aplicações \textit{Android}, \textit{Web}, \textit{Desktop} e de \textit{software} embarcado a partir de uma única base de código, compiladas nativamente. A aplicação é mantida não só pela empresa que a criou, mas também recebe novas atualizações e incorporações advindas da comunidade.
-% ref: https://docs.flutter.dev/resources/faq#what-is-flutter 30/10/2022
+O \textit{Flutter}, criado pela \textit{Google}, é desenvolvido em código aberto e visa possibilitar o desenvolvimento de aplicações \textit{Android}, \textit{Web}, \textit{Desktop} e de \textit{software} embarcado a partir de uma única base de código, compiladas nativamente. A aplicação é mantida não só pela empresa que a criou, mas também recebe novas atualizações e incorporações advindas da comunidade \cite{faq2022whatsflutter}.
 
 
 % \subsection{Arquitetura do \textit{framework}}
@@ -86,9 +67,7 @@ O \textit{Flutter}, criado pela \textit{Google}, é desenvolvido em código aber
 
 \subsection{\textit{Widgets}}
 \label{cap2:SubSec:Widgets}
-O \textit{framework} recebe inspiração do React e, dessa forma, utiliza-se de \textit{widgets} (\ref{fig:nurse-widget-tree}) para compor os elementos visuais das aplicações, assim como os estados dos mesmos. % ref: https://docs.flutter.dev/development/ui/widgets-intro 01/11/2022
-Estes \textit{widgets} devem ser responsáveis por gerir, com boa performance, a renderização dos elementos na tela, suas animações e também controlar as interações do usuário com a aplicação.
-% ref.: Wenhao Wu: React Native vs Flutter, cross-platform mobile application frameworks: 2.2.3 Widget: Widgets do not only control and affect how the views behave, but also handle and respond to the user’s action. Thus, it is crucial that Widgets need to perform fast, including rendering and animating. 01/11/2022
+O \textit{framework} recebe inspiração do React e, dessa forma, utiliza-se de \textit{widgets} (\ref{fig:nurse-widget-tree}) para compor os elementos visuais das aplicações, assim como os estados dos mesmos \cite{flutter2022widgets}. Estes \textit{widgets} devem ser responsáveis por gerir, com boa performance, a renderização dos elementos na tela, suas animações e também controlar as interações do usuário com a aplicação \cite{wu2018react}.
 
 \begin{figure}[ht!]
     	
@@ -108,13 +87,11 @@ Além disso, os \textit{Widgets} devem ser customizáveis e extensíveis, de for
  % ref: https://hackernoon.com/whats-revolutionary-about-flutter-946915b09514
 
 
-A seguir, serão apresentados os dois principais tipos de \textit{widgets} utilizados no desenvolvimento da aplicação, suas principais características e diferenças. São eles: \textit{Stateless Widgets} e \textit{Stateful Widgets}, que diferem entre si, essencialmente, pelo gerenciamento ou não de seu estado interno. % ref: https://docs.flutter.dev/development/ui/widgets-intro 01/11/2022
+A seguir, serão apresentados os dois principais tipos de \textit{widgets} utilizados no desenvolvimento da aplicação, suas principais características e diferenças. São eles: \textit{Stateless Widgets} e \textit{Stateful Widgets}, que diferem entre si, essencialmente, pelo gerenciamento ou não de seu estado interno \cite{flutter2022widgets}.
 
 \subsubsection{Stateless Widgets}
 \label{cap2:SubSubSec:StatelessWidgets}
-Os \textit{stateless widgets} são \textit{widgets} que não possuem mudança estado, ou seja, não possuem propriedades que podem ser alteradas ao longo do tempo, como por exemplo, quando há uma animação ou um campo de texto ao qual um usuário possa interagir e, assim, só dependem das configurações definidas pelo próprio objeto e o contexto em que ele está inserido. Esses \textit{widgets} podem ser utilizados para representar elementos estáticos da interface, como textos, imagens, botões etc. A seguir, é apresentado um exemplo de um \textit{stateless widget} que representa um botão.
-% https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html 01/11/2022
-% ref: https://www.youtube.com/watch?v=wE7khGHVkYY 06/11/2022
+Os \textit{stateless widgets} são \textit{widgets} que não possuem mudança estado, ou seja, não possuem propriedades que podem ser alteradas ao longo do tempo, como por exemplo, quando há uma animação ou um campo de texto ao qual um usuário possa interagir e, assim, só dependem das configurações definidas pelo próprio objeto e o contexto em que ele está inserido. Esses \textit{widgets} podem ser utilizados para representar elementos estáticos da interface, como textos, imagens, botões etc. A seguir, é apresentado um exemplo de um \textit{stateless widget} que representa um botão \cite{flutter2022stateless} \cite{stateless2018create}.
 
 \begin{lstlisting}[caption={Exemplo de um \textit{stateless widget} que representa um botão.}, label={lst:stateless_widget}]
   class BotaoPrincipal extends StatelessWidget {
@@ -138,12 +115,9 @@ No código \ref{lst:stateless_widget} temos a \textbf{classe BotaoPrincipal} que
 % https://flutter.dev/docs/development/ui/widgets-intro#stateless-and-stateful-widgets
 \subsubsection{Stateful Widgets}
 \label{cap2:SubSubSec:StatefulWidgets}
-% [A revisar]
-Os \textit{stateful widgets} são \textit{widgets} que possuem mudança de estado, ou seja, possuem propriedades que podem ser alteradas ao longo do tempo, como por exemplo, quando há uma animação ou um campo de texto ao qual um usuário possa interagir e, assim, dependem não só das configurações definidas pelo próprio objeto e o contexto em que ele está inserido, mas também do estado interno do objeto. A seguir, é apresentado um exemplo de um \textit{stateful widget} que representa um campo de texto.
-% ref: https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html 07/11/2022
+Os \textit{stateful widgets} \cite{flutter2022widgets} \cite{flutter2022stateful} são \textit{widgets} que possuem mudança de estado, ou seja, possuem propriedades que podem ser alteradas ao longo do tempo, como por exemplo, quando há uma animação ou um campo de texto ao qual um usuário possa interagir e, assim, dependem não só das configurações definidas pelo próprio objeto e o contexto em que ele está inserido, mas também do estado interno do objeto. A seguir, é apresentado um exemplo de um \textit{stateful widget} que representa um campo de texto.
 
-% [A revisar]
-\begin{lstlisting}[caption={Exemplo de um \textit{stateful widget} que representa um campo de texto.}, label={lst:stateful_widget}]
+\begin{lstlisting}[caption={Exemplo de um \textit{stateful widget} que representa um campo de texto}, label={lst:stateful_widget}]
   class CampoTexto extends StatefulWidget {
     final String texto;
 
@@ -174,38 +148,30 @@ Os \textit{stateful widgets} são \textit{widgets} que possuem mudança de estad
   }
 \end{lstlisting}
 
-O \textit{stateful widget} é dividido em duas classes, ou em dois objetos distintos que se contemplam, como pode ser observado no código \ref{lst:stateful_widget}.
-% ref: https://medium.com/flutter-community/widget-state-buildcontext-inheritedwidget-898d671b7956 07/11/2022
-A primeira classe, a qual estende de \textit{StatefulWidgets} é imutável e também podem receber variáveis via construtor, mas que são finais, assim como as propriedades das classes do tipo \textit{StatelessWidget}'s. Para que hajam mudanças, um objeto do tipo \textit{State} é adicionado e este será responsável pelas mudanças que poderão ocorrer no ciclo de vida do \textit{StatefulWidget}.
+O \textit{stateful widget} é dividido em duas classes, ou em dois objetos distintos que se contemplam, como pode ser observado no código \ref{lst:stateful_widget} \cite{boelens2018}. A primeira classe, a qual estende de \textit{StatefulWidgets} é imutável e também podem receber variáveis via construtor, mas que são finais, assim como as propriedades das classes do tipo \textit{StatelessWidget}'s. Para que hajam mudanças, um objeto do tipo \textit{State} é adicionado e este será responsável pelas mudanças que poderão ocorrer no ciclo de vida do \textit{StatefulWidget}.
 
-A classe que estende \textit{State} (chamada \textbf{CampoTextoState} no exemplo), criada no momento em que a função \textit{StatefulWidget.createState()} é chamada, representa a informação lida pelo \textit{widget} e que pode ser alterada durante o tempo de vida do mesmo.
-% ref: https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html 07/11/2022
-Além disso, o estado em si pode ter um ciclo de vida maior que o do seu próprio \textit{widget}, mantendo-se em memória mesmo quando este é reconstruído.
-% ref: Sebastian Faust: Using Google´s Flutter Framework for the Development of a Large-Scale Reference Application: 3.4.2 Stateful Widgets 07/11/2022
+A classe que estende \textit{State} (chamada \textbf{CampoTextoState} no exemplo), criada no momento em que a função \textit{StatefulWidget.createState()} é chamada, representa a informação lida pelo \textit{widget} e que pode ser alterada durante o tempo de vida do mesmo \cite{flutter2022stateful}. Além disso, o estado em si pode ter um ciclo de vida maior que o do seu próprio \textit{widget}, mantendo-se em memória mesmo quando este é reconstruído \cite{Faust2020}.
 
 O ciclo de vida de um \textit{State} engloba as seguintes etapas principais:
 
 \begin{enumerate}
-  \item criação, a partir da função \textit{createState} e sua associação a um \textit{BuildContext}, responsável por determinar a posição do \textit{widget} que contém o \textit{State} na árvore de \textit{widgets};
-  % ref: https://api.flutter.dev/flutter/widgets/BuildContext-class.html
+  \item criação, a partir da função \textit{createState} e sua associação a um \textit{BuildContext} \cite{flutter2022buildcontext}, responsável por determinar a posição do \textit{widget} que contém o \textit{State} na árvore de \textit{widgets};
   \item inicialização, com o uso da função \textit{initState}, que também depende do contexto ao qual o widget está associado ou às suas propriedades;
   \item construção, utilizando-se da função \textit{build}, que pode ser chamada inúmeras vezes ao longo do ciclo de vida do \textit{State}, como por exemplo, quando algum dos seus estados internos é alterado;
-  \item destruição, com o uso da função \textit{dispose}, que é chamada quando o \textit{State} é removido da árvore de \textit{widgets}.
-  % ref: https://api.flutter.dev/flutter/widgets/State-class.html 07/11/2022
+  \item destruição, com o uso da função \textit{dispose}, que é chamada quando o \textit{State} \cite{flutter2022state} é removido da árvore de \textit{widgets}.
 \end{enumerate}
 
 Processos intermediários podem ocorrer e funções como \textit{didChangeDependencies} e \textit{didUpdateWidget} são chamadas. Elas podem ser respectivamente utilizadas quando a inicialização do \textit{State} envolve \textit{InheritedWidget}'s ou quando quer-se responder às mudanças provocadas pelo \textit{State} aos seus \textit{widgets} associados.
 
 No código exemplo \ref{lst:stateful_widget} temos a \textbf{classe CampoTexto} que estende um \textit{StatefulWidget} e possui um atributo \textbf{texto} que é passado como parâmetro para o construtor da classe. A classe possui o método \textbf{createState} que retorna um objeto do tipo \textbf{\_CampoTextoState}, uma classe interna da classe \textbf{CampoTexto}.
 
-% [A revisar]
-Essa classe interna também possui um atributo \textbf{texto} que é inicializado com uma string vazia e pode ser modificado. O método \textbf{build} retorna um \textit{widget} do tipo \textit{TextField} que, por sua vez, recebe uma função anônima responsável por alterar o estado interno do objeto que, nesse caso, se trata do atributo \textbf{texto}, que recebe o valor passado como parâmetro. Esse método chama a função \textit{setState} que é responsável por notificar o \textit{framework} que o estado interno do objeto foi alterado e que o \textit{widget} deve ser reconstruído.
+Essa classe interna também possui um atributo \textbf{texto} que é inicializado com uma string vazia e pode ser modificado dentro da função onChanged do \textit{widget} \textbf{TextField}, retornado pela função \textbf{build}. O método passado para onChanged chama a função \textit{setState} que é responsável por notificar o \textit{framework} que o estado interno do objeto foi alterado e que o \textit{widget} deve ser reconstruído.
 
 Além disso, o \textit{widget} do tipo \textit{TextField} recebe como segundo parâmetro um objeto do tipo \textit{InputDecoration} que define o rótulo do campo com o atributo \textbf{texto} da classe \textbf{CampoTexto} e uma dica do que o usuário pode fazer.
 
 \subsubsection{InheritedWidget}
 \label{cap2:SubSubSec:InheritedWidget}
-\textit{InheritedWidget} é um tipo especial de \textit{widget} que permite o envio de informações eficientemente entre os nós da árvore de \textit{widgets} que compõe a aplicação. Isto é, a partir de qualquer \textit{widget} descendente de um \textit{InheritedWidget}, pode-se recuperar dados sobre esse componente pai sem que haja a necessidade de repassar a informação por cada um dos nós que compõem o caminho entre os dois, como é demonstrado da imagem \ref{fig:inherited-widget-diagram}.
+\textit{InheritedWidget} \cite{flutter2022inheritedwidget} é um tipo especial de \textit{widget} que permite o envio de informações eficientemente entre os nós da árvore de \textit{widgets} que compõe a aplicação. Isto é, a partir de qualquer \textit{widget} descendente de um \textit{InheritedWidget}, pode-se recuperar dados sobre esse componente pai sem que haja a necessidade de repassar a informação por cada um dos nós que compõem o caminho entre os dois, como é demonstrado da imagem \ref{fig:inherited-widget-diagram}.
 
 \begin{figure}[!ht]
   \centering
@@ -214,9 +180,8 @@ Além disso, o \textit{widget} do tipo \textit{TextField} recebe como segundo pa
   \label{fig:inherited-widget-diagram}
 \end{figure}
 
-Neste exemplo, o estado é mantido pelo \textit{widget} nomeado como \textbf{Home} e é acessado pelos \textit{widgets} \textbf{Text} e \textbf{Button} por meio do método estático \textit{Home.of(BuildContext context)} que, por sua vez, busca no contexto dessa sub-árvore, o \textit{widget} mais próximo que seja do exato tipo \textit{Home} e que seja uma extensão concreta da classe InheritedWidget.
-% ref: https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html 10/11/2022
-% ref: https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html 10/11/2022
+Neste exemplo, o estado é mantido pelo \textit{widget} nomeado como \textbf{Home} e é acessado pelos \textit{widgets} \textbf{Text} e \textbf{Button} por meio do método estático \textit{Home.of(BuildContext context)} que, por sua vez, busca no contexto dessa sub-árvore, o \textit{widget} mais próximo que seja do exato tipo \textit{Home} e que seja uma extensão concreta da classe \textbf{InheritedWidget} \cite{flutter2022inheritedwidget} \cite{flutter2022dependOnInheritedWidgetOfExactType}.
+
 % \subsection{Principais características}
 % A fazer.
 
@@ -227,31 +192,23 @@ Neste exemplo, o estado é mantido pelo \textit{widget} nomeado como \textbf{Hom
 
 \subsection{Gerenciamento de estado}
 \label{cap2:Subsec:GerenciamentoEstado}
-O gerenciamento de estado no \textit{Flutter} não segue apenas uma arquitetura. Na verdade, o \textit{framework} oferece uma série de opções para que o desenvolvedor possa escolher a que melhor se adapta ao seu projeto \cite{Faust2020}. Algumas das principais opções são: \textit{InheritedWidget}, \textit{Provider}, \textit{MobX} \textit{BLoC} e \textit{Redux}. Cada uma dessas opções possui suas vantagens e desvantagens, sendo que algumas são mais adequadas para projetos pequenos e outras para projetos maiores. Anteriormente, descreveu-se o funcionamento do \textit{InheritedWidget} e, mais a frente, serão apresentadas as principais características sobre o \textit{Provider} e o \textit{MobX}.
-% ref: https://docs.flutter.dev/development/data-and-backend/state-mgmt/options 10/11/2022
+O gerenciamento de estado no \textit{Flutter} não segue apenas uma arquitetura. Na verdade, o \textit{framework} oferece uma série de opções para que o desenvolvedor possa escolher a que melhor se adapta ao seu projeto \cite{Faust2020}. Algumas das principais opções são: \textit{InheritedWidget}, \textit{Provider}, \textit{MobX} \textit{BLoC} e \textit{Redux}. Cada uma dessas opções possui suas vantagens e desvantagens, sendo que algumas são mais adequadas para projetos pequenos e outras para projetos maiores. Anteriormente, descreveu-se o funcionamento do \textit{InheritedWidget} e, mais a frente, serão apresentadas as principais características sobre o \textit{Provider} e o \textit{MobX} \cite{flutter2022statemgmt}.
 
 Antes, porém, é importante destacar que o \textit{Flutter}, diferente de outros \textit{framework}s de desenvolvimento de aplicações \textit{mobile}, como o \textit{Android SDK} e o \textit{iOS UIKit}, não segue uma perspectiva imperativa, onde é possível alterar o estado de um \textit{widget} diretamente. Em vez disso, o \textit{Flutter} segue uma perspectiva declarativa, onde a interface do usuário é alterado através de uma função que retorna um novo \textit{widget}. Isso significa que, ao alterar o estado de um \textit{widget}, o \textit{framework} irá reconstruir esse \textit{widget}, mesmo que isso aconteça a cada novo \textit{frame} da aplicação. O processo pode ser custoso, mas o \textit{Flutter} é rápido o suficiente para isso e existem vantagens associadas, principalmente o benefício de determinar como a interface deve ser construída dado um estado específico e mantê-la assim até que haja a necessidade de uma reconstrução dessa interface.
-% ref: https://docs.flutter.dev/development/data-and-backend/state-mgmt/declarative 10/11/2022
 
 \subsection{\textit{Provider}}
 \label{cap2:Subsec:Provider}
 
-\textit{Provider} é um \textit{wrapper}, isto é, um encapsulamento que envolve o \textit{InheritedWidget} com o objetivo de simplificar seu uso e, com isso, facilitar o gerenciamento de estados em aplicações \textit{Flutter}.
-% ref: https://pub.dev/packages/provider 10/11/2022
+\textit{Provider} é um \textit{wrapper}, isto é, um encapsulamento que envolve o \textit{InheritedWidget} com o objetivo de simplificar seu uso e, com isso, facilitar o gerenciamento de estados em aplicações \textit{Flutter} \cite{provider-package}.
 
-Ao utilizar o \textit{Provider}, pode-se encapsular o estado em uma nova classe que herda de \textit{ChangeNotifier} ou se mistura a ela com o uso da palavra reservada \textit{with}, do Dart. Dessa forma, essa classe ganha a capacidade de notificar os \textit{widgets} que se subscrevem a ela quando o estado é alterado. Para isso, basta utilizar o método \textit{notifyListeners()} em métodos que alteram esse estado.
-% ref: https://docs.flutter.dev/development/data-and-backend/state-mgmt/simple
-% ref: https://www.youtube.com/watch?v=d_m5csmrf7I 10/11/2022
+Ao utilizar o \textit{Provider}, pode-se encapsular o estado em uma nova classe que herda de \textit{ChangeNotifier} ou se mistura a ela com o uso da palavra reservada \textit{with}, do Dart. Dessa forma, essa classe ganha a capacidade de notificar os \textit{widgets} que se subscrevem a ela quando o estado é alterado. Para isso, basta utilizar o método \textit{notifyListeners()} em métodos que alteram esse estado \cite{flutter2022simple} \cite{flutter2019statemgmt}.
 
-Para injetar o estado aos widgets que tem interesse nele, utiliza-se o \textit{ChangeNotifierProvider}. Esse \textit{widget} é colocado acima dos widgets que devem receber a instância do \textit{ChangeNotifier}. Por fim, para consumir o estado e responder às suas mudanças, utiliza-se um \textit{widget} chamado \textit{Consumer}, o qual é normalmente colocado ao redor do \textit{widget} que deve ser atualizado quando o estado é alterado. Também pode-se utilizar o método \textit{Provider.of(context)} para obter o estado ou alterá-lo.
-% ref: https://docs.flutter.dev/development/data-and-backend/state-mgmt/simple
-% ref: https://www.youtube.com/watch?v=d_m5csmrf7I 10/11/2022
+Para injetar o estado aos widgets que tem interesse nele, utiliza-se o \textit{ChangeNotifierProvider}. Esse \textit{widget} é colocado acima dos widgets que devem receber a instância do \textit{ChangeNotifier}. Por fim, para consumir o estado e responder às suas mudanças, utiliza-se um \textit{widget} chamado \textit{Consumer}, o qual é normalmente colocado ao redor do \textit{widget} que deve ser atualizado quando o estado é alterado. Também pode-se utilizar o método \textit{Provider.of(context)} para obter o estado ou alterá-lo \cite{flutter2022simple} \cite{flutter2019statemgmt}.
 
 \subsection{\textit{MobX}}
 \label{cap2:Subsec:MobX}
 % [A revisar]
 \textit{MobX} é uma biblioteca para gerenciamento de estado baseado em reatividade \cite{mobx-package}. A reatividade, nesse contexto, é um conceito que permite que o estado de um \textit{widget} mude automaticamente quando uma ação é realizada em outro local, como por exemplo, um outro \textit{widget}. Para isso, utiliza-se a ideia de observabilidade a partir do \textit{widget} que depende do estado a ser observado e, assim que este é alterado, o \textit{widget} é notificado e reconstruído. Esse ciclo pode ser demonstrado na imagem \ref{fig:mobx-cycle}.
-
 
 \begin{figure}[!ht]
   \centering
@@ -259,7 +216,6 @@ Para injetar o estado aos widgets que tem interesse nele, utiliza-se o \textit{C
   \caption{Ciclo básico do gerenciamento de estado com o MobX \protect\cite{mobx-package} \protect\cite{podila18mobx}}
   \label{fig:mobx-cycle}
 \end{figure}
-
 
 A \textbf{ação} é responsável por gerar mudança no estado da aplicação. Ela pode ser disparada por uma interação do usuário com algum \textit{widget}, como um botão, assim como pode ser resposta a um efeito colateral causado por uma outra ação anterior a esta e que gerou uma mudança de estado anterior, a qual foi consumida por um observador.
 
@@ -287,7 +243,6 @@ A notificação realizada pelo estado pode ocasionar efeitos colaterais em outro
 % [A revisar]
 A persistência de dados no contexto do Flutter é o processo de armazenamento em disco das informações relativas à aplicação ou ao seu usuário.
 A persistência de dados em um aplicativo móvel permite que o usuário possa acessar as informações mesmo quando não estiver conectado à internet ou mesmo quando o aplicativo estiver fechado. As principais formas de armazenamento de dados em uma aplicação Flutter são: salvamento em \textit{Shared Preferences}, leitura e escrita de arquivos e salvamento em banco de dados \textit{SQLite} \cite{persistence}.
-% ref: https://docs.flutter.dev/cookbook#persistence 12/11/2022
 
 A forma como as informações são salvas dependem da quantidade, complexidade e finalidade delas. Para pequenos conjunto de dados, o salvamento em chave-valor, utilizando o \textit{Shared Preferences}, é uma boa opção \cite{shared_preferences}. Já para arquivos de texto, como por exemplo, um arquivo \textit{JSON}, o salvamento em disco é uma boa opção, pois permite a leitura e escrita de dados de forma mais abrangente em relação ao tipo de arquivo salvo e sua utilidade posterior \cite{reading_writing_files}. Por fim, para grandes conjuntos de dados, como por exemplo, uma lista de contatos, o \textit{SQLite} é preferível, pois ele é uma biblioteca que implementa o mecanismo de um banco de dados relacional \cite{sqlite-org} que permite a criação de tabelas e a manipulação de dados de forma simples e rápida \cite{sqlite-flutter} \cite{sqlite_features}.
 
