@@ -4,6 +4,24 @@
 
 \mychapter{Conclusão}
 \label{Cap:Conclusao}
+Esse trabalho propôs a criação de uma aplicação \textit{mobile} desenvolvida com o \textit{framework Flutter} que visava aumentar a produtividade dos profissionais da saúde responsáveis pelas campanhas de vacinação realizas nas mais diversas cidades do país. Mais especificamente, buscava facilitar o registro dos dados coletados durante a vacinação de pacientes e minimizar a possibilidade de erros na transcrição dessas informações das planilhas impressas para o sistema \textit{online}.
+
+Para isso, criou-se a aplicação Nurse, que traz consigo uma série de funcionalidades que auxiliam o profissional na realização de suas atividades. Durante o processo de vacinação, os formulários presentes na aplicação possuem validações que garantem ao usuário que os dados inseridos estão dentro das regras que definem cada campo. Após o processo de vacinação, os dados coletados poderão ser facilmente abertos ou exportados em formato de planilha, a qual poderá ser importada no sistema \textit{online} de vacinação. Todas as funcionalidades de coleta de dados podem ser feitas sem que haja uma conexão com a internet e apenas no momento de exportação dos dados, que pode ser realizada fora do momento de vacinação, é que a conexão se faz necessária.
+
+O app poderá ser utilizado por inúmeros profissionais da saúde, como enfermeiros, técnicos de enfermagem, médicos, dentre outros, que atuam em campanhas de vacinação, substituindo os formulários impressos e a eliminando a necessidade de digitação manual no momento de integração com a plataforma nacional.
+
+A seguir, algumas considerações finais sobre o futuro da aplicação e como ela pode ser melhorada para atender às necessidades dos profissionais da saúde.
+
+\section{Futuro da aplicação: melhorias e adições}
+\label{Sec:FuturoNurse}
+As principais funcionalidades da aplicação \textbf{Nurse}, pensadas na concepção do projeto, estão implementadas e foram apresentadas neste trabalho. No entanto, existem alguns recursos que poderiam ser adicionadas à uma nova versão da aplicação, melhorando a sua usabilidade e a sua eficácia. Não só isso, mas as próprias funcionalidades do \textit{app \textbf{Nurse}} podem ser otimizados. Algumas dessas ideias são apresentadas a seguir:
+
+\begin{itemize}
+  \item \textbf{Melhorias na interface gráfica}: a interface gráfica da aplicação \textbf{Nurse} foi pensada para ser simples e intuitiva e esse conceito deve ser mantido em versões futuras. Na verdade, até reforçado e, para isso, deseja-se repensar as paletas de cores e contrastes e a tipografia da aplicação para torná-la ainda mais agradável de se olhar e, principalmente, tornar a aplicação mais acessível a todos os seus usuários. Somado a isso, busca-se adicionar mais animações e efeitos visuais para tornar a experiência do usuário ainda melhor.
+  \item \textbf{Adição de módulos de segurança}: atualmente não há na aplicação módulos relacionados à autenticação de usuários ou de gerenciamento do acesso a certos recursos a partir do perfil do usuário autenticado. Considerando que a aplicação será utilizada, em geral, por um único usuário e este deverá acessar a plataforma online para importar esses dados salvos, a autenticação de usuários não se mostrou necessária em um primeiro momento. No entanto, para uma versão futura da aplicação, a autenticação de usuários pode ser implementada, bem como o gerenciamento de acesso a certos recursos a partir do perfil do usuário autenticado. Isso pode ser feito, por exemplo, através de um sistema de login e senha salvos no banco de dados criptografado. Esse novo recurso torna mais flexível a utilização de um dispositivo comum aos profissionais responsáveis da vacinação e identifica o usuário que está utilizando a aplicação.
+  \item \textbf{Performance}: avaliar os tempos de resposta às ações do usuário na aplicação, assim como os de funções relacionadas, principalmente, às operações em banco de dados e otimizar o código para que esses tempos sejam reduzidos. Isso pode ser feito, por exemplo, através da refatoração e otimização do código e da utilização de técnicas de cache para armazenar os dados que são utilizados com frequência.
+  \item \textbf{Testes}: em paralelo a tudo isso, é necessário aumentar a cobertura de testes da aplicação e garantir que os fluxos dos casos de uso estejam corretos. Isso pode ser feito com a adição de testes de Widgets e testes de integração \cite{flutter-testing}.
+\end{itemize}
 
 % Escrever sobre o que espero para o futuro da aplicação.
 %   - Melhorar a interface gráfica (responsividade, usabilidade, adaptatividade e acessibilidade)

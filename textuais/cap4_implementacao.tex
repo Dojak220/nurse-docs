@@ -53,7 +53,7 @@ Os requisitos não funcionais (RNF) são aqueles que descrevem as característic
     \rowcolor{green!100}
     \textbf{Código} & \textbf{Requisito} & \textbf{Descrição} \\ \hline \hline
     RNF01  &  Correta estrutura dos dados              & Garantir que os dados fornecidos pelo usuário sejam aceitos e salvos apenas se seguirem as especificações e regras relativas a eles (por exemplo, CPF que deve seguir um conjunto de regras para ser considerado válido)   \\ \hline
-    RNF02  &  Dados em planilha & Apenas os dados referentes às vacinações devem postos em uma planilha e esta deve seguir o formato apresentado na seção \ref{cap1:SubSec:cap1:ProcedimentoComumVacinacao}) \\ \hline
+    RNF02  &  Dados em planilha & Apenas os dados referentes às vacinações devem postos em uma planilha e esta deve seguir o formato apresentado na seção \ref{cap1:SubSec:CenariosVacinacao}) \\ \hline
     RNF03  &  Cadastros não podem ser apagados  & As informações que forem salvas sobre qualquer uma das entidades pelo usuário não devem ser apagadas. Elas podem apenas ser alteradas (funcionalidade RF03) \\ \hline
   \end{tabularx}}
 \caption{Requisitos não funcionais da aplicação Nurse}
@@ -310,8 +310,7 @@ Há, também, um processo de validação realizado pelo \textbf{\textit{Validato
 \subsubsection{Camada de Repositório}
 \label{cap4:SubSubSec:Repositorio}
 
-% [A revisar]
-A camada de repositório separa a camada de dados da camada da regra de negócio \cite{Faust2020} \cite{andrea_repositories}. Ela é responsável por abstrair a forma como os dados são armazenados, permitindo que a aplicação seja portada para diferentes bancos de dados ou para API's sem que seja necessário alterar a regra de negócio. Essa camada é composta por classes abstratas (\ref{lst:campaign_repository}) que definem uma interface com os métodos a serem implementados pelas classes que utilizam-se dessa interface (\ref{lst:database_campaign_repository}). A seguir, no trecho de código \ref{lst:campaign_repository}, é apresentada a interface \textbf{CampaignRepository} e sua implementação para uso de banco de dados, \textbf{DatabaseCampaignRepository}, pode ser vista no trecho de código \ref{lst:database_campaign_repository}, na seção \ref{cap4:SubSubSec:Dados}.
+A camada de repositório separa a camada de dados da camada da regra de negócio \cite{Faust2020} \cite{andrea_repositories}. Ela é responsável por abstrair a forma como os dados são armazenados, permitindo que a aplicação seja portada para diferentes bancos de dados ou para API's sem que seja necessário alterar a regra de negócio. Essa camada é composta por classes abstratas que definem uma interface com os métodos a serem implementados pelas classes que utilizam-se dessa interface. A seguir, no trecho de código \ref{lst:campaign_repository}, é apresentada a interface \textbf{CampaignRepository} e sua implementação para uso de banco de dados, \textbf{DatabaseCampaignRepository}, pode ser vista no trecho de código \ref{lst:database_campaign_repository}, na seção \ref{cap4:SubSubSec:Dados}.
 
 \begin{lstlisting}[caption={Interface \textbf{CampaignRepository}}, label={lst:campaign_repository}]
   abstract class CampaignRepository {
@@ -393,7 +392,7 @@ Tanto a classe \textbf{DatabaseInterface} como a classe \textbf{DatabaseManager}
 \label{cap4:Sec:Telas}
 
 % [A revisar] Programa de desenvolvimento das páginas.
-Nessa seção, serão apresentadas as principais telas desenvolvidas para o aplicativo \textbf{Nurse}. O design dessa páginas foram criados por Yasmim, utilizando o \textit{software} \textbf{XD Adobe}. A seguir, serão apresentadas as telas \textbf{Home}, \textbf{listagem de entidades}, \textbf{listagem de campanhas de vacinação}, \textbf{cadastro de nova campanhas de vacinação} e a tela de \textbf{exportação de dados}.
+Nessa seção, serão apresentadas as principais telas desenvolvidas para o aplicativo \textbf{Nurse}. O design dessa páginas foram criados por Yasmim Araújo (LinkedIn: \url{https://www.linkedin.com/in/yasmim-lopes-78144115b/}), utilizando o \textit{software} \textbf{XD Adobe}. As telas da aplicação \textbf{Nurse} foram pensadas para serem intuitivas, simples e com uma navegação rápida entre todos os recursos disponíveis ao usuário. A seguir, serão apresentadas as telas \textbf{Home}, \textbf{listagem de entidades}, \textbf{listagem de campanhas de vacinação}, \textbf{cadastro de nova campanhas de vacinação} e a tela de \textbf{exportação de dados}.
 
 \begin{figure}[ht!]
   \centering
