@@ -376,13 +376,13 @@ Tanto a classe \textbf{DatabaseInterface} como a classe \textbf{DatabaseManager}
   }
 \end{lstlisting}
 
-% [A revisar]
-% Uma das vantagens em realizar essa divisão é tornar, por exemplo, as camadas de controle e de modelo imunes às mudanças realizadas na camada de visualização, tornando esta um \textit{plug-in} daquela \cite{bob2015architecture}. Dessa forma, a camada de visualização pode ser alterada sem que a camada de negócio seja afetada em absolutamente nada, o que não pode ser afirmado no caso daquele que cumpre o papel de \textit{plug-in}.
-% [A fazer]
+% [A revisar] [Revisado]{Não adicionado}{
+% Uma das vantagens em realizar essa divisão é tornar, por exemplo, as camadas de controle e de modelo imunes às mudanças realizadas na camada de visualização, tornando esta um \textit{plug-in} daquela \cite{bob2015architecture}. Dessa forma, a camada de visualização pode ser alterada sem que a camada de negócio seja afetada em absolutamente nada, o que não pode ser afirmado no caso daquele que cumpre o papel de \textit{plug-in}.}
+% [A fazer] [Feito]{Não adicionado}{
 % retirar essa explicação dos sites:
 % https://priyalwalpita.medium.com/software-architecture-patterns-layered-architecture-a3b89b71a057
 % https://priyalwalpita.medium.com/software-architecture-patterns-which-one-to-choose-1e368b43fe70
-% e da seção 4.2.1 do artigo de Faust
+% e da seção 4.2.1 do artigo de Faust}
 
 \subsection{Modularização e estrutura de pastas da aplicação}
 \label{cap4:Subsec:Modularizacao}
@@ -439,8 +439,6 @@ Ainda nessa análise do que separar em módulos, o domínio que determina toda a
 
 \section{Telas}
 \label{cap4:Sec:Telas}
-
-% [A revisar] Programa de desenvolvimento das páginas.
 Nessa seção, serão apresentadas as principais telas desenvolvidas para o aplicativo \textbf{Nurse}. O design dessa páginas foram criados por Yasmim Araújo (LinkedIn: \url{https://www.linkedin.com/in/yasmim-lopes-78144115b/}), utilizando o \textit{software} \textbf{XD Adobe}. As telas da aplicação \textbf{Nurse} foram pensadas para serem intuitivas, simples e com uma navegação rápida entre todos os recursos disponíveis ao usuário. A seguir, serão apresentadas as telas \textbf{Home}, \textbf{listagem de entidades}, \textbf{listagem de campanhas de vacinação}, \textbf{cadastro de nova campanhas de vacinação} e a tela de \textbf{exportação de dados}.
 
 \begin{figure}[ht!]
@@ -484,7 +482,6 @@ As telas da figura \ref{fig:entity_list_new_entity} apresentam um exemplo das te
 
 Nessa seção, serão apresentados os pacotes e bibliotecas utilizados no desenvolvimento do sistema. A tabela \ref{tab:packages}, presente no apêndice \ref{apendice:pacotes}, apresenta os pacotes utilizados no desenvolvimento do sistema e suas respectivas versões. Além dos pacotes principais, tem-se também os pacotes de desenvolvimento, que são utilizados apenas durante o desenvolvimento do sistema, como o \textit{flutter\_test} e o \textit{mobx\_codegen}, que são responsáveis pela criação de testes (ver seção \ref{cap5:Sec:TestesUnitarios}) e geração de arquivos relacionados ao gerenciamento de estado (ver seções \ref{cap2:Subsec:MobX}, \ref{cap4:SubSubSec:RegraNegocio} e \ref{cap4:Subsec:mobx-package}), respectivamente.
 
-% [A revisar] nomes dos pacotes e bibliotecas 
 Entre os pacotes e plugins utilizados, se destacam aqueles que estão relacionados com a persistência de dados (sqflite\_sqlcipher), com o gerenciamento de estado (mobx e flutter\_mobx), com a injeção de dependências (provider) e com a criação da planilha que será compartilhada (syncfusion\_flutter\_xlsio).
 
 \subsection{\textit{Plugin}s \textit{sqflite\_sqlcipher} e \textit{sqflite}}
