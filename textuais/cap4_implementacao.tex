@@ -16,7 +16,7 @@ Os requisitos da aplicação foram definidos de acordo com a análise feita a pa
 
 \subsection{Requisitos Funcionais}
 \label{cap4:Subsec:RequisitosFuncionais}
-Os requisitos funcionais (RF) são aqueles que descrevem as funcionalidades que o sistema deve possuir para atender às necessidades do usuário \cite{sommerville2007engineering}. A seguir (tabela \ref{tab:rf}), são apresentados os requisitos funcionais do sistema e os detalhes para alguns deles podem ser encontrados no apêndice \ref{apendice:requisitos_funcionais_detalhados}.
+Os \textbf{requisitos funcionais} (RF) são aqueles que descrevem as funcionalidades que o sistema deve possuir para atender às necessidades do usuário \cite{sommerville2007engineering}. A seguir (tabela \ref{tab:rf}), são apresentados os requisitos funcionais do sistema e os detalhes para alguns deles podem ser encontrados no apêndice \ref{apendice:requisitos_funcionais_detalhados}.
 
 \begin{table}[ht!]
   \centering
@@ -40,7 +40,7 @@ Os requisitos funcionais (RF) são aqueles que descrevem as funcionalidades que 
 \subsection{Requisitos Não Funcionais}
 \label{cap4:Subsec:RequisitosNaoFuncionais}
 
-Os requisitos não funcionais (RNF) são aqueles que descrevem as características do sistema que não são diretamente implementadas como uma funcionalidade específica na aplicação, mas que são importantes para o seu funcionamento, como o nível de confiabilidade da aplicação, performance e segurança. Além disso, são esses requisitos que apresentam as restrições inerentes à aplicação \cite{sommerville2007engineering}. A seguir (tabela \ref{tab:rnf}), são apresentados os requisitos não funcionais do sistema.
+Os \textbf{requisitos não funcionais} (RNF) são aqueles que descrevem as características do sistema que não são diretamente implementadas como uma funcionalidade específica na aplicação, mas que são importantes para o seu funcionamento, como o nível de confiabilidade da aplicação, performance e segurança. Além disso, são esses requisitos que apresentam as restrições inerentes à aplicação \cite{sommerville2007engineering}. A seguir (tabela \ref{tab:rnf}), são apresentados os requisitos não funcionais do sistema.
 
 \begin{table}[ht!]
   \centering
@@ -116,8 +116,7 @@ Engloba todos os elementos (\textit{widgets}) visuais e de interação com o usu
 
 \subsubsection{Camada de Regra de Negócio}
 \label{cap4:SubSubSec:RegraNegocio}
-% [A revisar]
-A camada de controle recebe as ações tomadas pelo usuário na camada de interface e toma decisões a partir delas. Essas decisões são tomadas com base nas regras de negócio da aplicação (daí o nome da camada). Essas regras são implementadas em classes que fazem parte dessa camada, aqui nomeadas como \textbf{Controladores}.
+A camada de regra de negócio recebe as ações tomadas pelo usuário na camada de interface e toma decisões a partir delas. Essas decisões são tomadas com base nas regras de negócio da aplicação (daí o nome da camada). Essas regras são implementadas em classes que fazem parte dessa camada, aqui nomeadas como \textbf{Controladores}.
 
 Por exemplo, a classe \textit{AddPatientFormController} é responsável por gerenciar as ações relacionadas às páginas de inserção de um novo paciente ou de edição de outro já cadastrado. Durante o preenchimento dos dados nos campos de texto e de seleção em lista suspensa, essa classe salva os dados em um objeto que representa um paciente e, ao tentar salvar, verifica-se a validade dos dados inseridos pelo usuário e se esse cadastro já não havia sido realizado. Caso algum desses requisitos não seja atendido, um estado de erro é enviado à camada anterior para que esta apresente uma mensagem ao usuário, caso contrário, o objeto (um novo paciente, nesse exemplo) é enviado à camada responsável por salvá-lo no banco de dados e o usuário é redirecionado para a página de listagem de pacientes, onde poderá ver o novo item adicionado.
 
