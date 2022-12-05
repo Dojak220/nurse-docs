@@ -57,18 +57,18 @@ Os código unitários \cite{flutter-testing} \cite{martin2011codigo} verificam u
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.8\textwidth]{figuras/cap5/5_coverage_report.png}
-  \caption{Cobertura de testes na aplicação Nurse.}
+  \includegraphics[width=\textwidth]{figuras/cap5/5_coverage_report.png}
+  \caption{Cobertura de testes na aplicação Nurse}
   \label{fig:tests_coverage}
 \end{figure}
 
 Para a realização dos testes unitários, utilizou-se um dos pacotes nativos do \textit{framework Flutter}, chamado \textit{flutter\_test}, que foi adicionado como uma das dependências de desenvolvimento da aplicação. Então, criou-se um arquivos de testes para cada classe relacionada aos modelos da aplicação e aos seus repositórios. Para cada um dessas classes, foram criados testes unitários para verificar se as funções públicas estão realizando o que se espera delas. E, para rodar os testes, bastou executar o comando \textit{flutter test} no terminal.
 
-Já para verificação de cobertura de testes do código, utilizou-se a flag \textit{--coverage} no comando de testes, o que forneceu um relatório de cobertura de código. Em posse desse relatório e utilizando-se da ferramenta \textit{lcov}, foi possível gerar uma página HTML (do inglês, HyperText Markup Language - Linguagem de Marcação de Hipertexto) com a visão geral da cobertura dos testes, como mostrado na Figura \ref{fig:tests_coverage} e com os detalhes de cada arquivo com código associado \cite{lcov}.
+Já para verificação de cobertura de testes do código, utilizou-se a flag \textit{--coverage} no comando de testes, o que forneceu um relatório de cobertura de código. Em posse desse relatório e utilizando-se da ferramenta \textit{lcov}, foi possível gerar uma página HTML (do inglês, \textit{HyperText Markup Language}) com a visão geral da cobertura dos testes, como mostrado na Figura \ref{fig:tests_coverage} e com os detalhes de cada arquivo com código associado \cite{lcov}.
 
 % \section{Testes de Performance}
 % \label{cap5:Sec:TestesPerformance}
-% [A fazer] Buscar os métodos de testes de performance do Flutter e do Dart.
+% [A fazer] [Feito]{Não adicionado}{Buscar os métodos de testes de performance do Flutter e do Dart.}
 
 \section{Fluxos de Telas}
 \label{cap5:Sec:FluxosTelas}

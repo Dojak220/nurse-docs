@@ -5,9 +5,7 @@
 \mychapter{Fundamentação Teórica}
 \label{Cap:Teoria}
 
-Neste capítulo serão apresentados os conceitos básicos relacionados ao \textit{framework Flutter}, assim como a linguagem de programação Dart, a biblioteca MobX e o \textit{wrapper} Provider, utilizados para o desenvolvimento desta aplicação.
-
-Também serão discutidas as principais ideias relacionadas à Programação Orientada a Objeto (POO), aos bancos de dados relacionais e, por fim, alguns conceitos relacionados às boas práticas da programação no quesito de arquitetura de sistemas e os princípios SOLID.
+Neste capítulo serão apresentados os conceitos básicos relacionados ao \textit{framework Flutter}, assim como a linguagem de programação Dart, a biblioteca MobX e o \textit{wrapper} Provider, utilizados para o desenvolvimento desta aplicação. Também serão discutidas as principais ideias relacionadas à persistência de dados no contexto do desenvolvimento para dispositivos móveis e aos bancos de dados relacionais.
 
 \section{Dart}
 \label{cap2:Sec:Dart}
@@ -28,7 +26,7 @@ A linguagem é orientada a objetos, fortemente tipada e compilada. Ela possui um
 
 Linguagens dinâmicas como JavaScript, às quais permitem ao desenvolvedor criar variáveis dinâmicas, ou seja, que podem mudam seus tipos em tempo de execução, utilizam a compilação \textit{Just-in-time (JIT)}. Esse tipo de compilação permite que o desenvolvimento se torne mais produtivo ao diminuir o tempo de espera entre uma mudança no código e a execução do mesmo para avaliar o resultado. Por outro lado, linguagens estáticas como C utilizam-se da estratégia de compilação \textit{Ahead-of-time (AOT)}. Dessa forma, todo o código deve ser compilado antes da execução do programa, o que torna o tempo de espera entre uma mudança no código e sua nova execução maior. Enquanto o \textit{JIT} tem vantagens sobre o \textit{AOT} em termos de produtividade, o \textit{AOT} tem vantagens em termos de performance, pois não há a necessidade de pausa na execução no código para análise ou compilação \textit{JIT}. Isso faz com que a aplicação seja inicializada e executada mais rapidamente \cite{leler2017flutterdart}.
 
-No \textit{Dart}, a estratégia de compilação \textit{JIT} é utilizada no período de desenvolvimento da aplicação, enquanto a compilação \textit{AOT} é utilizada para a compilação final da aplicação. O código compilado é otimizado para a plataforma em que será executado. Por exemplo, o código compilado para dispositivos móveis é otimizado para a arquitetura \textit{ARM}, enquanto o código compilado para \textit{desktop} é otimizado para a arquitetura \texttt{x64} \cite{dart-platforms}.
+No \textit{Dart}, a estratégia de compilação \textit{JIT} é utilizada no período de desenvolvimento da aplicação, enquanto a compilação \textit{AOT} é utilizada para a compilação final da aplicação. O código compilado é otimizado para a plataforma em que será executado. Por exemplo, o código compilado para dispositivos móveis é otimizado para a arquitetura \textit{ARM} (\textit{Advanced RISC Machine}), enquanto o código compilado para \textit{desktop} é otimizado para a arquitetura \texttt{x64} \cite{dart-platforms}.
 
 \begin{figure}[!ht]
   \includegraphics[width=1\textwidth, keepaspectratio=true]{figuras/cap2/2_1_2_dart-platforms.png}
@@ -58,12 +56,12 @@ O \textit{Flutter}, criado pela \textit{Google}, é desenvolvido em código aber
 % \label{cap2:SubSec:ArquiteturaFlutter}
 % A fazer.
 
-% [A revisar]
-% O próprio \textit{framework} do \textit{Flutter} é dividido em múltiplas camadas, onde as camadas superiores, ou seja, aquelas que estão mais próximas do usuário (do desenvolvedor, no contexto do Flutter) dependem apenas das camadas diretamente abaixo delas \cite{flutter-architecture}, em um caminho de direção única \cite{bob2015architecture}.
+% [A revisar] [Revisado]{Não adicionado}{
+% O próprio \textit{framework} do \textit{Flutter} é dividido em múltiplas camadas, onde as camadas superiores, ou seja, aquelas que estão mais próximas do usuário (do desenvolvedor, no contexto do Flutter) dependem apenas das camadas diretamente abaixo delas \cite{flutter-architecture}, em um caminho de direção única \cite{bob2015architecture}.}
 
-% [A fazer] Falar sobre o hot reload e relacionar com o JIT do Dart VM (https://hackernoon.com/why-flutter-uses-dart-dd635a054ebf#:~:text=a%20game%20changer%E2%80%A6-,Stateful%20hot%C2%A0reload,-One%20of%20the e )
-% [A revisar] O \textit{framework} é composto por três camadas principais: \textit{widgets}, \textit{rendering} e \textit{gestures}. A camada de \textit{widgets} é responsável por definir os elementos visuais da aplicação, enquanto a camada de \textit{rendering} é responsável por desenhar os elementos na tela. A camada de \textit{gestures} é responsável por capturar os eventos de interação do usuário com a aplicação, como toques na tela, movimentos do mouse, etc.
-% ref: https://flutter.dev/docs/resources/architectural-overview 01/11/2022
+% [A fazer] [Feito]{Não adicionado}{Falar sobre o hot reload e relacionar com o JIT do Dart VM (https://hackernoon.com/why-flutter-uses-dart-dd635a054ebf#:~:text=a%20game%20changer%E2%80%A6-,Stateful%20hot%C2%A0reload,-One%20of%20the e )}
+% [A revisar] [Revisado]{Não adicionado}{O \textit{framework} é composto por três camadas principais: \textit{widgets}, \textit{rendering} e \textit{gestures}. A camada de \textit{widgets} é responsável por definir os elementos visuais da aplicação, enquanto a camada de \textit{rendering} é responsável por desenhar os elementos na tela. A camada de \textit{gestures} é responsável por capturar os eventos de interação do usuário com a aplicação, como toques na tela, movimentos do mouse, etc.
+% ref: https://flutter.dev/docs/resources/architectural-overview 01/11/2022}
 
 \subsection{\textit{Widgets}}
 \label{cap2:SubSec:Widgets}
@@ -207,8 +205,7 @@ Para injetar o estado aos widgets que tem interesse nele, utiliza-se o \textit{C
 
 \subsection{\textit{MobX}}
 \label{cap2:Subsec:MobX}
-% [A revisar]
-\textit{MobX} é uma biblioteca para gerenciamento de estado baseado em reatividade \cite{mobx-package}. A reatividade, nesse contexto, é um conceito que permite que o estado de um \textit{widget} mude automaticamente quando uma ação é realizada em outro local, como por exemplo, um outro \textit{widget}. Para isso, utiliza-se a ideia de observabilidade a partir do \textit{widget} que depende do estado a ser observado e, assim que este é alterado, o \textit{widget} é notificado e reconstruído. Esse ciclo pode ser demonstrado na imagem \ref{fig:mobx-cycle}.
+\textit{MobX} é uma biblioteca para gerenciamento de estado baseado em reatividade \cite{mobx-package}. A reatividade, nesse contexto, é um conceito que permite que o estado de um \textit{widget} mude automaticamente quando uma ação acontece em outro local, como por exemplo, um outro \textit{widget}. Para isso, utiliza-se a ideia de observabilidade, onde um \textit{widget} observa as mudanças no estado que ele utiliza e, assim que este é alterado, uma notificação é enviada ao \textit{widget} para que seja reconstruído. Esse ciclo pode ser demonstrado na imagem \ref{fig:mobx-cycle}.
 
 \begin{figure}[!ht]
   \centering
@@ -232,25 +229,23 @@ A notificação realizada pelo estado pode ocasionar efeitos colaterais em outro
   \label{fig:mobx-details}
 \end{figure}
 
-% [A analisar] [A fazer] Exemplo genérico da implementação do MobX.
+% [A analisar] [A fazer] [Analisado]{Não adicionado}{Exemplo genérico da implementação do MobX.}
 
 
 % \section{Programação Orientada a Objetos}
-% A fazer.
+% A fazer [Feito]{Não adicionado}{}
 
 \section{Persistência de Dados}
 \label{cap2:Sec:PersistenciaDados}
-% [A revisar]
-A persistência de dados no contexto do Flutter é o processo de armazenamento em disco das informações relativas à aplicação ou ao seu usuário.
-A persistência de dados em um aplicativo móvel permite que o usuário possa acessar as informações mesmo quando não estiver conectado à internet ou mesmo quando o aplicativo estiver fechado. As principais formas de armazenamento de dados em uma aplicação Flutter são: salvamento em \textit{Shared Preferences}, leitura e escrita de arquivos e salvamento em banco de dados \textit{SQLite} \cite{persistence}.
+A persistência de dados no contexto do Flutter é o processo de armazenamento em disco das informações relativas à aplicação ou ao seu usuário. A persistência de dados em um aplicativo móvel permite que o usuário possa acessar as informações mesmo quando não estiver conectado à internet ou mesmo quando o aplicativo estiver fechado. As principais formas de armazenamento de dados em uma aplicação Flutter são: salvamento em \textit{Shared Preferences}, leitura e escrita de arquivos e salvamento em banco de dados \textit{SQLite} \cite{persistence}.
 
-A forma como as informações são salvas dependem da quantidade, complexidade e finalidade delas. Para pequenos conjunto de dados, o salvamento em chave-valor, utilizando o \textit{Shared Preferences}, é uma boa opção \cite{shared_preferences}. Já para arquivos de texto, como por exemplo, um arquivo \textit{JSON}, o salvamento em disco é uma boa opção, pois permite a leitura e escrita de dados de forma mais abrangente em relação ao tipo de arquivo salvo e sua utilidade posterior \cite{reading_writing_files}. Por fim, para grandes conjuntos de dados, como por exemplo, uma lista de contatos, o \textit{SQLite} é preferível, pois ele é uma biblioteca que implementa o mecanismo de um banco de dados relacional \cite{sqlite-org} que permite a criação de tabelas e a manipulação de dados de forma simples e rápida \cite{sqlite-flutter} \cite{sqlite_features}.
+A forma como as informações são salvas dependem da quantidade, complexidade e finalidade delas. Para pequenos conjunto de dados, o salvamento em chave-valor, utilizando o \textit{Shared Preferences}, é uma boa opção \cite{shared_preferences}. Já para arquivos de texto, como por exemplo, um arquivo \textit{JSON} (JavaScript Object Notation), o salvamento em disco é uma boa opção, pois permite a leitura e escrita de dados de forma mais abrangente em relação ao tipo de arquivo salvo e sua utilidade posterior \cite{reading_writing_files}. Por fim, para grandes conjuntos de dados, como por exemplo, uma lista de contatos, o \textit{SQLite} é preferível, pois ele é uma biblioteca que implementa o mecanismo de um banco de dados relacional \cite{sqlite-org} que permite a criação de tabelas e a manipulação de dados de forma simples e rápida \cite{sqlite-flutter} \cite{sqlite_features}.
 
 No contexto da aplicação, a quantidade de dados pode ser consideravelmente grande e estão bastante relacionados entre si, como descrito na \ref{cap4:SubSec:DiagramaClasses}. Por conta disso, a estratégia utilizada é a de salvar os dados em banco relacional, utilizando o \textit{SQLite}.
 
 \subsection{\textit{Banco de Dados SQLite}}
 \label{cap2:SubSec:BancoSQLite}
-Um banco de dados pode ser entendido como um conjunto organizado e integrado de dados ou informações que atendem a um conjunto de usuários \cite{heuser09banco} \cite{oracle}. Em geral, os bancos de dados tem o objetivo de armazenar dados de vários sistemas e/ou usuários diferentes e, por conta disso, utilizam-se de sistemas de gerenciamento de banco de dados (SGBD) modularizados \cite{heuser09banco} que, em alguns casos, exigem um servidor a parte para realizar os processos que recebem em uma arquitetura conhecida como cliente/servidor \cite{sqlitetutorial_net}.
+Um banco de dados pode ser entendido como um conjunto organizado e integrado de dados ou informações que atendem a um conjunto de usuários \cite{heuser09banco} \cite{oracle}. Em geral, os bancos de dados tem o objetivo de armazenar dados de vários sistemas e/ou usuários diferentes e, por conta disso, utilizam-se de Sistemas Gerenciadores de Banco de Dados (SGBD) modularizados \cite{heuser09banco} que, em alguns casos, exigem um servidor a parte para realizar os processos que recebem em uma arquitetura conhecida como cliente/servidor \cite{sqlitetutorial_net}.
 
 Para esse tipo de banco de dados, o foco está mais atrelado à escalabilidade e concorrência de dados, visto que inúmeros novos sistemas podem ser acoplados ao banco de dados pré-existente. No caso do \textit{SQLite}, o foco está mais voltado para a economia, eficiência e simplicidade, ao passo em que ele atenderá a um único sistema ou aplicação que, nesse caso, se trata do dispositivo móvel e dos poucos usuários (em geral, apenas um), que o utilizarão \cite{sqlite_use}.
 
