@@ -5,9 +5,7 @@
 \mychapter{Fundamentação Teórica}
 \label{Cap:Teoria}
 
-Neste capítulo serão apresentados os conceitos básicos relacionados ao \textit{framework Flutter}, assim como a linguagem de programação Dart, a biblioteca MobX e o \textit{wrapper} Provider, utilizados para o desenvolvimento desta aplicação.
-
-Também serão discutidas as principais ideias relacionadas à Programação Orientada a Objeto (POO), aos bancos de dados relacionais e, por fim, alguns conceitos relacionados às boas práticas da programação no quesito de arquitetura de sistemas e os princípios SOLID.
+Neste capítulo serão apresentados os conceitos básicos relacionados ao \textit{framework Flutter}, assim como a linguagem de programação Dart, a biblioteca MobX e o \textit{wrapper} Provider, utilizados para o desenvolvimento desta aplicação. Também serão discutidas as principais ideias relacionadas à persistência de dados no contexto do desenvolvimento para dispositivos móveis e aos bancos de dados relacionais.
 
 \section{Dart}
 \label{cap2:Sec:Dart}
@@ -207,8 +205,7 @@ Para injetar o estado aos widgets que tem interesse nele, utiliza-se o \textit{C
 
 \subsection{\textit{MobX}}
 \label{cap2:Subsec:MobX}
-% [A revisar]
-\textit{MobX} é uma biblioteca para gerenciamento de estado baseado em reatividade \cite{mobx-package}. A reatividade, nesse contexto, é um conceito que permite que o estado de um \textit{widget} mude automaticamente quando uma ação é realizada em outro local, como por exemplo, um outro \textit{widget}. Para isso, utiliza-se a ideia de observabilidade a partir do \textit{widget} que depende do estado a ser observado e, assim que este é alterado, o \textit{widget} é notificado e reconstruído. Esse ciclo pode ser demonstrado na imagem \ref{fig:mobx-cycle}.
+\textit{MobX} é uma biblioteca para gerenciamento de estado baseado em reatividade \cite{mobx-package}. A reatividade, nesse contexto, é um conceito que permite que o estado de um \textit{widget} mude automaticamente quando uma ação acontece em outro local, como por exemplo, um outro \textit{widget}. Para isso, utiliza-se a ideia de observabilidade, onde um \textit{widget} observa as mudanças no estado que ele utiliza e, assim que este é alterado, uma notificação é enviada ao \textit{widget} para que seja reconstruído. Esse ciclo pode ser demonstrado na imagem \ref{fig:mobx-cycle}.
 
 \begin{figure}[!ht]
   \centering
