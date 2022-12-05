@@ -383,6 +383,58 @@ Tanto a classe \textbf{DatabaseInterface} como a classe \textbf{DatabaseManager}
 % https://priyalwalpita.medium.com/software-architecture-patterns-which-one-to-choose-1e368b43fe70
 % e da seção 4.2.1 do artigo de Faust
 
+\subsection{Modularização e estrutura de pastas da aplicação}
+\label{cap4:Subsec:Modularizacao}
+A modularização é uma técnica que permite a separação dos componentes de uma aplicação em módulos (ou componentes) independentes, que podem ser separados completamente da aplicação principal para, então, serem importados por ela como uma dependência externa ou serem utilizados em outras aplicações \cite{rifa2020modularization} \cite{Faust2020}. Nessa técnica, tudo aquilo que é necessário para o funcionamento de um módulo é encapsulado dentro dele, desde as classes de interface do usuário até as classes de dados da aplicação.
+
+Um passo anterior a esse e que ajuda na futura modularização é a organização dos arquivos da aplicação em pastas que separam cada um dos componentes do sistema \cite{Faust2020}. No contexto desse projeto, a modularização se restringe às camadas de interface do usuário (\ref{cap4:SubSubSec:UI}) e regra de negócio (\ref{cap4:SubSubSec:RegraNegocio}), pois as camadas mais abaixo são tão conectadas entre si pela própria natureza do domínio do problema, que tentá-las modularizar junto as outras camadas causaria muito código duplicado. Por exemplo, as funcionalidades de registro de vacina e exportação de vacina foram divididas em módulos separadas, mas ambas utilizam muitos repositórios em comum.
+
+Ainda nessa análise do que separar em módulos, o domínio que determina toda a aplicação tem pouco potencial de mudanças, mas as funcionalidades de interface do usuário e de regra de negócio podem ser facilmente alteradas e novas podem ser adicionadas, como descrito na seção \ref{cap6:Sec:FuturoNurse}. Sendo assim, a divisão em módulos que deixa mais evidente as funcionalidades que a aplicação possui e isso facilita a manutenção e o incremento de novas recursos a ela. Na Figura \ref{fig:3_2_2_modulos_camadas_nurse} temos a divisão final da aplicação, incluindo seus módulos e suas camadas. Em seguida, na Figura \ref{fig:3_2_2_pastas_nurse} tem-se a estrutura de pastas utilizadas, onde destaca-se a separação dos módulos na pasta \textit{app} e a adição das outras camadas na pasta \textit{shared}.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=\textwidth]{figuras/cap4/3_2_2_modulos_camadas_nurse.png}
+  \caption{Camadas e módulos da aplicação \textbf{Nurse}}
+  \label{fig:3_2_2_modulos_camadas_nurse}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.4\textwidth]{figuras/cap4/3_2_2_pastas_nurse.png}
+  \caption{Estrutura de pastas da aplicação \textbf{Nurse}}
+  \label{fig:3_2_2_pastas_nurse}
+\end{figure}
+
+\begin{table}[ht!]
+  \centering
+  \begin{tabularx}{\textwidth}{
+    | >{\centering\arraybackslash}p{0.01\textwidth} 
+      >{\centering\arraybackslash}p{0.01\textwidth} 
+      >{\centering\arraybackslash}p{0.20\textwidth}
+    | >{\raggedright\arraybackslash}X | }
+    \hline
+    \rowcolor{green!100}
+    \multicolumn{3}{|c|}{\textbf{Pastas}}                                                                                                                                    & \textbf{Conteúdo das pastas}            \\ \hline \hline
+    \multicolumn{1}{|c|}{\cellcolor{green!40}}                         & \multicolumn{2}{l|}{components}                                                                     & \textit{Widgets} que são utilizados em mais módulo e foram componentizados                                                            \\ \hhline{|>{\arrayrulecolor{green!40}}->{\arrayrulecolor{black}}|*{3}{-}} 
+    \rowcolor{green!10} 
+    \multicolumn{1}{|c|}{\cellcolor{green!40}}                         & \multicolumn{2}{l|}{\cellcolor{green!10}theme}                                                      & Todas as classes e constantes que definem cores, tipografia e restrições de layout da aplicação                                       \\ \hhline{|>{\arrayrulecolor{green!40}}->{\arrayrulecolor{black}}|*{3}{-}} 
+    \multicolumn{1}{|c|}{\cellcolor{green!40}}                         & \multicolumn{2}{l|}{utils}                                                                          & Classes, métodos e enumerações que são usadas por diversas classes dentro da pasta \textit{app}                                       \\ \hhline{|>{\arrayrulecolor{green!40}}->{\arrayrulecolor{black}}|*{3}{-}} 
+    \rowcolor{green!40} 
+    \multicolumn{1}{|c|}{\cellcolor{green!40}}                         & \multicolumn{1}{c|}{\cellcolor{green!40}}                          & \cellcolor{green!10}Home       & \cellcolor{green!10} Todos os \textit{widgets} e controladores referentes à funcionalidade da página \textbf{Home}                    \\ \hhline{|*{2}{>{\arrayrulecolor{green!40}}->{\arrayrulecolor{black}}|}*{2}{-}} 
+    \multicolumn{1}{|c|}{\cellcolor{green!40}}                         & \multicolumn{1}{c|}{\cellcolor{green!40}}                          & Export                         & Todos os \textit{widgets} e controladores referentes à funcionalidade da página de \textbf{Exportação}                                \\ \hhline{|*{2}{>{\arrayrulecolor{green!40}}->{\arrayrulecolor{black}}|}*{2}{-}}  
+    \rowcolor{green!40} 
+    \multicolumn{1}{|c|}{\cellcolor{green!40}}                         & \multicolumn{1}{c|}{\cellcolor{green!40}}                          & \cellcolor{green!10}EntityList & \cellcolor{green!10}Todos os \textit{widgets} e controladores referentes à funcionalidade da página de \textbf{Listagem de Entidades} \\ \cline{3-4} 
+    \multicolumn{1}{|c|}{\multirow{-7}{*}{\cellcolor{green!40}\rotatebox{90}{app}}}    & \multicolumn{1}{c|}{\multirow{-4}{*}{\cellcolor{green!40}\rotatebox{90}{modules}}} & VaccinationEntry               & Todos os \textit{widgets} e controladores referentes à funcionalidade da página \textbf{Registro de Vacinação}                        \\ \hline
+    \rowcolor{green!10} 
+    \multicolumn{1}{|l|}{\cellcolor{green!40}}                         & \multicolumn{2}{l|}{\cellcolor{green!10}models}                                                     & Classes com os modelos que definem o domínio do problema                                                                              \\ \cline{2-4} 
+    \multicolumn{1}{|l|}{\cellcolor{green!40}}                         & \multicolumn{2}{l|}{repositories}                                                                   & Interfaces que definem os métodos que interligam as camadas de regra de negócio e dados utilizando os modelos e suas implementações                      \\ \hhline{|>{\arrayrulecolor{green!40}}->{\arrayrulecolor{black}}|*{3}{-}} 
+    \rowcolor{green!10} 
+    \multicolumn{1}{|l|}{\multirow{-3}{*}{\cellcolor{green!40}\rotatebox{90}{shared}}} & \multicolumn{2}{l|}{\cellcolor{green!10}services}                                                   & Classe utilizada para manipulação dos dados salvos a fim de gerar a planilha a ser exportada                                          \\ \hline
+  \end{tabularx}
+  % }
+\caption{Estrutura e descrição das pastas da aplicação Nurse}
+\label{tab:pastas}
+\end{table}
 
 \section{Telas}
 \label{cap4:Sec:Telas}
