@@ -20,7 +20,7 @@ Os requisitos funcionais (RF) são aqueles que descrevem as funcionalidades que 
 
 \begin{table}[ht!]
   \centering
-  {\rowcolors{0}{white}{green!20}
+  {\rowcolors{0}{white}{green!10}
   \begin{tabularx}{\textwidth}{
     | >{\centering\arraybackslash}m{0.10\textwidth} 
     | >{\centering\arraybackslash}X 
@@ -44,7 +44,7 @@ Os requisitos não funcionais (RNF) são aqueles que descrevem as característic
 
 \begin{table}[ht!]
   \centering
-  {\rowcolors{0}{white}{green!20}
+  {\rowcolors{0}{white}{green!10}
   \begin{tabularx}{\textwidth}{
     | >{\centering\arraybackslash}m{0.10\textwidth} 
     | >{\centering\arraybackslash}X 
@@ -75,7 +75,7 @@ Uma das formas de representar um sistema, seu escopo e limites é através da id
 
 \begin{table}[ht!]
   \centering
-  {\rowcolors{0}{white}{green!20}
+  {\rowcolors{0}{white}{green!10}
   \begin{tabularx}{\textwidth}{
     | >{\centering\arraybackslash}m{0.15\textwidth} 
     | >{\centering\arraybackslash}X |}
@@ -92,7 +92,7 @@ Uma das formas de representar um sistema, seu escopo e limites é através da id
 \section{Arquitetura do Sistema}
 \label{cap4:Sec:ArquiteturaSistema}
 
-A definição de uma arquitetura para o desenvolvimento de um projeto é essencial para que o mesmo seja desenvolvido de forma organizada e eficiente, mas também tornar a sua manutenção mais simples. Em outras palavras, o objetivo em definir uma arquitetura é diminuir os recursos humanos e, consequentemente, financeiros necessários durante todo o ciclo de vida de um projeto, desde a sua concepção até a sua manutenção, passando pelo desenvolvimento de suas funcionalidades \cite{martin2019arquitetura}. 
+A definição de uma arquitetura para o desenvolvimento de um projeto é essencial para que o mesmo seja desenvolvido de forma organizada e eficiente, mas também tornar a sua manutenção mais simples. Em outras palavras, o objetivo em definir uma arquitetura é diminuir os recursos humanos e, consequentemente, financeiros necessários durante todo o ciclo de vida de um projeto, desde a sua concepção até a sua manutenção, passando pelo desenvolvimento de suas funcionalidades \cite{martin2019arquitetura}.
 
 Para se alcançar esse objetivo, pode-se utilizar de técnicas, como as supracitadas divisão em camadas de responsabilidade e a modularização, entre outras. Além disso, é importante construir um modelo do domínio-problema da aplicação para que as complexidades inerentes a ele sejam melhor controladas \cite{evans2017domain}. O domínio, ou seja, a área na qual a aplicação Nurse está inserida e qual problema quer-se resolver, engloba do todo o conjunto de ações necessárias para realizar uma vacinação, desde o cadastro das entidades envolvidas (paciente, aplicante, vacina etc...) até a posterior exportação dos dados coletados. O modelo criado para o banco de dados é usado para modelar as entidades envolvidas e a relação entre elas, já as classes desenvolvidas para criar os arquivos a serem exportados é um exemplo da implementação no código das ações necessárias dentro desse domínio-problema.
 
